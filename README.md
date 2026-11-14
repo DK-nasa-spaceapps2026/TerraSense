@@ -1,14 +1,14 @@
-# TerraVision: Harmonized Burning Activity Calendar & Fire Monitoring Platform
+# TerraSense
 
-TerraVision is a comprehensive full-stack web application designed for early warning and emergency responders, scientists, land managers, and firefighters. It harmonizes NASA Earthdata FIRMS active fire hotspots from MODIS and VIIRS sensors, presenting a consistent time series, burning activity calendars, anomaly detection against historical averages, and interactive mapping via Google Maps.
+A farmer-facing decision-support web application featuring an interactive 2.5D/3D "Civilization-style" parcel viewer. TerraSense fuses NASA Earth Observation data (NASA POWER, plus simulated SMAP, GPM, ECOSTRESS, and MODIS layers) with local soil profiles to divide a field into management zones, surface bare-ground and water/heat stress risks, and compare crop rotation strategies across a 24-month timeline.
 
 ## Tech Stack
-- **Frontend**: Node.js / Express with modern web UI (HTML5/CSS3/JavaScript, Google Maps API, Chart.js for data visualizations)
-- **Backend**: Python Flask REST API
-- **Database**: Supabase (PostgreSQL with PostGIS extensions for spatial queries)
+- **Frontend**: Next.js (App Router, TypeScript, Tailwind CSS, Lucide icons, React Three Fiber / Three.js)
+- **Backend**: Python (Flask, Flask-CORS, NumPy, Requests)
 
 ## Project Structure
-- `backend/`: Python Flask application, API routes, database models, and mock data generator / FIRMS harmonization processor.
-- `frontend/`: Node.js Express server serving the dashboard and integrating Google Maps.
-- `database/`: Supabase migration scripts and schema definitions.
-- `data/`: Sample datasets and sample CSV exporters.
+- `terrasense/backend/`: Flask REST API (`app.py`), NASA POWER integration harness (`nasa_power.py`), and zoning/water-balance engine (`zone_engine.py`).
+- `terrasense/frontend/`: Next.js App Router UI with the 2.5D isometric tile grid (`IsoGrid.tsx`), 24-month temporal scrubber (`TimelineSlider.tsx`), strategy comparison cards (`DecisionPanel.tsx`), and per-zone detail drawer (`TileDrawer.tsx`).
+- `terrasense/README.md`: Detailed API contract and model notes.
+
+*(Note: The repository root also contains legacy `backend/`, `frontend/`, and `database/` folders from an earlier project.)*

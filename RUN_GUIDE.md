@@ -1,28 +1,35 @@
-# Running TerraVision Locally
+# Running TerraSense Locally
 
-TerraVision is structured as a robust full-stack application:
-- **Backend**: Python Flask (`backend/app.py`) providing harmonized MODIS and VIIRS active fire hotspots, anomaly calculations, and CSV exports.
-- **Frontend**: Node.js Express (`frontend/server.js`) serving the responsive EJS dashboard with Google Maps integration, interactive filter controls, calendar heatmaps, and Chart.js analytics.
-- **Database**: Supabase (PostgreSQL with PostGIS) schema (`database/schema.sql`).
+TerraSense runs with two local servers:
+- **Backend**: Python Flask (`terrasense/backend/app.py`) on `http://localhost:5001`
+- **Frontend**: Next.js (`terrasense/frontend`) on `http://localhost:3001` (proxies `/api/*` to Flask)
 
 ## Quick Start Guide
 
 ### 1. Start the Python Flask Backend
 ```bash
-cd backend
+cd terrasense/backend
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 python app.py
 ```
-*(The Flask server will start on `http://localhost:5000` with pre-populated mock harmonized hotspot data spanning 2000–2026).*
+*(No API keys are required—the backend runs out-of-the-box with deterministic mock data. To fetch live NASA POWER climate data with automatic mock fallback, run `TERRASENSE_LIVE=1 python app.py`.)*
 
-### 2. Start the Node.js Frontend
+### 2. Start the Next.js Frontend
 Open a new terminal window:
 ```bash
-cd frontend
+cd terrasense/frontend
 npm install
-npm start
+npm run dev
 ```
-*(The Node.js server will start on `http://localhost:3000` and proxy requests to the Flask backend).*
 
 ### 3. Open in Browser
-Visit **`http://localhost:3000`** in your browser to explore the interactive fire monitoring map, burning activity calendar heatmap, sensor filtering (MODIS vs. VIIRS), historical anomaly comparisons, and CSV export.
+Visit **`http://localhost:3001`** in your browser to explore the 2.5D parcel grid, scrub through the 24-month observed/forecast timeline, test climate what-if scenarios, and compare crop rotation strategies.
+
+### Optional: Backend Smoke Test
+```bash
+cd terrasense/backend
+source .venv/bin/activate
+python smoke_test.py
+```
