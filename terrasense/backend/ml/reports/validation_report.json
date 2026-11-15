@@ -1,0 +1,766 @@
+{
+  "gate_passed": true,
+  "recommended_default_engine": "ml",
+  "buffer_km": 25.0,
+  "buffered_spatial_cv": {
+    "n_eval_rows": 2340,
+    "smi": {
+      "rmse": 0.1415,
+      "mae": 0.1099,
+      "r2": 0.3878,
+      "spearman": 0.6372,
+      "skill_vs_climatology": 0.4171,
+      "skill_vs_persistence": 0.5322,
+      "skill_vs_heuristic": 0.7361,
+      "climatology_rmse": 0.1854,
+      "persistence_rmse": 0.2069,
+      "heuristic_rmse": 0.2755,
+      "conformal_80pct_coverage": 0.7991
+    },
+    "esi": {
+      "rmse": 0.1275,
+      "mae": 0.0885,
+      "r2": 0.7391,
+      "spearman": 0.8787,
+      "skill_vs_climatology": 0.5042,
+      "skill_vs_persistence": 0.8972,
+      "skill_vs_heuristic": 0.8564,
+      "climatology_rmse": 0.1811,
+      "persistence_rmse": 0.3978,
+      "heuristic_rmse": 0.3366,
+      "conformal_80pct_coverage": 0.7038
+    },
+    "status_classification": {
+      "macro_f1_ml": 0.8472,
+      "macro_f1_heuristic": 0.7071,
+      "accuracy_ml": 0.8432,
+      "accuracy_heuristic": 0.6846,
+      "labels": [
+        "lush",
+        "moderate",
+        "water_stress",
+        "heat_stress",
+        "bare_vulnerable"
+      ],
+      "confusion_matrix_ml": [
+        [
+          538,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          548,
+          120,
+          0,
+          2
+        ],
+        [
+          42,
+          167,
+          805,
+          0,
+          21
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          9,
+          3,
+          0,
+          82
+        ]
+      ]
+    },
+    "horizon_curves": {
+      "1": {
+        "smi_rmse_ml": 0.0832,
+        "smi_rmse_heur": 0.1773,
+        "esi_rmse_ml": 0.0989,
+        "esi_rmse_heur": 0.4412
+      },
+      "2": {
+        "smi_rmse_ml": 0.1487,
+        "smi_rmse_heur": 0.2147,
+        "esi_rmse_ml": 0.067,
+        "esi_rmse_heur": 0.5008
+      },
+      "3": {
+        "smi_rmse_ml": 0.1221,
+        "smi_rmse_heur": 0.1675,
+        "esi_rmse_ml": 0.1029,
+        "esi_rmse_heur": 0.4589
+      },
+      "4": {
+        "smi_rmse_ml": 0.1422,
+        "smi_rmse_heur": 0.2515,
+        "esi_rmse_ml": 0.1282,
+        "esi_rmse_heur": 0.2764
+      },
+      "5": {
+        "smi_rmse_ml": 0.1638,
+        "smi_rmse_heur": 0.2912,
+        "esi_rmse_ml": 0.0488,
+        "esi_rmse_heur": 0.0835
+      },
+      "6": {
+        "smi_rmse_ml": 0.1276,
+        "smi_rmse_heur": 0.3723,
+        "esi_rmse_ml": 0.0349,
+        "esi_rmse_heur": 0.0512
+      },
+      "7": {
+        "smi_rmse_ml": 0.1376,
+        "smi_rmse_heur": 0.303,
+        "esi_rmse_ml": 0.047,
+        "esi_rmse_heur": 0.0733
+      },
+      "8": {
+        "smi_rmse_ml": 0.1374,
+        "smi_rmse_heur": 0.2145,
+        "esi_rmse_ml": 0.0901,
+        "esi_rmse_heur": 0.2122
+      },
+      "9": {
+        "smi_rmse_ml": 0.1304,
+        "smi_rmse_heur": 0.306,
+        "esi_rmse_ml": 0.0948,
+        "esi_rmse_heur": 0.4188
+      },
+      "10": {
+        "smi_rmse_ml": 0.113,
+        "smi_rmse_heur": 0.2994,
+        "esi_rmse_ml": 0.1477,
+        "esi_rmse_heur": 0.3555
+      },
+      "11": {
+        "smi_rmse_ml": 0.1698,
+        "smi_rmse_heur": 0.3644,
+        "esi_rmse_ml": 0.2116,
+        "esi_rmse_heur": 0.2778
+      },
+      "12": {
+        "smi_rmse_ml": 0.1914,
+        "smi_rmse_heur": 0.2537,
+        "esi_rmse_ml": 0.2539,
+        "esi_rmse_heur": 0.4335
+      }
+    }
+  },
+  "temporal_cv": {
+    "train_2023_test_2024": {
+      "n_eval_rows": 2340,
+      "smi": {
+        "rmse": 0.1556,
+        "mae": 0.1132,
+        "r2": 0.26,
+        "spearman": 0.5752,
+        "skill_vs_climatology": 0.4936,
+        "skill_vs_persistence": 0.4346,
+        "skill_vs_heuristic": 0.681,
+        "climatology_rmse": 0.2186,
+        "persistence_rmse": 0.2069,
+        "heuristic_rmse": 0.2755,
+        "conformal_80pct_coverage": 0.7415
+      },
+      "esi": {
+        "rmse": 0.1832,
+        "mae": 0.1531,
+        "r2": 0.4618,
+        "spearman": 0.7629,
+        "skill_vs_climatology": 0.4841,
+        "skill_vs_persistence": 0.788,
+        "skill_vs_heuristic": 0.7038,
+        "climatology_rmse": 0.255,
+        "persistence_rmse": 0.3978,
+        "heuristic_rmse": 0.3366,
+        "conformal_80pct_coverage": 0.4132
+      },
+      "status_classification": {
+        "macro_f1_ml": 0.7385,
+        "macro_f1_heuristic": 0.7071,
+        "accuracy_ml": 0.6996,
+        "accuracy_heuristic": 0.6846,
+        "labels": [
+          "lush",
+          "moderate",
+          "water_stress",
+          "heat_stress",
+          "bare_vulnerable"
+        ],
+        "confusion_matrix_ml": [
+          [
+            391,
+            142,
+            5,
+            0,
+            0
+          ],
+          [
+            0,
+            416,
+            254,
+            0,
+            3
+          ],
+          [
+            35,
+            235,
+            740,
+            0,
+            25
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            3,
+            1,
+            0,
+            90
+          ]
+        ]
+      },
+      "horizon_curves": {
+        "1": {
+          "smi_rmse_ml": 0.0962,
+          "smi_rmse_heur": 0.1773,
+          "esi_rmse_ml": 0.2259,
+          "esi_rmse_heur": 0.4412
+        },
+        "2": {
+          "smi_rmse_ml": 0.1902,
+          "smi_rmse_heur": 0.2147,
+          "esi_rmse_ml": 0.0697,
+          "esi_rmse_heur": 0.5008
+        },
+        "3": {
+          "smi_rmse_ml": 0.1104,
+          "smi_rmse_heur": 0.1675,
+          "esi_rmse_ml": 0.1577,
+          "esi_rmse_heur": 0.4589
+        },
+        "4": {
+          "smi_rmse_ml": 0.1719,
+          "smi_rmse_heur": 0.2515,
+          "esi_rmse_ml": 0.1785,
+          "esi_rmse_heur": 0.2764
+        },
+        "5": {
+          "smi_rmse_ml": 0.2332,
+          "smi_rmse_heur": 0.2912,
+          "esi_rmse_ml": 0.1932,
+          "esi_rmse_heur": 0.0835
+        },
+        "6": {
+          "smi_rmse_ml": 0.1667,
+          "smi_rmse_heur": 0.3723,
+          "esi_rmse_ml": 0.1975,
+          "esi_rmse_heur": 0.0512
+        },
+        "7": {
+          "smi_rmse_ml": 0.1189,
+          "smi_rmse_heur": 0.303,
+          "esi_rmse_ml": 0.1668,
+          "esi_rmse_heur": 0.0733
+        },
+        "8": {
+          "smi_rmse_ml": 0.1161,
+          "smi_rmse_heur": 0.2145,
+          "esi_rmse_ml": 0.1082,
+          "esi_rmse_heur": 0.2122
+        },
+        "9": {
+          "smi_rmse_ml": 0.1014,
+          "smi_rmse_heur": 0.306,
+          "esi_rmse_ml": 0.1745,
+          "esi_rmse_heur": 0.4188
+        },
+        "10": {
+          "smi_rmse_ml": 0.0744,
+          "smi_rmse_heur": 0.2994,
+          "esi_rmse_ml": 0.229,
+          "esi_rmse_heur": 0.3555
+        },
+        "11": {
+          "smi_rmse_ml": 0.1905,
+          "smi_rmse_heur": 0.3644,
+          "esi_rmse_ml": 0.2094,
+          "esi_rmse_heur": 0.2778
+        },
+        "12": {
+          "smi_rmse_ml": 0.2035,
+          "smi_rmse_heur": 0.2537,
+          "esi_rmse_ml": 0.2177,
+          "esi_rmse_heur": 0.4335
+        }
+      }
+    },
+    "train_2024_test_2023": {
+      "n_eval_rows": 2145,
+      "smi": {
+        "rmse": 0.1378,
+        "mae": 0.1036,
+        "r2": 0.4432,
+        "spearman": 0.7194,
+        "skill_vs_climatology": 0.5789,
+        "skill_vs_persistence": 0.4309,
+        "skill_vs_heuristic": 0.8127,
+        "climatology_rmse": 0.2124,
+        "persistence_rmse": 0.1827,
+        "heuristic_rmse": 0.3185,
+        "conformal_80pct_coverage": 0.7678
+      },
+      "esi": {
+        "rmse": 0.1252,
+        "mae": 0.1027,
+        "r2": 0.6542,
+        "spearman": 0.8796,
+        "skill_vs_climatology": 0.7635,
+        "skill_vs_persistence": 0.6198,
+        "skill_vs_heuristic": 0.8539,
+        "climatology_rmse": 0.2575,
+        "persistence_rmse": 0.2031,
+        "heuristic_rmse": 0.3275,
+        "conformal_80pct_coverage": 0.4727
+      },
+      "status_classification": {
+        "macro_f1_ml": 0.6759,
+        "macro_f1_heuristic": 0.6163,
+        "accuracy_ml": 0.8219,
+        "accuracy_heuristic": 0.634,
+        "labels": [
+          "lush",
+          "moderate",
+          "water_stress",
+          "heat_stress",
+          "bare_vulnerable"
+        ],
+        "confusion_matrix_ml": [
+          [
+            11,
+            22,
+            109,
+            0,
+            0
+          ],
+          [
+            0,
+            458,
+            46,
+            0,
+            0
+          ],
+          [
+            6,
+            190,
+            1247,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            4,
+            4,
+            0,
+            47
+          ]
+        ]
+      },
+      "horizon_curves": {
+        "1": {
+          "smi_rmse_ml": 0.0702,
+          "smi_rmse_heur": 0.1828,
+          "esi_rmse_ml": 0.0917,
+          "esi_rmse_heur": 0.4021
+        },
+        "2": {
+          "smi_rmse_ml": 0.119,
+          "smi_rmse_heur": 0.2244,
+          "esi_rmse_ml": 0.1254,
+          "esi_rmse_heur": 0.276
+        },
+        "3": {
+          "smi_rmse_ml": 0.1497,
+          "smi_rmse_heur": 0.3729,
+          "esi_rmse_ml": 0.1597,
+          "esi_rmse_heur": 0.2968
+        },
+        "4": {
+          "smi_rmse_ml": 0.2095,
+          "smi_rmse_heur": 0.4847,
+          "esi_rmse_ml": 0.1434,
+          "esi_rmse_heur": 0.2642
+        },
+        "5": {
+          "smi_rmse_ml": 0.2226,
+          "smi_rmse_heur": 0.4282,
+          "esi_rmse_ml": 0.0937,
+          "esi_rmse_heur": 0.3091
+        },
+        "6": {
+          "smi_rmse_ml": 0.0984,
+          "smi_rmse_heur": 0.1768,
+          "esi_rmse_ml": 0.0887,
+          "esi_rmse_heur": 0.3253
+        },
+        "7": {
+          "smi_rmse_ml": 0.0995,
+          "smi_rmse_heur": 0.3823,
+          "esi_rmse_ml": 0.1149,
+          "esi_rmse_heur": 0.2027
+        },
+        "8": {
+          "smi_rmse_ml": 0.0952,
+          "smi_rmse_heur": 0.3422,
+          "esi_rmse_ml": 0.1294,
+          "esi_rmse_heur": 0.1252
+        },
+        "9": {
+          "smi_rmse_ml": 0.117,
+          "smi_rmse_heur": 0.2893,
+          "esi_rmse_ml": 0.1408,
+          "esi_rmse_heur": 0.2169
+        },
+        "10": {
+          "smi_rmse_ml": 0.1267,
+          "smi_rmse_heur": 0.2429,
+          "esi_rmse_ml": 0.1376,
+          "esi_rmse_heur": 0.4075
+        },
+        "11": {
+          "smi_rmse_ml": 0.1248,
+          "smi_rmse_heur": 0.1929,
+          "esi_rmse_ml": 0.13,
+          "esi_rmse_heur": 0.5596
+        }
+      }
+    },
+    "combined_temporal": {
+      "n_eval_rows": 4485,
+      "smi": {
+        "rmse": 0.1474,
+        "mae": 0.1086,
+        "r2": 0.3899,
+        "spearman": 0.6416,
+        "skill_vs_climatology": 0.5332,
+        "skill_vs_persistence": 0.4331,
+        "skill_vs_heuristic": 0.7535,
+        "climatology_rmse": 0.2157,
+        "persistence_rmse": 0.1957,
+        "heuristic_rmse": 0.2968,
+        "conformal_80pct_coverage": 0.7541
+      },
+      "esi": {
+        "rmse": 0.1581,
+        "mae": 0.129,
+        "r2": 0.5603,
+        "spearman": 0.7998,
+        "skill_vs_climatology": 0.6191,
+        "skill_vs_persistence": 0.7555,
+        "skill_vs_heuristic": 0.7735,
+        "climatology_rmse": 0.2562,
+        "persistence_rmse": 0.3198,
+        "heuristic_rmse": 0.3323,
+        "conformal_80pct_coverage": 0.4417
+      },
+      "status_classification": {
+        "macro_f1_ml": 0.7649,
+        "macro_f1_heuristic": 0.6931,
+        "accuracy_ml": 0.7581,
+        "accuracy_heuristic": 0.6604,
+        "labels": [
+          "lush",
+          "moderate",
+          "water_stress",
+          "heat_stress",
+          "bare_vulnerable"
+        ],
+        "confusion_matrix_ml": [
+          [
+            402,
+            164,
+            114,
+            0,
+            0
+          ],
+          [
+            0,
+            874,
+            300,
+            0,
+            3
+          ],
+          [
+            41,
+            425,
+            1987,
+            0,
+            26
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            7,
+            5,
+            0,
+            137
+          ]
+        ]
+      },
+      "horizon_curves": {
+        "1": {
+          "smi_rmse_ml": 0.0842,
+          "smi_rmse_heur": 0.1801,
+          "esi_rmse_ml": 0.1724,
+          "esi_rmse_heur": 0.4221
+        },
+        "2": {
+          "smi_rmse_ml": 0.1587,
+          "smi_rmse_heur": 0.2196,
+          "esi_rmse_ml": 0.1015,
+          "esi_rmse_heur": 0.4044
+        },
+        "3": {
+          "smi_rmse_ml": 0.1315,
+          "smi_rmse_heur": 0.289,
+          "esi_rmse_ml": 0.1587,
+          "esi_rmse_heur": 0.3864
+        },
+        "4": {
+          "smi_rmse_ml": 0.1916,
+          "smi_rmse_heur": 0.3861,
+          "esi_rmse_ml": 0.1619,
+          "esi_rmse_heur": 0.2704
+        },
+        "5": {
+          "smi_rmse_ml": 0.228,
+          "smi_rmse_heur": 0.3661,
+          "esi_rmse_ml": 0.1518,
+          "esi_rmse_heur": 0.2264
+        },
+        "6": {
+          "smi_rmse_ml": 0.1369,
+          "smi_rmse_heur": 0.2914,
+          "esi_rmse_ml": 0.1531,
+          "esi_rmse_heur": 0.2329
+        },
+        "7": {
+          "smi_rmse_ml": 0.1097,
+          "smi_rmse_heur": 0.345,
+          "esi_rmse_ml": 0.1432,
+          "esi_rmse_heur": 0.1524
+        },
+        "8": {
+          "smi_rmse_ml": 0.1062,
+          "smi_rmse_heur": 0.2856,
+          "esi_rmse_ml": 0.1193,
+          "esi_rmse_heur": 0.1742
+        },
+        "9": {
+          "smi_rmse_ml": 0.1095,
+          "smi_rmse_heur": 0.2978,
+          "esi_rmse_ml": 0.1586,
+          "esi_rmse_heur": 0.3335
+        },
+        "10": {
+          "smi_rmse_ml": 0.1039,
+          "smi_rmse_heur": 0.2726,
+          "esi_rmse_ml": 0.1889,
+          "esi_rmse_heur": 0.3824
+        },
+        "11": {
+          "smi_rmse_ml": 0.161,
+          "smi_rmse_heur": 0.2916,
+          "esi_rmse_ml": 0.1743,
+          "esi_rmse_heur": 0.4418
+        },
+        "12": {
+          "smi_rmse_ml": 0.2035,
+          "smi_rmse_heur": 0.2537,
+          "esi_rmse_ml": 0.2177,
+          "esi_rmse_heur": 0.4335
+        }
+      }
+    }
+  },
+  "strict_cluster_and_year_out": {
+    "n_eval_rows": 2340,
+    "smi": {
+      "rmse": 0.1739,
+      "mae": 0.1296,
+      "r2": 0.075,
+      "spearman": 0.4937,
+      "skill_vs_climatology": 0.3998,
+      "skill_vs_persistence": 0.2933,
+      "skill_vs_heuristic": 0.6013,
+      "climatology_rmse": 0.2245,
+      "persistence_rmse": 0.2069,
+      "heuristic_rmse": 0.2755,
+      "conformal_80pct_coverage": 0.706
+    },
+    "esi": {
+      "rmse": 0.1955,
+      "mae": 0.1596,
+      "r2": 0.3871,
+      "spearman": 0.6765,
+      "skill_vs_climatology": 0.411,
+      "skill_vs_persistence": 0.7585,
+      "skill_vs_heuristic": 0.6627,
+      "climatology_rmse": 0.2547,
+      "persistence_rmse": 0.3978,
+      "heuristic_rmse": 0.3366,
+      "conformal_80pct_coverage": 0.4038
+    },
+    "status_classification": {
+      "macro_f1_ml": 0.7157,
+      "macro_f1_heuristic": 0.7071,
+      "accuracy_ml": 0.6782,
+      "accuracy_heuristic": 0.6846,
+      "labels": [
+        "lush",
+        "moderate",
+        "water_stress",
+        "heat_stress",
+        "bare_vulnerable"
+      ],
+      "confusion_matrix_ml": [
+        [
+          407,
+          118,
+          13,
+          0,
+          0
+        ],
+        [
+          0,
+          394,
+          273,
+          0,
+          6
+        ],
+        [
+          32,
+          273,
+          698,
+          0,
+          32
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          4,
+          2,
+          0,
+          88
+        ]
+      ]
+    },
+    "horizon_curves": {
+      "1": {
+        "smi_rmse_ml": 0.1057,
+        "smi_rmse_heur": 0.1773,
+        "esi_rmse_ml": 0.2218,
+        "esi_rmse_heur": 0.4412
+      },
+      "2": {
+        "smi_rmse_ml": 0.2167,
+        "smi_rmse_heur": 0.2147,
+        "esi_rmse_ml": 0.0956,
+        "esi_rmse_heur": 0.5008
+      },
+      "3": {
+        "smi_rmse_ml": 0.1449,
+        "smi_rmse_heur": 0.1675,
+        "esi_rmse_ml": 0.1654,
+        "esi_rmse_heur": 0.4589
+      },
+      "4": {
+        "smi_rmse_ml": 0.1878,
+        "smi_rmse_heur": 0.2515,
+        "esi_rmse_ml": 0.1905,
+        "esi_rmse_heur": 0.2764
+      },
+      "5": {
+        "smi_rmse_ml": 0.2374,
+        "smi_rmse_heur": 0.2912,
+        "esi_rmse_ml": 0.1941,
+        "esi_rmse_heur": 0.0835
+      },
+      "6": {
+        "smi_rmse_ml": 0.164,
+        "smi_rmse_heur": 0.3723,
+        "esi_rmse_ml": 0.2039,
+        "esi_rmse_heur": 0.0512
+      },
+      "7": {
+        "smi_rmse_ml": 0.1354,
+        "smi_rmse_heur": 0.303,
+        "esi_rmse_ml": 0.1775,
+        "esi_rmse_heur": 0.0733
+      },
+      "8": {
+        "smi_rmse_ml": 0.1439,
+        "smi_rmse_heur": 0.2145,
+        "esi_rmse_ml": 0.1227,
+        "esi_rmse_heur": 0.2122
+      },
+      "9": {
+        "smi_rmse_ml": 0.1314,
+        "smi_rmse_heur": 0.306,
+        "esi_rmse_ml": 0.1763,
+        "esi_rmse_heur": 0.4188
+      },
+      "10": {
+        "smi_rmse_ml": 0.1106,
+        "smi_rmse_heur": 0.2994,
+        "esi_rmse_ml": 0.2538,
+        "esi_rmse_heur": 0.3555
+      },
+      "11": {
+        "smi_rmse_ml": 0.2151,
+        "smi_rmse_heur": 0.3644,
+        "esi_rmse_ml": 0.2337,
+        "esi_rmse_heur": 0.2778
+      },
+      "12": {
+        "smi_rmse_ml": 0.225,
+        "smi_rmse_heur": 0.2537,
+        "esi_rmse_ml": 0.2463,
+        "esi_rmse_heur": 0.4335
+      }
+    }
+  }
+}

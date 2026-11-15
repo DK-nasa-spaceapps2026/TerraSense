@@ -40,7 +40,13 @@ def _prepare(field_spec, grid_n, anchor, climate_params, live):
 
 @app.get("/api/health")
 def health():
-    return jsonify({"status": "ok", "live_nasa": os.getenv("TERRASENSE_LIVE", "0") == "1"})
+    eng = ze.active_engine_info()
+    return jsonify({
+        "status": "ok",
+        "live_nasa": os.getenv("TERRASENSE_LIVE", "0") == "1",
+        "engine": eng["engine"],
+        "model_version": eng["model_version"],
+    })
 
 
 @app.get("/api/demo-field")
@@ -65,10 +71,11 @@ def analyze():
         return _err(f"Invalid field: {exc}")
 
     prefs = body.get("preferences") or {}
+    eng = ze.active_engine_info()
     comp = ze.compare_scenarios(grid, climate, prefs)
     rec = comp["recommended"]
     timeline = ze.build_timeline(fid, grid, climate, rec)
-    _TL_CACHE[(fid, rec, cp)] = timeline
+    _TL_CACHE[(fid, rec, cp, eng["engine"])] = timeline
     now = timeline["months"][ze.N_HIST - 1]
 
     feats = []
@@ -84,15 +91,25 @@ def analyze():
     return jsonify({
         "field_id": fid,
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "data_sources": {"climate": climate["source"], "soil_moisture": "SMAP (simulated)",
-                         "precipitation": "GPM IMERG (simulated)", "evapotranspiration": "ECOSTRESS (simulated)",
-                         "vegetation": "MODIS NDVI (simulated)"},
+        "engine": eng["engine"],
+        "model_version": eng["model_version"],
+        "is_proxy_ndvi_bare": True,
+        "data_sources": {
+            "climate": climate["source"],
+            "soil_moisture": "Hybrid LightGBM + ERA5-Land/SSURGO" if eng["engine"] == "ml" else "SMAP (simulated)",
+            "precipitation": "NASA POWER / GPM IMERG",
+            "evapotranspiration": "Hybrid LightGBM + MERRA-2 EVLAND" if eng["engine"] == "ml" else "ECOSTRESS (simulated)",
+            "vegetation": "MODIS NDVI (proxy — AppEEARS hook ready)",
+        },
         "grid": {"rows": grid_n, "cols": grid_n, "n_zones": grid["n_zones"]},
         "bbox": geom["bbox"],
         "field_geojson": {"type": "FeatureCollection", "features": [boundary] + feats},
         "summary": {"current_month": now["label"], **now["field"], "alerts": now["alerts"]},
         "scenarios": comp["scenarios"],
         "recommended_scenario": rec,
+        "ranking_robust": comp.get("ranking_robust", True),
+        "uncertainty_note": comp.get("uncertainty_note", ""),
+        "dynamic_candidates": comp.get("dynamic_candidates", []),
         "preference_weights": comp["weights"],
         "guidance": ze.build_guidance(timeline, rec),
     })
@@ -109,7 +126,8 @@ def timeline():
     if not rec:
         return _err("Unknown field_id — call POST /api/field/analyze first", 404)
     cp = _climate_params(request.args)
-    key = (fid, scenario, cp)
+    eng = ze.active_engine_info()
+    key = (fid, scenario, cp, eng["engine"])
     if key not in _TL_CACHE:
         climate = ze.build_climate(rec["geom"], rec["anchor"], *cp, live=rec["live"])
         _TL_CACHE[key] = ze.build_timeline(fid, rec["grid"], climate, scenario)

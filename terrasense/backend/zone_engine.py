@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import logging
 import math
 from dataclasses import dataclass
 from datetime import date, timedelta
@@ -20,6 +21,8 @@ from typing import Dict, List, Optional
 import numpy as np
 
 import nasa_power
+
+logger = logging.getLogger("terrasense.zone_engine")
 
 MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 STATUSES = ["lush", "moderate", "water_stress", "heat_stress", "bare_vulnerable"]
@@ -182,7 +185,9 @@ def build_grid(geom: dict, grid_n: int, field_id: str) -> dict:
     ii = np.array(idx)
     soil = {k: arr[ii[:, 0], ii[:, 1]] for k, arr in
             dict(sand=sand, clay=clay, som=som, slope=slope, awc=awc).items()}
-    return {"features": feats, "soil": soil, "n_zones": len(feats)}
+    zone_coords = [(w + (c + 0.5) * dx, n - (r + 0.5) * dy) for r, c in idx]
+    return {"features": feats, "soil": soil, "n_zones": len(feats),
+            "field_id": field_id, "zone_coords": zone_coords}
 
 
 # --------------------------------------------------------------------------- #
@@ -238,7 +243,21 @@ def build_climate(geom: dict, anchor: Optional[date], temp_shift: float, precip_
 # --------------------------------------------------------------------------- #
 # Water-balance simulation (vectorised across zones)                          #
 # --------------------------------------------------------------------------- #
-def simulate(soil: Dict[str, np.ndarray], months: List[dict], plan_ids: List[str]) -> Dict[str, np.ndarray]:
+def active_engine_info() -> Dict[str, Optional[str]]:
+    """Return active engine mode ('ml' or 'heuristic') and model_version."""
+    try:
+        from ml.predict import get_predictor, resolve_engine_mode
+        mode = resolve_engine_mode()
+        if mode == "ml":
+            pred = get_predictor()
+            if pred is not None:
+                return {"engine": "ml", "model_version": pred.model_version}
+    except Exception as exc:
+        logger.warning("[zone_engine] Engine resolution fallback to heuristic: %s", exc)
+    return {"engine": "heuristic", "model_version": None}
+
+
+def simulate_heuristic(soil: Dict[str, np.ndarray], months: List[dict], plan_ids: List[str]) -> Dict[str, np.ndarray]:
     nz, T = len(soil["awc"]), len(months)
     names = ["smi", "esi", "bare", "ndvi", "vigor", "heat", "et", "demand", "runoff", "precip"]
     out = {k: np.zeros((T, nz)) for k in names}
@@ -281,6 +300,22 @@ def simulate(soil: Dict[str, np.ndarray], months: List[dict], plan_ids: List[str
     return out
 
 
+def simulate(soil: Dict[str, np.ndarray], months: List[dict], plan_ids: List[str],
+             field_id: str = "default", zone_coords: Optional[List[tuple]] = None) -> Dict[str, np.ndarray]:
+    try:
+        from ml.predict import get_predictor, resolve_engine_mode
+        if resolve_engine_mode() == "ml":
+            pred = get_predictor()
+            if pred is not None:
+                return pred.simulate_vectorized(
+                    soil=soil, months=months, plan_ids=plan_ids, cal_lookup=CALENDARS,
+                    field_id=field_id, zone_coords=zone_coords,
+                )
+    except Exception as exc:
+        logger.warning("[zone_engine] ML simulate failed (%s); falling back to heuristic engine.", exc)
+    return simulate_heuristic(soil, months, plan_ids)
+
+
 def classify(sim: Dict[str, np.ndarray]) -> np.ndarray:
     """Status index per (t, zone) into STATUSES."""
     status = np.full(sim["smi"].shape, 1, dtype=int)                       # moderate
@@ -311,9 +346,14 @@ def _alerts(c: dict, sim_t: Dict[str, np.ndarray], st: np.ndarray) -> List[dict]
 
 def build_timeline(field_id: str, grid: dict, climate: dict, scenario: str) -> dict:
     plans = ["status_quo"] * N_HIST + [scenario] * (N_TOTAL - N_HIST)
-    sim = simulate(grid["soil"], climate["months"], plans)
+    eng_info = active_engine_info()
+    sim = simulate(
+        grid["soil"], climate["months"], plans,
+        field_id=field_id, zone_coords=grid.get("zone_coords"),
+    )
     status = classify(sim)
     r3 = lambda a: round(float(a), 3)
+    has_unc = "smi_p10" in sim
     months = []
     for t, c in enumerate(climate["months"]):
         d = c["date"]
@@ -321,7 +361,7 @@ def build_timeline(field_id: str, grid: dict, climate: dict, scenario: str) -> d
                   "ndvi": r3(sim["ndvi"][t, z]), "vigor": r3(sim["vigor"][t, z]),
                   "et_mm": round(float(sim["et"][t, z]), 1), "status": STATUSES[status[t, z]]}
                  for z in range(grid["n_zones"])]
-        months.append({
+        m_dict = {
             "index": t, "date": d, "label": f"{MONTHS[c['cal_month'] - 1]} {d[:4]}",
             "phase": c["phase"],
             "climate": {"tmax_c": round(c["tmax"], 1), "tmin_c": round(c["tmin"], 1),
@@ -333,8 +373,24 @@ def build_timeline(field_id: str, grid: dict, climate: dict, scenario: str) -> d
                       "vigor": r3(sim["vigor"][t].mean())},
             "alerts": _alerts(c, {k: v[t] for k, v in sim.items()}, status[t]),
             "cells": cells,
-        })
-    return {"field_id": field_id, "scenario": scenario, "anchor_index": N_HIST - 1, "months": months}
+        }
+        if has_unc:
+            m_dict["uncertainty"] = {
+                "smi_p10": r3(sim["smi_p10"][t].mean()),
+                "smi_p90": r3(sim["smi_p90"][t].mean()),
+                "esi_p10": r3(sim["esi_p10"][t].mean()),
+                "esi_p90": r3(sim["esi_p90"][t].mean()),
+            }
+        months.append(m_dict)
+    return {
+        "field_id": field_id,
+        "scenario": scenario,
+        "anchor_index": N_HIST - 1,
+        "engine": eng_info["engine"],
+        "model_version": eng_info["model_version"],
+        "is_proxy_ndvi_bare": True,
+        "months": months,
+    }
 
 
 def _crop_stage(plan: CropPlan, m: int) -> str:
@@ -371,6 +427,18 @@ def preference_weights(prefs: dict) -> Dict[str, float]:
 
 
 def compare_scenarios(grid: dict, climate: dict, prefs: dict) -> dict:
+    try:
+        from ml.crop_plans import evaluate_and_rank_plans
+        fid = grid.get("field_id", "default")
+        zcoords = grid.get("zone_coords")
+        sim_fn = lambda s, m, p: simulate(s, m, p, field_id=fid, zone_coords=zcoords)
+        return evaluate_and_rank_plans(
+            grid=grid, climate=climate, prefs=prefs,
+            simulate_fn=sim_fn, preference_weights_fn=preference_weights,
+        )
+    except Exception as exc:
+        logger.warning("[zone_engine] Crop plan ensemble evaluation failed (%s); using heuristic fallback.", exc)
+
     ids = list(PLANS)
     f = slice(N_HIST, N_TOTAL)
     per = []
