@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { useEffect, useMemo, useState } from "react";
 import { AlertTriangle, CloudRain, Lock, Satellite, Thermometer, Unlock } from "lucide-react";
+import { PiFarmLight } from "react-icons/pi";
 import { analyzeField, fetchTimeline, type ClimateParams } from "@/lib/api";
 import type { AnalyzeResponse, ScenarioId, Timeline, ZoneProps } from "@/lib/types";
 import TimelineSlider from "@/components/TimelineSlider";
@@ -80,7 +81,8 @@ export default function Page() {
   return (
     <main className="flex min-h-screen w-full flex-col gap-4 px-5 py-4">
       <header className="flex flex-wrap items-center justify-between gap-2">
-        <div>
+        <div className="flex items-center gap-2.5">
+          <PiFarmLight className="text-3xl text-lime-400" />
           <h1 className="text-2xl font-bold tracking-tight"><span className="text-lime-400">Terra</span>Sense</h1>
         </div>
         <div className="flex items-center gap-2 text-xs text-stone-400">

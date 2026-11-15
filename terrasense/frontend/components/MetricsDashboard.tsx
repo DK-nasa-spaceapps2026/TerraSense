@@ -190,7 +190,7 @@ export default function MetricsDashboard({
           </button>
 
           {menuOpen && (
-            <div className="absolute right-0 top-full z-20 mt-1.5 w-80 rounded-xl border border-stone-600 bg-soil-900 p-1.5 shadow-2xl">
+            <div className="absolute right-0 top-full z-20 mt-1.5 w-80 rounded-xl border border-stone-700 bg-soil-900 p-1.5 shadow-2xl">
               <div className="px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-stone-400">
                 Select NASA EO / Field Metric
               </div>
@@ -204,7 +204,7 @@ export default function MetricsDashboard({
                       onClick={() => (added ? removePanel(preset.id) : addPanel(preset.id))}
                       className={`flex w-full items-start gap-2.5 rounded-lg px-2.5 py-2 text-left text-xs transition ${
                         added
-                          ? "bg-stone-800/90 text-stone-300 hover:bg-stone-800"
+                          ? "bg-stone-800 text-stone-300 hover:bg-stone-800"
                           : "hover:bg-stone-800/60 text-stone-100"
                       }`}
                     >

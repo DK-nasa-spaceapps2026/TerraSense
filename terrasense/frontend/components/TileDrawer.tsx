@@ -13,7 +13,7 @@ const Bar = ({ label, value, invert = false, hint }: { label: string; value: num
       <div className="h-2 rounded bg-stone-700">
         <div className="h-2 rounded" style={{ width: `${pct}%`, background: good > 60 ? "#7cc04a" : good > 35 ? "#e0b13a" : "#d9622b" }} />
       </div>
-      <div className="mt-0.5 text-[10px] text-stone-500">{hint}</div>
+      <div className="mt-0.5 text-[10px] text-stone-400">{hint}</div>
     </div>
   );
 };
@@ -23,7 +23,7 @@ export default function TileDrawer({ zone, cell, monthLabel, scenarios, onClose 
 }) {
   const rec = scenarios.find((s) => s.id === zone.recommended_scenario);
   return (
-    <aside className="absolute right-3 top-3 z-10 w-72 rounded-xl border border-stone-600 bg-soil-900/95 p-4 shadow-xl backdrop-blur">
+    <aside className="absolute right-3 top-3 z-10 w-72 rounded-xl border border-stone-700 bg-soil-900/95 p-4 shadow-xl backdrop-blur">
       <div className="mb-2 flex items-start justify-between">
         <div>
           <div className="text-xs uppercase tracking-wide text-stone-400">Zone {zone.row + 1}-{zone.col + 1} · {monthLabel}</div>

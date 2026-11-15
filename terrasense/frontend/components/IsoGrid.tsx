@@ -117,7 +117,7 @@ export default function IsoGrid({ zones, cells, rows, cols, hoveredId, selectedI
   const hoveredIdx = zones.findIndex((z) => z.zone_id === hoveredId);
   return (
     <Canvas shadows dpr={[1, 2]} onPointerMissed={() => onSelect(null)}>
-      <color attach="background" args={["#14110d"]} />
+      <color attach="background" args={["#141413"]} />
       <OrthographicCamera makeDefault position={[9, 9, 9]} zoom={Math.min(62, 330 / Math.max(rows, cols) * 1.1)} near={-50} far={100} />
       <ambientLight intensity={0.75} />
       <directionalLight position={[6, 10, 4]} intensity={1.6} castShadow shadow-mapSize={[1024, 1024]} />

@@ -9,7 +9,7 @@ function Metric({ label, value, sub }: { label: string; value: string; sub?: str
   return (
     <div className="flex items-baseline justify-between border-b border-stone-700/60 py-1 text-xs">
       <span className="text-stone-400">{label}</span>
-      <span className="font-semibold">{value}{sub && <span className="ml-1 font-normal text-stone-500">{sub}</span>}</span>
+      <span className="font-semibold">{value}{sub && <span className="ml-1 font-normal text-stone-400">{sub}</span>}</span>
     </div>
   );
 }
@@ -40,7 +40,7 @@ export default function DecisionPanel(props: {
               className={`relative rounded-xl border p-3 text-left transition ${isActive ? "border-lime-500 bg-soil-700" : "border-stone-700 bg-soil-800 hover:border-stone-500"}`}>
               <div className="absolute -top-2 right-3 flex items-center gap-1.5">
                 {isActive && (
-                  <span className="rounded-full bg-violet-600 px-2 py-0.5 text-[10px] font-bold text-white">
+                  <span className="rounded-full bg-[#D97757] px-2 py-0.5 text-[10px] font-bold text-[#141413]">
                     ACTIVE FORECAST
                   </span>
                 )}
@@ -62,7 +62,7 @@ export default function DecisionPanel(props: {
                 <span className="text-stone-400">Risk</span>
                 <span className={`font-bold uppercase ${RISK[m.risk_level]}`}>{m.risk_level}</span>
               </div>
-              <div className="mt-2 text-[11px] text-stone-500">{s.tradeoffs.pros[0]} · {s.tradeoffs.cons[0].toLowerCase()}</div>
+              <div className="mt-2 text-[11px] text-stone-400">{s.tradeoffs.pros[0]} · {s.tradeoffs.cons[0].toLowerCase()}</div>
             </button>
           );
         })}

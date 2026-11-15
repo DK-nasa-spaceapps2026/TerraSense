@@ -54,7 +54,7 @@ export default function TimelineSlider({
             <div className="hidden gap-1 md:flex">
               {jumps.filter((j) => j.i >= 0).map((j) => (
                 <button key={j.label} onClick={() => onChange(j.i)}
-                  className="rounded border border-stone-600 px-2 py-1 text-xs hover:bg-stone-700">{j.label}</button>
+                  className="rounded border border-stone-700 px-2 py-1 text-xs hover:bg-stone-700">{j.label}</button>
               ))}
             </div>
           </div>
@@ -71,7 +71,7 @@ export default function TimelineSlider({
             </svg>
             <input type="range" min={0} max={n - 1} value={index} onChange={(e) => onChange(+e.target.value)}
               className="w-full" aria-label="Month" />
-            <div className="flex justify-between text-[10px] text-stone-500">
+            <div className="flex justify-between text-[10px] text-stone-400">
               {months.map((m, i) => (i % 3 === 0 ? <span key={i}>{m.label}</span> : <span key={i} />))}
             </div>
           </div>
@@ -88,7 +88,7 @@ export default function TimelineSlider({
 }
 
 const StatPill = ({ label, v }: { label: string; v: number }) => (
-  <div className="rounded bg-stone-800/90 px-2 py-1 text-center text-[11px]">
+  <div className="rounded bg-stone-800 px-2 py-1 text-center text-[11px]">
     <span className="text-stone-400">{label} </span>
     <b className="text-stone-100">{v.toFixed(2)}</b>
   </div>
