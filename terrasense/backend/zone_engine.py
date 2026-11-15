@@ -288,12 +288,15 @@ def active_engine_info() -> Dict[str, Optional[str]]:
     return {"engine": "heuristic", "model_version": None}
 
 
-def simulate_heuristic(soil: Dict[str, np.ndarray], months: List[dict], plan_ids: List[str]) -> Dict[str, np.ndarray]:
+def simulate_heuristic(soil: Dict[str, np.ndarray], months: List[dict], plan_ids: List[str],
+                       irrigation_cap_mm: float = 0.0) -> Dict[str, np.ndarray]:
     nz, T = len(soil["awc"]), len(months)
-    names = ["smi", "esi", "bare", "ndvi", "vigor", "heat", "et", "demand", "runoff", "precip"]
+    names = ["smi", "esi", "bare", "ndvi", "vigor", "heat", "et", "demand", "runoff", "precip",
+             "irrigation_mm", "extrapolated"]
     out = {k: np.zeros((T, nz)) for k in names}
     sm = 0.65 * soil["awc"]
     slope_n = np.clip(soil["slope"] / 8.0, 0, 1)
+    rem_irrig_cap = np.full(nz, max(0.0, float(irrigation_cap_mm)))
 
     for t, c in enumerate(months):
         cal = CALENDARS[plan_ids[t]]
@@ -307,8 +310,23 @@ def simulate_heuristic(soil: Dict[str, np.ndarray], months: List[dict], plan_ids
                               + 0.15 * soil["clay"], 0, 0.55)
         runoff = P * runoff_frac
         infil = P - runoff
-
         demand = c["pet_mm"] * kc
+
+        irrig_step = np.zeros(nz)
+        is_irrigated = False
+        if irrigation_cap_mm > 0.0 and t >= N_HIST and c["cal_month"] in (6, 7, 8):
+            avail_nat = sm + 0.5 * infil
+            et_nat = np.minimum(demand * np.clip(avail_nat / (0.35 * soil["awc"]), 0.05, 1.0), sm + infil)
+            sm_nat_end = np.minimum(soil["awc"], sm + infil - et_nat)
+            smi_nat = 0.5 * (sm + sm_nat_end) / soil["awc"]
+            trig = (smi_nat < 0.68) & (rem_irrig_cap > 0.0)
+            if np.any(trig):
+                deficit = np.maximum(0.0, 0.85 * soil["awc"] - sm_nat_end)
+                irrig_step = np.where(trig, np.minimum(deficit, rem_irrig_cap), 0.0)
+                rem_irrig_cap = np.maximum(0.0, rem_irrig_cap - irrig_step)
+                infil = infil + irrig_step
+                is_irrigated = bool(np.any(irrig_step > 0.0))
+
         avail = sm + 0.5 * infil
         beta = np.clip(avail / (0.35 * soil["awc"]), 0.05, 1.0)       # stress below 50% AWC
         heat = float(np.clip((c["tmax"] - 30) / 8, 0, 1)) * (cover > 0.4)
@@ -316,6 +334,8 @@ def simulate_heuristic(soil: Dict[str, np.ndarray], months: List[dict], plan_ids
         et = np.minimum(demand * beta_eff, sm + infil)
         sm_new = np.minimum(soil["awc"], sm + infil - et)
         smi = 0.5 * (sm + sm_new) / soil["awc"]
+        if irrigation_cap_mm > 0.0 and t >= N_HIST:
+            smi = np.clip(smi, 0.02, 0.94)
         sm = sm_new
 
         esi = np.where(demand > 1e-6, et / np.maximum(demand, 1e-6), 1.0)
@@ -326,13 +346,15 @@ def simulate_heuristic(soil: Dict[str, np.ndarray], months: List[dict], plan_ids
         vigor = np.clip(0.5 * (ndvi - 0.1) / 0.7 + 0.3 * esi + 0.2 * smi, 0, 1) \
             * (0.4 + 0.6 * cover) / 1.0
         for k, v in dict(smi=smi, esi=esi, bare=bare, ndvi=ndvi, vigor=vigor, heat=heat * np.ones(nz),
-                         et=et, demand=demand * np.ones(nz), runoff=runoff, precip=P * np.ones(nz)).items():
+                         et=et, demand=demand * np.ones(nz), runoff=runoff, precip=P * np.ones(nz),
+                         irrigation_mm=irrig_step, extrapolated=(irrig_step > 0.0).astype(float)).items():
             out[k][t] = v
     return out
 
 
 def simulate(soil: Dict[str, np.ndarray], months: List[dict], plan_ids: List[str],
-             field_id: str = "default", zone_coords: Optional[List[tuple]] = None) -> Dict[str, np.ndarray]:
+             field_id: str = "default", zone_coords: Optional[List[tuple]] = None,
+             irrigation_cap_mm: float = 0.0) -> Dict[str, np.ndarray]:
     try:
         from ml.predict import get_predictor, resolve_engine_mode
         if resolve_engine_mode() == "ml":
@@ -340,11 +362,11 @@ def simulate(soil: Dict[str, np.ndarray], months: List[dict], plan_ids: List[str
             if pred is not None:
                 return pred.simulate_vectorized(
                     soil=soil, months=months, plan_ids=plan_ids, cal_lookup=CALENDARS,
-                    field_id=field_id, zone_coords=zone_coords,
+                    field_id=field_id, zone_coords=zone_coords, irrigation_cap_mm=irrigation_cap_mm,
                 )
     except Exception as exc:
         logger.warning("[zone_engine] ML simulate failed (%s); falling back to heuristic engine.", exc)
-    return simulate_heuristic(soil, months, plan_ids)
+    return simulate_heuristic(soil, months, plan_ids, irrigation_cap_mm=irrigation_cap_mm)
 
 
 def classify(sim: Dict[str, np.ndarray]) -> np.ndarray:
@@ -375,12 +397,14 @@ def _alerts(c: dict, sim_t: Dict[str, np.ndarray], st: np.ndarray) -> List[dict]
     return out
 
 
-def build_timeline(field_id: str, grid: dict, climate: dict, scenario: str) -> dict:
+def build_timeline(field_id: str, grid: dict, climate: dict, scenario: str,
+                   irrigation_cap_mm: float = 0.0) -> dict:
     plans = ["status_quo"] * N_HIST + [scenario] * (N_TOTAL - N_HIST)
     eng_info = active_engine_info()
     sim = simulate(
         grid["soil"], climate["months"], plans,
         field_id=field_id, zone_coords=grid.get("zone_coords"),
+        irrigation_cap_mm=irrigation_cap_mm,
     )
     status = classify(sim)
     r3 = lambda a: round(float(a), 3)
@@ -392,6 +416,13 @@ def build_timeline(field_id: str, grid: dict, climate: dict, scenario: str) -> d
                   "ndvi": r3(sim["ndvi"][t, z]), "vigor": r3(sim["vigor"][t, z]),
                   "et_mm": round(float(sim["et"][t, z]), 1), "status": STATUSES[status[t, z]]}
                  for z in range(grid["n_zones"])]
+        field_summary = {
+            "smi": r3(sim["smi"][t].mean()), "esi": r3(sim["esi"][t].mean()),
+            "bare": r3(sim["bare"][t].mean()), "ndvi": r3(sim["ndvi"][t].mean()),
+            "vigor": r3(sim["vigor"][t].mean()),
+        }
+        if irrigation_cap_mm > 0.0 and "irrigation_mm" in sim:
+            field_summary["irrigation_mm"] = round(float(sim["irrigation_mm"][t].mean()), 1)
         m_dict = {
             "index": t, "date": d, "label": f"{MONTHS[c['cal_month'] - 1]} {d[:4]}",
             "phase": c["phase"],
@@ -399,9 +430,7 @@ def build_timeline(field_id: str, grid: dict, climate: dict, scenario: str) -> d
                         "precip_mm": round(c["precip_mm"], 1), "rh_pct": round(c["rh"], 1),
                         "solar_mj": round(c["solar"], 1), "pet_mm": round(c["pet_mm"], 1)},
             "crop_stage": _crop_stage(PLANS[plans[t]], c["cal_month"]),
-            "field": {"smi": r3(sim["smi"][t].mean()), "esi": r3(sim["esi"][t].mean()),
-                      "bare": r3(sim["bare"][t].mean()), "ndvi": r3(sim["ndvi"][t].mean()),
-                      "vigor": r3(sim["vigor"][t].mean())},
+            "field": field_summary,
             "alerts": _alerts(c, {k: v[t] for k, v in sim.items()}, status[t]),
             "cells": cells,
         }
@@ -413,7 +442,7 @@ def build_timeline(field_id: str, grid: dict, climate: dict, scenario: str) -> d
                 "esi_p90": r3(sim["esi_p90"][t].mean()),
             }
         months.append(m_dict)
-    return {
+    res = {
         "field_id": field_id,
         "scenario": scenario,
         "anchor_index": N_HIST - 1,
@@ -422,6 +451,18 @@ def build_timeline(field_id: str, grid: dict, climate: dict, scenario: str) -> d
         "is_proxy_ndvi_bare": True,
         "months": months,
     }
+    if irrigation_cap_mm > 0.0 and "irrigation_mm" in sim:
+        irrig_tot = float(sim["irrigation_mm"][N_HIST:].sum(axis=0).mean())
+        extrap = bool(np.any(sim["extrapolated"][N_HIST:])) if "extrapolated" in sim else (irrig_tot > 0.0)
+        res["irrigation_applied_mm"] = round(irrig_tot, 1)
+        res["extrapolated"] = extrap
+        res["extrapolation_note"] = (
+            f"Supplemental irrigation ({irrig_tot:.1f} mm/season applied, cap {irrigation_cap_mm:.0f} mm) "
+            "clipped to rainfed training range [0.02, 0.94]."
+            if extrap
+            else None
+        )
+    return res
 
 
 def _crop_stage(plan: CropPlan, m: int) -> str:
@@ -450,22 +491,32 @@ def _norm(v: np.ndarray, higher_better: bool = True) -> np.ndarray:
 def preference_weights(prefs: dict) -> Dict[str, float]:
     w = {"water_saving": 1 / 3, "income": 1 / 3, "soil_restoration": 1 / 3}
     if isinstance(prefs.get("weights"), dict):
-        w = {k: max(0.0, float(prefs["weights"].get(k, 0))) for k in w}
+        raw_w = prefs["weights"]
+        keys = list(w.keys()) + (["simplicity"] if "simplicity" in raw_w else [])
+        w = {k: max(0.0, float(raw_w.get(k, 0))) for k in keys}
+    elif prefs.get("priority") == "simplicity":
+        w = {"water_saving": 0.4 / 3, "income": 0.4 / 3, "soil_restoration": 0.4 / 3, "simplicity": 0.6}
     elif prefs.get("priority") in w:
         w = {k: (0.6 if k == prefs["priority"] else 0.2) for k in w}
     tot = sum(w.values()) or 1
     return {k: v / tot for k, v in w.items()}
 
 
-def compare_scenarios(grid: dict, climate: dict, prefs: dict) -> dict:
+def compare_scenarios(grid: dict, climate: dict, prefs: dict,
+                      constraints: Optional[dict] = None) -> dict:
+    irrig_cap = float((constraints or {}).get("irrigation_cap_mm", 0.0))
+    ra_lambda = float((constraints or {}).get("risk_aversion_lambda", 0.25))
     try:
         from ml.crop_plans import evaluate_and_rank_plans
         fid = grid.get("field_id", "default")
         zcoords = grid.get("zone_coords")
-        sim_fn = lambda s, m, p: simulate(s, m, p, field_id=fid, zone_coords=zcoords)
+        sim_fn = lambda s, m, p: simulate(
+            s, m, p, field_id=fid, zone_coords=zcoords, irrigation_cap_mm=irrig_cap
+        )
         return evaluate_and_rank_plans(
             grid=grid, climate=climate, prefs=prefs,
             simulate_fn=sim_fn, preference_weights_fn=preference_weights,
+            risk_aversion_lambda=ra_lambda, constraints=constraints,
         )
     except Exception as exc:
         logger.warning("[zone_engine] Crop plan ensemble evaluation failed (%s); using heuristic fallback.", exc)

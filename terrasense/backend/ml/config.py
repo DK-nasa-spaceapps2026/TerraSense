@@ -119,3 +119,121 @@ WEATHER_FEATURES = [
     "month_sin",
     "month_cos",
 ]
+
+# --------------------------------------------------------------------------- #
+# Farmer Customization Defaults, Ranges, Presets & Economic Priors            #
+# --------------------------------------------------------------------------- #
+# Crop name <-> USDA CDL code lookup for rotation history & crop exclusions
+CROP_NAME_TO_CODE: Dict[str, int] = {
+    "corn": 1,
+    "maize": 1,
+    "sorghum": 4,
+    "milo": 4,
+    "soybean": 5,
+    "soybeans": 5,
+    "soy": 5,
+    "sunflower": 6,
+    "winter_wheat": 24,
+    "wheat": 24,
+    "rye": 27,
+    "cereal_rye": 27,
+    "oats": 28,
+    "alfalfa": 36,
+    "hay": 37,
+    "other_hay": 37,
+    "clover": 58,
+    "crimson_clover": 58,
+}
+
+CODE_TO_CROP_NAME: Dict[int, str] = {
+    1: "corn",
+    4: "sorghum",
+    5: "soybean",
+    6: "sunflower",
+    24: "winter_wheat",
+    27: "rye",
+    28: "oats",
+    36: "alfalfa",
+    37: "hay",
+    58: "clover",
+}
+
+DEFAULT_PREV_CROP_CODE: int = 1             # Corn (matches historical default in prune_candidate_plans)
+DEFAULT_CONTINUOUS_CORN_YEARS: int = 1
+MAX_CONTINUOUS_CORN_YEARS: int = 2          # ISU Extension PM 1885: >2 yr continuous corn yield penalty & rootworm risk
+CONTINUOUS_CORN_RANGE = (0, 10)
+
+# Equipment ownership defaults (all True reproduces unconstrained baseline)
+DEFAULT_EQUIPMENT: Dict[str, bool] = {
+    "has_hay_baler": True,
+    "has_cover_drill": True,
+    "has_no_till_drill": True,
+    "variable_rate": True,
+}
+
+# Custom-hire fallback rates (USD/ha) from ISU Extension Ag Decision Maker File A3-10
+# (2024 Iowa Farm Custom Rate Survey: 3-cut mowing/raking/baling ~$115/ha; cover drilling ~$38/ha; no-till ~$42/ha)
+CUSTOM_HIRE_COSTS_USD_HA: Dict[str, float] = {
+    "hay_baler": 115.0,
+    "cover_drill": 38.0,
+    "no_till_drill": 42.0,
+}
+
+# Supplemental irrigation forcing bounds & costs
+# Source: ISU Extension File A1-20 / Midwest center-pivot pumping cost (~$11.50/ac-in ≈ $0.45/mm/ha)
+IRRIGATION_CAP_DEFAULT_MM: float = 0.0
+IRRIGATION_CAP_RANGE_MM = (0.0, 600.0)
+DEFAULT_IRRIGATION_COST_USD_MM: float = 0.45
+IRRIGATION_COST_RANGE_USD_MM = (0.0, 5.0)
+IRRIGATION_SMI_TRIGGER: float = 0.68        # Trigger supplemental irrigation when reproductive-month SMI < 0.68 (field capacity threshold)
+IRRIGATION_TARGET_SMI: float = 0.85         # Target root-zone SMI refill fraction during reproductive stage
+IRRIGATION_CRITICAL_MONTHS = (6, 7, 8)      # June–August reproductive & grain/pod-fill stress window
+TRAINING_SMI_CLIP_RANGE = (0.02, 0.94)      # Observed training distribution bounds in ERA5-Land/MERRA-2
+
+# Risk-aversion parameter (lambda in Mean Utility - lambda * Downside Deviation)
+RISK_AVERSION_PRESETS: Dict[str, float] = {
+    "conservative": 0.50,
+    "balanced": 0.25,
+    "aggressive": 0.05,
+}
+DEFAULT_RISK_AVERSION_LAMBDA: float = 0.25
+RISK_AVERSION_RANGE = (0.0, 1.0)
+
+# Multi-objective preference weights (simplicity defaults to 0.0 to preserve exact 1/3 baseline)
+PRIORITY_KEYS = ("water_saving", "income", "soil_restoration", "simplicity")
+DEFAULT_WEIGHTS: Dict[str, float] = {
+    "water_saving": 1.0 / 3.0,
+    "income": 1.0 / 3.0,
+    "soil_restoration": 1.0 / 3.0,
+    "simplicity": 0.0,
+}
+
+# Baseline commodity & nitrogen prices embedded in AGRONOMIC_PLANS.base_margin_usd_ha
+# Source: ISU Extension Ag Decision Maker File A1-20 & USDA NASS Iowa marketing-year averages;
+# synthetic N fertilizer ~$0.50/lb N ≈ $1.10/kg N (ISU PM 1688).
+DEFAULT_PRICES: Dict[str, float] = {
+    "corn_usd_bu": 4.75,
+    "soybean_usd_bu": 11.50,
+    "sorghum_usd_bu": 4.40,
+    "alfalfa_usd_ton": 185.0,
+    "nitrogen_price_usd_kg": 1.10,
+}
+PRICE_RANGES: Dict[str, tuple] = {
+    "corn_usd_bu": (1.50, 15.00),
+    "soybean_usd_bu": (4.00, 30.00),
+    "sorghum_usd_bu": (1.50, 15.00),
+    "alfalfa_usd_ton": (50.0, 500.0),
+    "nitrogen_price_usd_kg": (0.10, 5.00),
+}
+PRICE_UNITS: Dict[str, str] = {
+    "corn_usd_bu": "USD/bushel",
+    "soybean_usd_bu": "USD/bushel",
+    "sorghum_usd_bu": "USD/bushel",
+    "alfalfa_usd_ton": "USD/ton",
+    "nitrogen_price_usd_kg": "USD/kg N",
+}
+
+# Management modes
+MANAGEMENT_MODES = ("uniform", "zone_variable")
+DEFAULT_MANAGEMENT_MODE: str = "zone_variable"
+

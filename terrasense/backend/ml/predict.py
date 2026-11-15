@@ -28,8 +28,12 @@ from ml.config import (
     GDD_BASE_C,
     GDD_CAP_C,
     HEAT_STRESS_THRESH_C,
+    IRRIGATION_CRITICAL_MONTHS,
+    IRRIGATION_SMI_TRIGGER,
+    IRRIGATION_TARGET_SMI,
     MODELS_DIR,
     STATIC_SOIL_TERRAIN_FEATURES,
+    TRAINING_SMI_CLIP_RANGE,
     WEATHER_FEATURES,
 )
 from ml.crop_plans import AGRONOMIC_PLANS
@@ -147,6 +151,7 @@ class TerraSensePredictor:
         cal_lookup: Dict[str, Dict[str, np.ndarray]],
         field_id: str = "default",
         zone_coords: Optional[List[Tuple[float, float]]] = None,
+        irrigation_cap_mm: float = 0.0,
     ) -> Dict[str, np.ndarray]:
         """Vectorized 24-month rollout across all N_z zones (1 batched predict call per month)."""
         nz, T = len(soil["awc"]), len(months)
@@ -156,7 +161,7 @@ class TerraSensePredictor:
 
         names = [
             "smi", "esi", "bare", "ndvi", "vigor", "heat", "et", "demand", "runoff", "precip",
-            "smi_p10", "smi_p90", "esi_p10", "esi_p90",
+            "smi_p10", "smi_p90", "esi_p10", "esi_p90", "irrigation_mm", "extrapolated",
         ]
         out = {k: np.zeros((T, nz), dtype=np.float64) for k in names}
 
@@ -167,6 +172,7 @@ class TerraSensePredictor:
         cur_esi = np.full(nz, 0.62, dtype=np.float64)
         slope_n = np.clip(soil["slope"] / 8.0, 0.0, 1.0)
         prev_precip = float(months[0]["precip_mm"]) if months else 50.0
+        rem_irrig_cap = np.full(nz, max(0.0, float(irrigation_cap_mm)), dtype=np.float64)
 
         # Pre-allocate batch matrix (nz x n_features) for fast vectorized updates
         batch_df = pd.DataFrame(index=range(nz), columns=TRANSITION_FEATURE_COLS, dtype=np.float64)
@@ -180,6 +186,7 @@ class TerraSensePredictor:
             cover_val = float(cal["cover"][cal_m - 1])
             kc_val = float(cal["kc"][cal_m - 1])
             cover = np.full(nz, cover_val, dtype=np.float64)
+            agro_plan = AGRONOMIC_PLANS.get(pid)
 
             P = float(c["precip_mm"])
             tmax = float(c["tmax"])
@@ -200,6 +207,25 @@ class TerraSensePredictor:
             runoff = P * runoff_frac
             infil = P - runoff
             demand = pet * kc_val
+
+            # Supplemental irrigation forcing (only when irrigation_cap_mm > 0 in forecast crop-critical months)
+            irrig_step = np.zeros(nz, dtype=np.float64)
+            is_irrigated_step = False
+            if irrigation_cap_mm > 0.0 and t >= 12:
+                crit_months = agro_plan.critical_months if agro_plan else IRRIGATION_CRITICAL_MONTHS
+                if cal_m in crit_months or cal_m in IRRIGATION_CRITICAL_MONTHS:
+                    avail_nat = sm_wb + 0.5 * infil
+                    et_nat = np.minimum(demand * np.clip(avail_nat / (0.35 * awc_120), 0.05, 1.0), sm_wb + infil)
+                    sm_nat_end = np.clip(sm_wb + infil - et_nat, 0.0, awc_120)
+                    wb_smi_nat = 0.5 * (sm_wb + sm_nat_end) / awc_120
+                    trigger_mask = (cur_smi < IRRIGATION_SMI_TRIGGER) | (wb_smi_nat < IRRIGATION_SMI_TRIGGER)
+                    if np.any(trigger_mask & (rem_irrig_cap > 0.0)):
+                        deficit_mm = np.maximum(0.0, IRRIGATION_TARGET_SMI * awc_120 - sm_nat_end)
+                        irrig_step = np.where(trigger_mask, np.minimum(deficit_mm, rem_irrig_cap), 0.0)
+                        rem_irrig_cap = np.maximum(0.0, rem_irrig_cap - irrig_step)
+                        infil = infil + irrig_step
+                        is_irrigated_step = bool(np.any(irrig_step > 0.0))
+
             avail = sm_wb + 0.5 * infil
             beta = np.clip(avail / (0.35 * awc_120), 0.05, 1.0)
             heat_scalar = float(np.clip((tmax - 30.0) / 8.0, 0.0, 1.0)) * (1.0 if cover_val > 0.4 else 0.0)
@@ -220,7 +246,18 @@ class TerraSensePredictor:
             api_mm = 0.7 * P + 0.3 * prev_precip
             prev_precip = P
 
-            batch_df["precip_mm"] = P
+            if is_irrigated_step:
+                p_eff = P + irrig_step
+                batch_df["precip_mm"] = p_eff
+                batch_df["water_balance_mm"] = p_eff - pet
+                batch_df["aridity_index"] = p_eff / max(pet, 1.0)
+                batch_df["api_antecedent_mm"] = 0.7 * p_eff + 0.3 * api_mm
+            else:
+                batch_df["precip_mm"] = P
+                batch_df["water_balance_mm"] = P - pet
+                batch_df["aridity_index"] = P / max(pet, 1.0)
+                batch_df["api_antecedent_mm"] = api_mm
+
             batch_df["tmax_c"] = tmax
             batch_df["tmin_c"] = tmin
             batch_df["tmean_c"] = tmean
@@ -231,16 +268,12 @@ class TerraSensePredictor:
             batch_df["heat_stress_days"] = heat_days
             batch_df["max_dry_spell_days"] = dry_spell
             batch_df["max_5day_precip_mm"] = max(max_1d, P * 0.45)
-            batch_df["max_daily_precip_mm"] = max_1d
+            batch_df["max_daily_precip_mm"] = max(max_1d, float(irrig_step.max())) if is_irrigated_step else max_1d
             batch_df["vpd_kpa"] = vpd
             batch_df["pet_mm"] = pet
-            batch_df["water_balance_mm"] = P - pet
-            batch_df["aridity_index"] = P / max(pet, 1.0)
-            batch_df["api_antecedent_mm"] = api_mm
             batch_df["month_sin"] = math.sin(2.0 * math.pi * cal_m / 12.0)
             batch_df["month_cos"] = math.cos(2.0 * math.pi * cal_m / 12.0)
 
-            agro_plan = AGRONOMIC_PLANS.get(pid)
             p_code = agro_plan.primary_crop_code if agro_plan else 1
             batch_df["is_corn"] = float(p_code == 1)
             batch_df["is_soy"] = float(p_code == 5)
@@ -260,6 +293,8 @@ class TerraSensePredictor:
             # Blend 75% ML state transition + 25% zone-specific water-balance modulation
             # so crop-plan differences (Kc, cover) and sub-field AWC gradients remain sharp
             smi = np.clip(0.75 * smi_raw + 0.25 * wb_smi, 0.02, 0.98)
+            if irrigation_cap_mm > 0.0 and t >= 12:
+                smi = np.clip(smi, TRAINING_SMI_CLIP_RANGE[0], TRAINING_SMI_CLIP_RANGE[1])
 
             # 4. Single batched LightGBM predict call for ESI across all nz zones
             batch_df["prev_state"] = cur_esi
@@ -310,6 +345,8 @@ class TerraSensePredictor:
             out["smi_p90"][t] = smi_p90
             out["esi_p10"][t] = esi_p10
             out["esi_p90"][t] = esi_p90
+            out["irrigation_mm"][t] = irrig_step
+            out["extrapolated"][t] = (irrig_step > 0.0).astype(np.float64)
 
         return out
 

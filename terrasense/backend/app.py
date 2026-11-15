@@ -2,13 +2,18 @@
 from __future__ import annotations
 
 import os
-from datetime import date, datetime, timezone
+from datetime import datetime, timezone
 from typing import Dict
 
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 import zone_engine as ze
+from ml.constraints import (
+    ConstraintValidationError,
+    build_options_metadata,
+    parse_and_validate_constraints,
+)
 
 app = Flask(__name__)
 CORS(app)
@@ -17,8 +22,11 @@ FIELDS: Dict[str, dict] = {}      # in-memory field registry (swap for PostGIS/R
 _TL_CACHE: Dict[tuple, dict] = {}
 
 
-def _err(msg: str, code: int = 400):
-    return jsonify({"error": msg}), code
+def _err(msg: str, code: int = 400, field: str | None = None):
+    payload = {"error": msg}
+    if field is not None:
+        payload["field"] = field
+    return jsonify(payload), code
 
 
 def _parse_anchor(s):
@@ -29,12 +37,19 @@ def _climate_params(src: dict):
     return (float(src.get("temp_shift", 0) or 0), float(src.get("precip_factor", 1) or 1))
 
 
-def _prepare(field_spec, grid_n, anchor, climate_params, live):
+def _prepare(field_spec, grid_n, anchor, climate_params, live, constraints=None):
     geom = ze.parse_field(field_spec)
     fid = ze.field_id_for(geom, grid_n)
     grid = ze.build_grid(geom, grid_n, fid)
     climate = ze.build_climate(geom, anchor, *climate_params, live=live)
-    FIELDS[fid] = {"geom": geom, "grid": grid, "grid_n": grid_n, "anchor": anchor, "live": live}
+    FIELDS[fid] = {
+        "geom": geom,
+        "grid": grid,
+        "grid_n": grid_n,
+        "anchor": anchor,
+        "live": live,
+        "constraints": constraints or {},
+    }
     return fid, geom, grid, climate
 
 
@@ -55,27 +70,42 @@ def demo_field():
                     "preferences": {"priority": "soil_restoration"}})
 
 
+@app.get("/api/field/options")
+def field_options():
+    """Return all supported farmer constraint fields, valid options, ranges, units, presets, and defaults."""
+    return jsonify(build_options_metadata())
+
+
 @app.post("/api/field/analyze")
 def analyze():
     """Body: {field:{bbox|polygon}, grid_size?:4-8, date_range?:{end:'YYYY-MM'},
-              preferences:{priority|weights}, climate?:{temp_shift, precip_factor}, use_live?:bool}"""
+              preferences:{priority|weights}, constraints?:{...},
+              climate?:{temp_shift, precip_factor}, use_live?:bool}"""
     body = request.get_json(silent=True) or {}
+    try:
+        applied_constraints, warnings = parse_and_validate_constraints(body)
+    except ConstraintValidationError as exc:
+        return _err(str(exc), code=400, field=exc.field)
+
     try:
         grid_n = int(body.get("grid_size", 6))
         if not 3 <= grid_n <= 10:
             return _err("grid_size must be between 3 and 10")
         anchor = _parse_anchor((body.get("date_range") or {}).get("end"))
         cp = _climate_params(body.get("climate") or {})
-        fid, geom, grid, climate = _prepare(body.get("field"), grid_n, anchor, cp, body.get("use_live"))
+        fid, geom, grid, climate = _prepare(
+            body.get("field"), grid_n, anchor, cp, body.get("use_live"), constraints=applied_constraints
+        )
     except (ValueError, KeyError, TypeError) as exc:
         return _err(f"Invalid field: {exc}")
 
     prefs = body.get("preferences") or {}
     eng = ze.active_engine_info()
-    comp = ze.compare_scenarios(grid, climate, prefs)
+    comp = ze.compare_scenarios(grid, climate, prefs, constraints=applied_constraints)
     rec = comp["recommended"]
-    timeline = ze.build_timeline(fid, grid, climate, rec)
-    _TL_CACHE[(fid, rec, cp, eng["engine"])] = timeline
+    irrig_cap = float(applied_constraints.get("irrigation_cap_mm", 0.0))
+    timeline = ze.build_timeline(fid, grid, climate, rec, irrigation_cap_mm=irrig_cap)
+    _TL_CACHE[(fid, rec, cp, eng["engine"], irrig_cap)] = timeline
     now = timeline["months"][ze.N_HIST - 1]
 
     feats = []
@@ -108,8 +138,18 @@ def analyze():
         "scenarios": comp["scenarios"],
         "recommended_scenario": rec,
         "ranking_robust": comp.get("ranking_robust", True),
+        "robust": comp.get("robust", comp.get("ranking_robust", True)),
+        "robust_reason": comp.get("robust_reason"),
         "uncertainty_note": comp.get("uncertainty_note", ""),
         "dynamic_candidates": comp.get("dynamic_candidates", []),
+        "pruned_plans": comp.get("pruned_plans", []),
+        "constraint_violation": comp.get("constraint_violation", False),
+        "ranking_sensitivity": comp.get("ranking_sensitivity", {}),
+        "management_mode": comp.get("management_mode", applied_constraints["management_mode"]),
+        "applied_constraints": applied_constraints,
+        "warnings": warnings,
+        "extrapolated": comp.get("extrapolated", False),
+        "extrapolation_note": comp.get("extrapolation_note"),
         "preference_weights": comp["weights"],
         "guidance": ze.build_guidance(timeline, rec),
     })
@@ -117,7 +157,7 @@ def analyze():
 
 @app.get("/api/field/timeline")
 def timeline():
-    """Query: field_id, scenario (default status_quo), temp_shift, precip_factor."""
+    """Query: field_id, scenario (default status_quo), temp_shift, precip_factor, irrigation_cap_mm."""
     fid = request.args.get("field_id", "")
     scenario = request.args.get("scenario", "status_quo")
     if scenario not in ze.PLANS:
@@ -126,11 +166,18 @@ def timeline():
     if not rec:
         return _err("Unknown field_id — call POST /api/field/analyze first", 404)
     cp = _climate_params(request.args)
+    if "irrigation_cap_mm" in request.args:
+        try:
+            irrig_cap = max(0.0, float(request.args.get("irrigation_cap_mm", 0.0)))
+        except ValueError:
+            return _err("irrigation_cap_mm must be numeric", 400, field="irrigation_cap_mm")
+    else:
+        irrig_cap = float((rec.get("constraints") or {}).get("irrigation_cap_mm", 0.0))
     eng = ze.active_engine_info()
-    key = (fid, scenario, cp, eng["engine"])
+    key = (fid, scenario, cp, eng["engine"], irrig_cap)
     if key not in _TL_CACHE:
         climate = ze.build_climate(rec["geom"], rec["anchor"], *cp, live=rec["live"])
-        _TL_CACHE[key] = ze.build_timeline(fid, rec["grid"], climate, scenario)
+        _TL_CACHE[key] = ze.build_timeline(fid, rec["grid"], climate, scenario, irrigation_cap_mm=irrig_cap)
     tl = dict(_TL_CACHE[key])
     tl["guidance"] = ze.build_guidance(tl, scenario)
     return jsonify(tl)
