@@ -1,0 +1,11 @@
+ID,Category,Latitude,Longitude
+demo_field_center,demo,41.6000,-93.6000
+demo_field_nw,demo,41.6040,-93.6040
+demo_field_ne,demo,41.6040,-93.5960
+demo_field_sw,demo,41.5960,-93.6040
+demo_field_se,demo,41.5960,-93.5960
+train_0001,train,41.9215,-93.4872
+train_0002,train,41.7348,-93.9120
+train_0003,train,42.1033,-93.2764
+train_0004,train,41.4561,-93.7385
+train_0005,train,42.3318,-93.6641
