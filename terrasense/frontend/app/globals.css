@@ -2,5 +2,5 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body { height: 100%; background: #14110d; color: #efe8da; }
+html, body { height: 100%; background: #141413; color: #FAF9F5; }
 input[type="range"] { accent-color: #7cc04a; }
