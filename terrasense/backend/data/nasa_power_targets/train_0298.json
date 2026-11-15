@@ -1,0 +1,5124 @@
+{
+  "id": "train_0298",
+  "lat": 41.70841,
+  "lon": -93.00346,
+  "daily": [
+    {
+      "date": "2023-01-01",
+      "gwettop": 0.63,
+      "gwetroot": 0.6,
+      "gwetprof": 0.6,
+      "evland": 0.16
+    },
+    {
+      "date": "2023-01-02",
+      "gwettop": 0.65,
+      "gwetroot": 0.6,
+      "gwetprof": 0.6,
+      "evland": 0.24
+    },
+    {
+      "date": "2023-01-03",
+      "gwettop": 0.67,
+      "gwetroot": 0.62,
+      "gwetprof": 0.62,
+      "evland": 0.3
+    },
+    {
+      "date": "2023-01-04",
+      "gwettop": 0.65,
+      "gwetroot": 0.62,
+      "gwetprof": 0.62,
+      "evland": 0.47
+    },
+    {
+      "date": "2023-01-05",
+      "gwettop": 0.65,
+      "gwetroot": 0.61,
+      "gwetprof": 0.62,
+      "evland": 0.47
+    },
+    {
+      "date": "2023-01-06",
+      "gwettop": 0.65,
+      "gwetroot": 0.61,
+      "gwetprof": 0.61,
+      "evland": 0.37
+    },
+    {
+      "date": "2023-01-07",
+      "gwettop": 0.64,
+      "gwetroot": 0.61,
+      "gwetprof": 0.61,
+      "evland": 0.35
+    },
+    {
+      "date": "2023-01-08",
+      "gwettop": 0.64,
+      "gwetroot": 0.61,
+      "gwetprof": 0.61,
+      "evland": 0.3
+    },
+    {
+      "date": "2023-01-09",
+      "gwettop": 0.65,
+      "gwetroot": 0.61,
+      "gwetprof": 0.61,
+      "evland": 0.12
+    },
+    {
+      "date": "2023-01-10",
+      "gwettop": 0.65,
+      "gwetroot": 0.61,
+      "gwetprof": 0.61,
+      "evland": 0.26
+    },
+    {
+      "date": "2023-01-11",
+      "gwettop": 0.65,
+      "gwetroot": 0.61,
+      "gwetprof": 0.61,
+      "evland": 0.27
+    },
+    {
+      "date": "2023-01-12",
+      "gwettop": 0.64,
+      "gwetroot": 0.61,
+      "gwetprof": 0.61,
+      "evland": 0.56
+    },
+    {
+      "date": "2023-01-13",
+      "gwettop": 0.64,
+      "gwetroot": 0.61,
+      "gwetprof": 0.61,
+      "evland": 0.38
+    },
+    {
+      "date": "2023-01-14",
+      "gwettop": 0.64,
+      "gwetroot": 0.61,
+      "gwetprof": 0.61,
+      "evland": 0.41
+    },
+    {
+      "date": "2023-01-15",
+      "gwettop": 0.64,
+      "gwetroot": 0.61,
+      "gwetprof": 0.61,
+      "evland": 0.25
+    },
+    {
+      "date": "2023-01-16",
+      "gwettop": 0.66,
+      "gwetroot": 0.62,
+      "gwetprof": 0.62,
+      "evland": 0.36
+    },
+    {
+      "date": "2023-01-17",
+      "gwettop": 0.65,
+      "gwetroot": 0.62,
+      "gwetprof": 0.62,
+      "evland": 0.42
+    },
+    {
+      "date": "2023-01-18",
+      "gwettop": 0.65,
+      "gwetroot": 0.62,
+      "gwetprof": 0.62,
+      "evland": 0.26
+    },
+    {
+      "date": "2023-01-19",
+      "gwettop": 0.65,
+      "gwetroot": 0.62,
+      "gwetprof": 0.62,
+      "evland": 0.52
+    },
+    {
+      "date": "2023-01-20",
+      "gwettop": 0.65,
+      "gwetroot": 0.62,
+      "gwetprof": 0.62,
+      "evland": 0.48
+    },
+    {
+      "date": "2023-01-21",
+      "gwettop": 0.65,
+      "gwetroot": 0.62,
+      "gwetprof": 0.62,
+      "evland": 0.22
+    },
+    {
+      "date": "2023-01-22",
+      "gwettop": 0.65,
+      "gwetroot": 0.62,
+      "gwetprof": 0.62,
+      "evland": 0.41
+    },
+    {
+      "date": "2023-01-23",
+      "gwettop": 0.65,
+      "gwetroot": 0.62,
+      "gwetprof": 0.62,
+      "evland": 0.4
+    },
+    {
+      "date": "2023-01-24",
+      "gwettop": 0.66,
+      "gwetroot": 0.62,
+      "gwetprof": 0.62,
+      "evland": 0.27
+    },
+    {
+      "date": "2023-01-25",
+      "gwettop": 0.66,
+      "gwetroot": 0.62,
+      "gwetprof": 0.62,
+      "evland": 0.5
+    },
+    {
+      "date": "2023-01-26",
+      "gwettop": 0.65,
+      "gwetroot": 0.62,
+      "gwetprof": 0.62,
+      "evland": 0.55
+    },
+    {
+      "date": "2023-01-27",
+      "gwettop": 0.66,
+      "gwetroot": 0.62,
+      "gwetprof": 0.63,
+      "evland": 0.57
+    },
+    {
+      "date": "2023-01-28",
+      "gwettop": 0.66,
+      "gwetroot": 0.62,
+      "gwetprof": 0.63,
+      "evland": 0.47
+    },
+    {
+      "date": "2023-01-29",
+      "gwettop": 0.66,
+      "gwetroot": 0.62,
+      "gwetprof": 0.63,
+      "evland": 0.53
+    },
+    {
+      "date": "2023-01-30",
+      "gwettop": 0.66,
+      "gwetroot": 0.62,
+      "gwetprof": 0.63,
+      "evland": 0.46
+    },
+    {
+      "date": "2023-01-31",
+      "gwettop": 0.66,
+      "gwetroot": 0.62,
+      "gwetprof": 0.63,
+      "evland": 0.44
+    },
+    {
+      "date": "2023-02-01",
+      "gwettop": 0.66,
+      "gwetroot": 0.62,
+      "gwetprof": 0.63,
+      "evland": 0.63
+    },
+    {
+      "date": "2023-02-02",
+      "gwettop": 0.66,
+      "gwetroot": 0.62,
+      "gwetprof": 0.63,
+      "evland": 0.74
+    },
+    {
+      "date": "2023-02-03",
+      "gwettop": 0.65,
+      "gwetroot": 0.62,
+      "gwetprof": 0.62,
+      "evland": 0.45
+    },
+    {
+      "date": "2023-02-04",
+      "gwettop": 0.67,
+      "gwetroot": 0.62,
+      "gwetprof": 0.63,
+      "evland": 0.3
+    },
+    {
+      "date": "2023-02-05",
+      "gwettop": 0.67,
+      "gwetroot": 0.63,
+      "gwetprof": 0.63,
+      "evland": 0.38
+    },
+    {
+      "date": "2023-02-06",
+      "gwettop": 0.68,
+      "gwetroot": 0.63,
+      "gwetprof": 0.63,
+      "evland": 0.43
+    },
+    {
+      "date": "2023-02-07",
+      "gwettop": 0.67,
+      "gwetroot": 0.63,
+      "gwetprof": 0.63,
+      "evland": 0.73
+    },
+    {
+      "date": "2023-02-08",
+      "gwettop": 0.67,
+      "gwetroot": 0.63,
+      "gwetprof": 0.63,
+      "evland": 0.62
+    },
+    {
+      "date": "2023-02-09",
+      "gwettop": 0.68,
+      "gwetroot": 0.64,
+      "gwetprof": 0.64,
+      "evland": 0.41
+    },
+    {
+      "date": "2023-02-10",
+      "gwettop": 0.67,
+      "gwetroot": 0.64,
+      "gwetprof": 0.64,
+      "evland": 0.79
+    },
+    {
+      "date": "2023-02-11",
+      "gwettop": 0.68,
+      "gwetroot": 0.64,
+      "gwetprof": 0.64,
+      "evland": 0.9
+    },
+    {
+      "date": "2023-02-12",
+      "gwettop": 0.68,
+      "gwetroot": 0.64,
+      "gwetprof": 0.64,
+      "evland": 0.63
+    },
+    {
+      "date": "2023-02-13",
+      "gwettop": 0.68,
+      "gwetroot": 0.64,
+      "gwetprof": 0.64,
+      "evland": 0.68
+    },
+    {
+      "date": "2023-02-14",
+      "gwettop": 0.7,
+      "gwetroot": 0.65,
+      "gwetprof": 0.65,
+      "evland": 0.27
+    },
+    {
+      "date": "2023-02-15",
+      "gwettop": 0.68,
+      "gwetroot": 0.65,
+      "gwetprof": 0.65,
+      "evland": 0.87
+    },
+    {
+      "date": "2023-02-16",
+      "gwettop": 0.68,
+      "gwetroot": 0.65,
+      "gwetprof": 0.65,
+      "evland": 0.78
+    },
+    {
+      "date": "2023-02-17",
+      "gwettop": 0.68,
+      "gwetroot": 0.65,
+      "gwetprof": 0.65,
+      "evland": 0.85
+    },
+    {
+      "date": "2023-02-18",
+      "gwettop": 0.69,
+      "gwetroot": 0.65,
+      "gwetprof": 0.65,
+      "evland": 0.67
+    },
+    {
+      "date": "2023-02-19",
+      "gwettop": 0.69,
+      "gwetroot": 0.65,
+      "gwetprof": 0.65,
+      "evland": 0.73
+    },
+    {
+      "date": "2023-02-20",
+      "gwettop": 0.69,
+      "gwetroot": 0.65,
+      "gwetprof": 0.65,
+      "evland": 0.79
+    },
+    {
+      "date": "2023-02-21",
+      "gwettop": 0.68,
+      "gwetroot": 0.65,
+      "gwetprof": 0.65,
+      "evland": 1.0
+    },
+    {
+      "date": "2023-02-22",
+      "gwettop": 0.69,
+      "gwetroot": 0.65,
+      "gwetprof": 0.65,
+      "evland": 0.41
+    },
+    {
+      "date": "2023-02-23",
+      "gwettop": 0.68,
+      "gwetroot": 0.65,
+      "gwetprof": 0.65,
+      "evland": 1.11
+    },
+    {
+      "date": "2023-02-24",
+      "gwettop": 0.68,
+      "gwetroot": 0.65,
+      "gwetprof": 0.65,
+      "evland": 0.6
+    },
+    {
+      "date": "2023-02-25",
+      "gwettop": 0.68,
+      "gwetroot": 0.65,
+      "gwetprof": 0.65,
+      "evland": 0.75
+    },
+    {
+      "date": "2023-02-26",
+      "gwettop": 0.69,
+      "gwetroot": 0.65,
+      "gwetprof": 0.65,
+      "evland": 0.83
+    },
+    {
+      "date": "2023-02-27",
+      "gwettop": 0.75,
+      "gwetroot": 0.68,
+      "gwetprof": 0.68,
+      "evland": 0.67
+    },
+    {
+      "date": "2023-02-28",
+      "gwettop": 0.71,
+      "gwetroot": 0.68,
+      "gwetprof": 0.68,
+      "evland": 0.8
+    },
+    {
+      "date": "2023-03-01",
+      "gwettop": 0.7,
+      "gwetroot": 0.67,
+      "gwetprof": 0.67,
+      "evland": 1.49
+    },
+    {
+      "date": "2023-03-02",
+      "gwettop": 0.7,
+      "gwetroot": 0.67,
+      "gwetprof": 0.67,
+      "evland": 0.66
+    },
+    {
+      "date": "2023-03-03",
+      "gwettop": 0.7,
+      "gwetroot": 0.67,
+      "gwetprof": 0.67,
+      "evland": 0.68
+    },
+    {
+      "date": "2023-03-04",
+      "gwettop": 0.7,
+      "gwetroot": 0.67,
+      "gwetprof": 0.67,
+      "evland": 0.76
+    },
+    {
+      "date": "2023-03-05",
+      "gwettop": 0.7,
+      "gwetroot": 0.67,
+      "gwetprof": 0.67,
+      "evland": 0.97
+    },
+    {
+      "date": "2023-03-06",
+      "gwettop": 0.7,
+      "gwetroot": 0.66,
+      "gwetprof": 0.67,
+      "evland": 1.22
+    },
+    {
+      "date": "2023-03-07",
+      "gwettop": 0.69,
+      "gwetroot": 0.66,
+      "gwetprof": 0.67,
+      "evland": 1.0
+    },
+    {
+      "date": "2023-03-08",
+      "gwettop": 0.7,
+      "gwetroot": 0.66,
+      "gwetprof": 0.67,
+      "evland": 0.94
+    },
+    {
+      "date": "2023-03-09",
+      "gwettop": 0.71,
+      "gwetroot": 0.67,
+      "gwetprof": 0.67,
+      "evland": 0.36
+    },
+    {
+      "date": "2023-03-10",
+      "gwettop": 0.71,
+      "gwetroot": 0.67,
+      "gwetprof": 0.67,
+      "evland": 0.97
+    },
+    {
+      "date": "2023-03-11",
+      "gwettop": 0.71,
+      "gwetroot": 0.67,
+      "gwetprof": 0.67,
+      "evland": 0.34
+    },
+    {
+      "date": "2023-03-12",
+      "gwettop": 0.71,
+      "gwetroot": 0.67,
+      "gwetprof": 0.68,
+      "evland": 1.19
+    },
+    {
+      "date": "2023-03-13",
+      "gwettop": 0.71,
+      "gwetroot": 0.67,
+      "gwetprof": 0.68,
+      "evland": 1.08
+    },
+    {
+      "date": "2023-03-14",
+      "gwettop": 0.71,
+      "gwetroot": 0.67,
+      "gwetprof": 0.68,
+      "evland": 1.06
+    },
+    {
+      "date": "2023-03-15",
+      "gwettop": 0.71,
+      "gwetroot": 0.68,
+      "gwetprof": 0.68,
+      "evland": 0.93
+    },
+    {
+      "date": "2023-03-16",
+      "gwettop": 0.73,
+      "gwetroot": 0.68,
+      "gwetprof": 0.68,
+      "evland": 0.64
+    },
+    {
+      "date": "2023-03-17",
+      "gwettop": 0.71,
+      "gwetroot": 0.68,
+      "gwetprof": 0.69,
+      "evland": 1.59
+    },
+    {
+      "date": "2023-03-18",
+      "gwettop": 0.71,
+      "gwetroot": 0.68,
+      "gwetprof": 0.68,
+      "evland": 1.07
+    },
+    {
+      "date": "2023-03-19",
+      "gwettop": 0.71,
+      "gwetroot": 0.68,
+      "gwetprof": 0.68,
+      "evland": 1.38
+    },
+    {
+      "date": "2023-03-20",
+      "gwettop": 0.71,
+      "gwetroot": 0.67,
+      "gwetprof": 0.68,
+      "evland": 1.66
+    },
+    {
+      "date": "2023-03-21",
+      "gwettop": 0.7,
+      "gwetroot": 0.67,
+      "gwetprof": 0.68,
+      "evland": 1.44
+    },
+    {
+      "date": "2023-03-22",
+      "gwettop": 0.7,
+      "gwetroot": 0.67,
+      "gwetprof": 0.68,
+      "evland": 1.23
+    },
+    {
+      "date": "2023-03-23",
+      "gwettop": 0.7,
+      "gwetroot": 0.67,
+      "gwetprof": 0.68,
+      "evland": 1.19
+    },
+    {
+      "date": "2023-03-24",
+      "gwettop": 0.7,
+      "gwetroot": 0.67,
+      "gwetprof": 0.68,
+      "evland": 1.63
+    },
+    {
+      "date": "2023-03-25",
+      "gwettop": 0.7,
+      "gwetroot": 0.67,
+      "gwetprof": 0.67,
+      "evland": 1.79
+    },
+    {
+      "date": "2023-03-26",
+      "gwettop": 0.7,
+      "gwetroot": 0.67,
+      "gwetprof": 0.67,
+      "evland": 1.07
+    },
+    {
+      "date": "2023-03-27",
+      "gwettop": 0.7,
+      "gwetroot": 0.67,
+      "gwetprof": 0.67,
+      "evland": 1.76
+    },
+    {
+      "date": "2023-03-28",
+      "gwettop": 0.69,
+      "gwetroot": 0.66,
+      "gwetprof": 0.67,
+      "evland": 1.76
+    },
+    {
+      "date": "2023-03-29",
+      "gwettop": 0.69,
+      "gwetroot": 0.66,
+      "gwetprof": 0.67,
+      "evland": 1.55
+    },
+    {
+      "date": "2023-03-30",
+      "gwettop": 0.69,
+      "gwetroot": 0.66,
+      "gwetprof": 0.67,
+      "evland": 1.93
+    },
+    {
+      "date": "2023-03-31",
+      "gwettop": 0.7,
+      "gwetroot": 0.66,
+      "gwetprof": 0.67,
+      "evland": 2.71
+    },
+    {
+      "date": "2023-04-01",
+      "gwettop": 0.69,
+      "gwetroot": 0.66,
+      "gwetprof": 0.67,
+      "evland": 2.05
+    },
+    {
+      "date": "2023-04-02",
+      "gwettop": 0.69,
+      "gwetroot": 0.66,
+      "gwetprof": 0.67,
+      "evland": 2.11
+    },
+    {
+      "date": "2023-04-03",
+      "gwettop": 0.68,
+      "gwetroot": 0.66,
+      "gwetprof": 0.66,
+      "evland": 2.07
+    },
+    {
+      "date": "2023-04-04",
+      "gwettop": 0.69,
+      "gwetroot": 0.65,
+      "gwetprof": 0.66,
+      "evland": 2.38
+    },
+    {
+      "date": "2023-04-05",
+      "gwettop": 0.7,
+      "gwetroot": 0.66,
+      "gwetprof": 0.67,
+      "evland": 2.17
+    },
+    {
+      "date": "2023-04-06",
+      "gwettop": 0.69,
+      "gwetroot": 0.66,
+      "gwetprof": 0.66,
+      "evland": 2.12
+    },
+    {
+      "date": "2023-04-07",
+      "gwettop": 0.68,
+      "gwetroot": 0.65,
+      "gwetprof": 0.66,
+      "evland": 2.84
+    },
+    {
+      "date": "2023-04-08",
+      "gwettop": 0.67,
+      "gwetroot": 0.65,
+      "gwetprof": 0.66,
+      "evland": 3.23
+    },
+    {
+      "date": "2023-04-09",
+      "gwettop": 0.67,
+      "gwetroot": 0.64,
+      "gwetprof": 0.65,
+      "evland": 3.19
+    },
+    {
+      "date": "2023-04-10",
+      "gwettop": 0.67,
+      "gwetroot": 0.64,
+      "gwetprof": 0.65,
+      "evland": 2.75
+    },
+    {
+      "date": "2023-04-11",
+      "gwettop": 0.66,
+      "gwetroot": 0.64,
+      "gwetprof": 0.65,
+      "evland": 3.36
+    },
+    {
+      "date": "2023-04-12",
+      "gwettop": 0.65,
+      "gwetroot": 0.63,
+      "gwetprof": 0.64,
+      "evland": 4.04
+    },
+    {
+      "date": "2023-04-13",
+      "gwettop": 0.65,
+      "gwetroot": 0.62,
+      "gwetprof": 0.64,
+      "evland": 3.95
+    },
+    {
+      "date": "2023-04-14",
+      "gwettop": 0.64,
+      "gwetroot": 0.62,
+      "gwetprof": 0.63,
+      "evland": 2.76
+    },
+    {
+      "date": "2023-04-15",
+      "gwettop": 0.67,
+      "gwetroot": 0.62,
+      "gwetprof": 0.63,
+      "evland": 1.36
+    },
+    {
+      "date": "2023-04-16",
+      "gwettop": 0.67,
+      "gwetroot": 0.63,
+      "gwetprof": 0.64,
+      "evland": 1.49
+    },
+    {
+      "date": "2023-04-17",
+      "gwettop": 0.65,
+      "gwetroot": 0.63,
+      "gwetprof": 0.63,
+      "evland": 2.85
+    },
+    {
+      "date": "2023-04-18",
+      "gwettop": 0.65,
+      "gwetroot": 0.62,
+      "gwetprof": 0.63,
+      "evland": 2.8
+    },
+    {
+      "date": "2023-04-19",
+      "gwettop": 0.67,
+      "gwetroot": 0.62,
+      "gwetprof": 0.63,
+      "evland": 2.67
+    },
+    {
+      "date": "2023-04-20",
+      "gwettop": 0.71,
+      "gwetroot": 0.65,
+      "gwetprof": 0.64,
+      "evland": 2.12
+    },
+    {
+      "date": "2023-04-21",
+      "gwettop": 0.67,
+      "gwetroot": 0.64,
+      "gwetprof": 0.64,
+      "evland": 2.25
+    },
+    {
+      "date": "2023-04-22",
+      "gwettop": 0.67,
+      "gwetroot": 0.64,
+      "gwetprof": 0.64,
+      "evland": 1.5
+    },
+    {
+      "date": "2023-04-23",
+      "gwettop": 0.66,
+      "gwetroot": 0.63,
+      "gwetprof": 0.64,
+      "evland": 1.94
+    },
+    {
+      "date": "2023-04-24",
+      "gwettop": 0.66,
+      "gwetroot": 0.63,
+      "gwetprof": 0.64,
+      "evland": 2.08
+    },
+    {
+      "date": "2023-04-25",
+      "gwettop": 0.66,
+      "gwetroot": 0.63,
+      "gwetprof": 0.63,
+      "evland": 2.63
+    },
+    {
+      "date": "2023-04-26",
+      "gwettop": 0.65,
+      "gwetroot": 0.62,
+      "gwetprof": 0.63,
+      "evland": 2.68
+    },
+    {
+      "date": "2023-04-27",
+      "gwettop": 0.64,
+      "gwetroot": 0.62,
+      "gwetprof": 0.63,
+      "evland": 3.41
+    },
+    {
+      "date": "2023-04-28",
+      "gwettop": 0.64,
+      "gwetroot": 0.61,
+      "gwetprof": 0.62,
+      "evland": 2.68
+    },
+    {
+      "date": "2023-04-29",
+      "gwettop": 0.65,
+      "gwetroot": 0.61,
+      "gwetprof": 0.62,
+      "evland": 2.28
+    },
+    {
+      "date": "2023-04-30",
+      "gwettop": 0.64,
+      "gwetroot": 0.61,
+      "gwetprof": 0.62,
+      "evland": 2.51
+    },
+    {
+      "date": "2023-05-01",
+      "gwettop": 0.63,
+      "gwetroot": 0.61,
+      "gwetprof": 0.62,
+      "evland": 3.03
+    },
+    {
+      "date": "2023-05-02",
+      "gwettop": 0.63,
+      "gwetroot": 0.6,
+      "gwetprof": 0.61,
+      "evland": 3.26
+    },
+    {
+      "date": "2023-05-03",
+      "gwettop": 0.62,
+      "gwetroot": 0.6,
+      "gwetprof": 0.61,
+      "evland": 3.25
+    },
+    {
+      "date": "2023-05-04",
+      "gwettop": 0.61,
+      "gwetroot": 0.59,
+      "gwetprof": 0.6,
+      "evland": 4.14
+    },
+    {
+      "date": "2023-05-05",
+      "gwettop": 0.65,
+      "gwetroot": 0.6,
+      "gwetprof": 0.6,
+      "evland": 1.86
+    },
+    {
+      "date": "2023-05-06",
+      "gwettop": 0.64,
+      "gwetroot": 0.61,
+      "gwetprof": 0.61,
+      "evland": 2.32
+    },
+    {
+      "date": "2023-05-07",
+      "gwettop": 0.66,
+      "gwetroot": 0.6,
+      "gwetprof": 0.61,
+      "evland": 3.98
+    },
+    {
+      "date": "2023-05-08",
+      "gwettop": 0.68,
+      "gwetroot": 0.63,
+      "gwetprof": 0.62,
+      "evland": 4.67
+    },
+    {
+      "date": "2023-05-09",
+      "gwettop": 0.65,
+      "gwetroot": 0.62,
+      "gwetprof": 0.62,
+      "evland": 2.39
+    },
+    {
+      "date": "2023-05-10",
+      "gwettop": 0.64,
+      "gwetroot": 0.61,
+      "gwetprof": 0.62,
+      "evland": 2.77
+    },
+    {
+      "date": "2023-05-11",
+      "gwettop": 0.65,
+      "gwetroot": 0.61,
+      "gwetprof": 0.61,
+      "evland": 3.3
+    },
+    {
+      "date": "2023-05-12",
+      "gwettop": 0.67,
+      "gwetroot": 0.62,
+      "gwetprof": 0.62,
+      "evland": 2.88
+    },
+    {
+      "date": "2023-05-13",
+      "gwettop": 0.68,
+      "gwetroot": 0.62,
+      "gwetprof": 0.62,
+      "evland": 3.46
+    },
+    {
+      "date": "2023-05-14",
+      "gwettop": 0.67,
+      "gwetroot": 0.63,
+      "gwetprof": 0.63,
+      "evland": 1.99
+    },
+    {
+      "date": "2023-05-15",
+      "gwettop": 0.66,
+      "gwetroot": 0.63,
+      "gwetprof": 0.63,
+      "evland": 2.41
+    },
+    {
+      "date": "2023-05-16",
+      "gwettop": 0.65,
+      "gwetroot": 0.62,
+      "gwetprof": 0.63,
+      "evland": 4.76
+    },
+    {
+      "date": "2023-05-17",
+      "gwettop": 0.64,
+      "gwetroot": 0.61,
+      "gwetprof": 0.62,
+      "evland": 3.81
+    },
+    {
+      "date": "2023-05-18",
+      "gwettop": 0.63,
+      "gwetroot": 0.6,
+      "gwetprof": 0.61,
+      "evland": 4.35
+    },
+    {
+      "date": "2023-05-19",
+      "gwettop": 0.62,
+      "gwetroot": 0.6,
+      "gwetprof": 0.61,
+      "evland": 3.71
+    },
+    {
+      "date": "2023-05-20",
+      "gwettop": 0.62,
+      "gwetroot": 0.59,
+      "gwetprof": 0.61,
+      "evland": 3.75
+    },
+    {
+      "date": "2023-05-21",
+      "gwettop": 0.61,
+      "gwetroot": 0.59,
+      "gwetprof": 0.6,
+      "evland": 3.7
+    },
+    {
+      "date": "2023-05-22",
+      "gwettop": 0.6,
+      "gwetroot": 0.58,
+      "gwetprof": 0.6,
+      "evland": 4.36
+    },
+    {
+      "date": "2023-05-23",
+      "gwettop": 0.6,
+      "gwetroot": 0.58,
+      "gwetprof": 0.59,
+      "evland": 4.73
+    },
+    {
+      "date": "2023-05-24",
+      "gwettop": 0.59,
+      "gwetroot": 0.57,
+      "gwetprof": 0.58,
+      "evland": 5.04
+    },
+    {
+      "date": "2023-05-25",
+      "gwettop": 0.57,
+      "gwetroot": 0.56,
+      "gwetprof": 0.58,
+      "evland": 4.45
+    },
+    {
+      "date": "2023-05-26",
+      "gwettop": 0.56,
+      "gwetroot": 0.56,
+      "gwetprof": 0.57,
+      "evland": 4.12
+    },
+    {
+      "date": "2023-05-27",
+      "gwettop": 0.55,
+      "gwetroot": 0.55,
+      "gwetprof": 0.57,
+      "evland": 4.15
+    },
+    {
+      "date": "2023-05-28",
+      "gwettop": 0.54,
+      "gwetroot": 0.55,
+      "gwetprof": 0.56,
+      "evland": 4.05
+    },
+    {
+      "date": "2023-05-29",
+      "gwettop": 0.53,
+      "gwetroot": 0.54,
+      "gwetprof": 0.56,
+      "evland": 4.11
+    },
+    {
+      "date": "2023-05-30",
+      "gwettop": 0.52,
+      "gwetroot": 0.54,
+      "gwetprof": 0.55,
+      "evland": 3.64
+    },
+    {
+      "date": "2023-05-31",
+      "gwettop": 0.57,
+      "gwetroot": 0.54,
+      "gwetprof": 0.55,
+      "evland": 3.29
+    },
+    {
+      "date": "2023-06-01",
+      "gwettop": 0.62,
+      "gwetroot": 0.56,
+      "gwetprof": 0.56,
+      "evland": 2.13
+    },
+    {
+      "date": "2023-06-02",
+      "gwettop": 0.59,
+      "gwetroot": 0.57,
+      "gwetprof": 0.57,
+      "evland": 3.81
+    },
+    {
+      "date": "2023-06-03",
+      "gwettop": 0.57,
+      "gwetroot": 0.56,
+      "gwetprof": 0.56,
+      "evland": 5.14
+    },
+    {
+      "date": "2023-06-04",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.56,
+      "evland": 3.96
+    },
+    {
+      "date": "2023-06-05",
+      "gwettop": 0.55,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 3.15
+    },
+    {
+      "date": "2023-06-06",
+      "gwettop": 0.53,
+      "gwetroot": 0.54,
+      "gwetprof": 0.55,
+      "evland": 4.07
+    },
+    {
+      "date": "2023-06-07",
+      "gwettop": 0.55,
+      "gwetroot": 0.54,
+      "gwetprof": 0.55,
+      "evland": 3.18
+    },
+    {
+      "date": "2023-06-08",
+      "gwettop": 0.53,
+      "gwetroot": 0.54,
+      "gwetprof": 0.55,
+      "evland": 3.72
+    },
+    {
+      "date": "2023-06-09",
+      "gwettop": 0.51,
+      "gwetroot": 0.53,
+      "gwetprof": 0.54,
+      "evland": 3.84
+    },
+    {
+      "date": "2023-06-10",
+      "gwettop": 0.52,
+      "gwetroot": 0.53,
+      "gwetprof": 0.54,
+      "evland": 2.62
+    },
+    {
+      "date": "2023-06-11",
+      "gwettop": 0.53,
+      "gwetroot": 0.53,
+      "gwetprof": 0.54,
+      "evland": 2.9
+    },
+    {
+      "date": "2023-06-12",
+      "gwettop": 0.51,
+      "gwetroot": 0.53,
+      "gwetprof": 0.54,
+      "evland": 3.23
+    },
+    {
+      "date": "2023-06-13",
+      "gwettop": 0.5,
+      "gwetroot": 0.52,
+      "gwetprof": 0.53,
+      "evland": 3.27
+    },
+    {
+      "date": "2023-06-14",
+      "gwettop": 0.49,
+      "gwetroot": 0.52,
+      "gwetprof": 0.53,
+      "evland": 3.29
+    },
+    {
+      "date": "2023-06-15",
+      "gwettop": 0.49,
+      "gwetroot": 0.51,
+      "gwetprof": 0.52,
+      "evland": 3.41
+    },
+    {
+      "date": "2023-06-16",
+      "gwettop": 0.48,
+      "gwetroot": 0.51,
+      "gwetprof": 0.52,
+      "evland": 2.4
+    },
+    {
+      "date": "2023-06-17",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.52,
+      "evland": 2.89
+    },
+    {
+      "date": "2023-06-18",
+      "gwettop": 0.58,
+      "gwetroot": 0.54,
+      "gwetprof": 0.53,
+      "evland": 3.85
+    },
+    {
+      "date": "2023-06-19",
+      "gwettop": 0.52,
+      "gwetroot": 0.53,
+      "gwetprof": 0.53,
+      "evland": 4.28
+    },
+    {
+      "date": "2023-06-20",
+      "gwettop": 0.5,
+      "gwetroot": 0.52,
+      "gwetprof": 0.53,
+      "evland": 4.22
+    },
+    {
+      "date": "2023-06-21",
+      "gwettop": 0.49,
+      "gwetroot": 0.51,
+      "gwetprof": 0.52,
+      "evland": 3.49
+    },
+    {
+      "date": "2023-06-22",
+      "gwettop": 0.48,
+      "gwetroot": 0.51,
+      "gwetprof": 0.52,
+      "evland": 3.31
+    },
+    {
+      "date": "2023-06-23",
+      "gwettop": 0.47,
+      "gwetroot": 0.5,
+      "gwetprof": 0.51,
+      "evland": 3.23
+    },
+    {
+      "date": "2023-06-24",
+      "gwettop": 0.51,
+      "gwetroot": 0.5,
+      "gwetprof": 0.51,
+      "evland": 3.58
+    },
+    {
+      "date": "2023-06-25",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.52,
+      "evland": 3.49
+    },
+    {
+      "date": "2023-06-26",
+      "gwettop": 0.48,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 2.59
+    },
+    {
+      "date": "2023-06-27",
+      "gwettop": 0.48,
+      "gwetroot": 0.5,
+      "gwetprof": 0.51,
+      "evland": 2.95
+    },
+    {
+      "date": "2023-06-28",
+      "gwettop": 0.48,
+      "gwetroot": 0.5,
+      "gwetprof": 0.51,
+      "evland": 2.57
+    },
+    {
+      "date": "2023-06-29",
+      "gwettop": 0.52,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 3.13
+    },
+    {
+      "date": "2023-06-30",
+      "gwettop": 0.55,
+      "gwetroot": 0.52,
+      "gwetprof": 0.52,
+      "evland": 2.08
+    },
+    {
+      "date": "2023-07-01",
+      "gwettop": 0.58,
+      "gwetroot": 0.54,
+      "gwetprof": 0.53,
+      "evland": 2.04
+    },
+    {
+      "date": "2023-07-02",
+      "gwettop": 0.55,
+      "gwetroot": 0.54,
+      "gwetprof": 0.54,
+      "evland": 4.89
+    },
+    {
+      "date": "2023-07-03",
+      "gwettop": 0.51,
+      "gwetroot": 0.53,
+      "gwetprof": 0.53,
+      "evland": 4.79
+    },
+    {
+      "date": "2023-07-04",
+      "gwettop": 0.5,
+      "gwetroot": 0.52,
+      "gwetprof": 0.53,
+      "evland": 4.22
+    },
+    {
+      "date": "2023-07-05",
+      "gwettop": 0.5,
+      "gwetroot": 0.52,
+      "gwetprof": 0.52,
+      "evland": 1.88
+    },
+    {
+      "date": "2023-07-06",
+      "gwettop": 0.49,
+      "gwetroot": 0.51,
+      "gwetprof": 0.52,
+      "evland": 2.86
+    },
+    {
+      "date": "2023-07-07",
+      "gwettop": 0.51,
+      "gwetroot": 0.51,
+      "gwetprof": 0.52,
+      "evland": 2.16
+    },
+    {
+      "date": "2023-07-08",
+      "gwettop": 0.49,
+      "gwetroot": 0.51,
+      "gwetprof": 0.52,
+      "evland": 3.07
+    },
+    {
+      "date": "2023-07-09",
+      "gwettop": 0.48,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 3.23
+    },
+    {
+      "date": "2023-07-10",
+      "gwettop": 0.47,
+      "gwetroot": 0.5,
+      "gwetprof": 0.51,
+      "evland": 3.1
+    },
+    {
+      "date": "2023-07-11",
+      "gwettop": 0.48,
+      "gwetroot": 0.5,
+      "gwetprof": 0.51,
+      "evland": 3.49
+    },
+    {
+      "date": "2023-07-12",
+      "gwettop": 0.59,
+      "gwetroot": 0.53,
+      "gwetprof": 0.53,
+      "evland": 4.55
+    },
+    {
+      "date": "2023-07-13",
+      "gwettop": 0.53,
+      "gwetroot": 0.53,
+      "gwetprof": 0.53,
+      "evland": 3.91
+    },
+    {
+      "date": "2023-07-14",
+      "gwettop": 0.52,
+      "gwetroot": 0.53,
+      "gwetprof": 0.53,
+      "evland": 2.7
+    },
+    {
+      "date": "2023-07-15",
+      "gwettop": 0.5,
+      "gwetroot": 0.52,
+      "gwetprof": 0.52,
+      "evland": 3.33
+    },
+    {
+      "date": "2023-07-16",
+      "gwettop": 0.5,
+      "gwetroot": 0.52,
+      "gwetprof": 0.52,
+      "evland": 2.41
+    },
+    {
+      "date": "2023-07-17",
+      "gwettop": 0.51,
+      "gwetroot": 0.52,
+      "gwetprof": 0.52,
+      "evland": 3.49
+    },
+    {
+      "date": "2023-07-18",
+      "gwettop": 0.49,
+      "gwetroot": 0.51,
+      "gwetprof": 0.52,
+      "evland": 2.7
+    },
+    {
+      "date": "2023-07-19",
+      "gwettop": 0.48,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 2.25
+    },
+    {
+      "date": "2023-07-20",
+      "gwettop": 0.48,
+      "gwetroot": 0.5,
+      "gwetprof": 0.51,
+      "evland": 2.85
+    },
+    {
+      "date": "2023-07-21",
+      "gwettop": 0.47,
+      "gwetroot": 0.5,
+      "gwetprof": 0.51,
+      "evland": 2.25
+    },
+    {
+      "date": "2023-07-22",
+      "gwettop": 0.47,
+      "gwetroot": 0.5,
+      "gwetprof": 0.51,
+      "evland": 2.71
+    },
+    {
+      "date": "2023-07-23",
+      "gwettop": 0.47,
+      "gwetroot": 0.49,
+      "gwetprof": 0.5,
+      "evland": 2.58
+    },
+    {
+      "date": "2023-07-24",
+      "gwettop": 0.46,
+      "gwetroot": 0.49,
+      "gwetprof": 0.5,
+      "evland": 2.6
+    },
+    {
+      "date": "2023-07-25",
+      "gwettop": 0.46,
+      "gwetroot": 0.49,
+      "gwetprof": 0.5,
+      "evland": 2.08
+    },
+    {
+      "date": "2023-07-26",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.49,
+      "evland": 2.72
+    },
+    {
+      "date": "2023-07-27",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.49,
+      "evland": 2.2
+    },
+    {
+      "date": "2023-07-28",
+      "gwettop": 0.48,
+      "gwetroot": 0.48,
+      "gwetprof": 0.49,
+      "evland": 3.24
+    },
+    {
+      "date": "2023-07-29",
+      "gwettop": 0.48,
+      "gwetroot": 0.48,
+      "gwetprof": 0.49,
+      "evland": 2.91
+    },
+    {
+      "date": "2023-07-30",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.49,
+      "evland": 1.81
+    },
+    {
+      "date": "2023-07-31",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.49,
+      "evland": 2.02
+    },
+    {
+      "date": "2023-08-01",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.48,
+      "evland": 1.74
+    },
+    {
+      "date": "2023-08-02",
+      "gwettop": 0.53,
+      "gwetroot": 0.49,
+      "gwetprof": 0.49,
+      "evland": 2.01
+    },
+    {
+      "date": "2023-08-03",
+      "gwettop": 0.48,
+      "gwetroot": 0.5,
+      "gwetprof": 0.49,
+      "evland": 2.45
+    },
+    {
+      "date": "2023-08-04",
+      "gwettop": 0.47,
+      "gwetroot": 0.49,
+      "gwetprof": 0.49,
+      "evland": 2.35
+    },
+    {
+      "date": "2023-08-05",
+      "gwettop": 0.53,
+      "gwetroot": 0.5,
+      "gwetprof": 0.5,
+      "evland": 2.83
+    },
+    {
+      "date": "2023-08-06",
+      "gwettop": 0.56,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 3.08
+    },
+    {
+      "date": "2023-08-07",
+      "gwettop": 0.52,
+      "gwetroot": 0.52,
+      "gwetprof": 0.51,
+      "evland": 3.78
+    },
+    {
+      "date": "2023-08-08",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 3.3
+    },
+    {
+      "date": "2023-08-09",
+      "gwettop": 0.51,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 1.88
+    },
+    {
+      "date": "2023-08-10",
+      "gwettop": 0.49,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 2.98
+    },
+    {
+      "date": "2023-08-11",
+      "gwettop": 0.55,
+      "gwetroot": 0.52,
+      "gwetprof": 0.52,
+      "evland": 4.71
+    },
+    {
+      "date": "2023-08-12",
+      "gwettop": 0.5,
+      "gwetroot": 0.52,
+      "gwetprof": 0.52,
+      "evland": 3.88
+    },
+    {
+      "date": "2023-08-13",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 2.2
+    },
+    {
+      "date": "2023-08-14",
+      "gwettop": 0.49,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 2.73
+    },
+    {
+      "date": "2023-08-15",
+      "gwettop": 0.48,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 2.56
+    },
+    {
+      "date": "2023-08-16",
+      "gwettop": 0.48,
+      "gwetroot": 0.5,
+      "gwetprof": 0.51,
+      "evland": 2.52
+    },
+    {
+      "date": "2023-08-17",
+      "gwettop": 0.47,
+      "gwetroot": 0.5,
+      "gwetprof": 0.5,
+      "evland": 2.26
+    },
+    {
+      "date": "2023-08-18",
+      "gwettop": 0.47,
+      "gwetroot": 0.49,
+      "gwetprof": 0.5,
+      "evland": 2.08
+    },
+    {
+      "date": "2023-08-19",
+      "gwettop": 0.47,
+      "gwetroot": 0.49,
+      "gwetprof": 0.5,
+      "evland": 2.19
+    },
+    {
+      "date": "2023-08-20",
+      "gwettop": 0.46,
+      "gwetroot": 0.49,
+      "gwetprof": 0.5,
+      "evland": 2.3
+    },
+    {
+      "date": "2023-08-21",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.49,
+      "evland": 2.25
+    },
+    {
+      "date": "2023-08-22",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.49,
+      "evland": 2.09
+    },
+    {
+      "date": "2023-08-23",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.49,
+      "evland": 1.91
+    },
+    {
+      "date": "2023-08-24",
+      "gwettop": 0.45,
+      "gwetroot": 0.48,
+      "gwetprof": 0.48,
+      "evland": 2.41
+    },
+    {
+      "date": "2023-08-25",
+      "gwettop": 0.45,
+      "gwetroot": 0.47,
+      "gwetprof": 0.48,
+      "evland": 2.08
+    },
+    {
+      "date": "2023-08-26",
+      "gwettop": 0.46,
+      "gwetroot": 0.47,
+      "gwetprof": 0.48,
+      "evland": 1.36
+    },
+    {
+      "date": "2023-08-27",
+      "gwettop": 0.45,
+      "gwetroot": 0.47,
+      "gwetprof": 0.48,
+      "evland": 1.29
+    },
+    {
+      "date": "2023-08-28",
+      "gwettop": 0.44,
+      "gwetroot": 0.47,
+      "gwetprof": 0.48,
+      "evland": 1.46
+    },
+    {
+      "date": "2023-08-29",
+      "gwettop": 0.43,
+      "gwetroot": 0.47,
+      "gwetprof": 0.48,
+      "evland": 1.42
+    },
+    {
+      "date": "2023-08-30",
+      "gwettop": 0.42,
+      "gwetroot": 0.47,
+      "gwetprof": 0.47,
+      "evland": 1.2
+    },
+    {
+      "date": "2023-08-31",
+      "gwettop": 0.4,
+      "gwetroot": 0.47,
+      "gwetprof": 0.47,
+      "evland": 1.17
+    },
+    {
+      "date": "2023-09-01",
+      "gwettop": 0.39,
+      "gwetroot": 0.46,
+      "gwetprof": 0.47,
+      "evland": 1.12
+    },
+    {
+      "date": "2023-09-02",
+      "gwettop": 0.37,
+      "gwetroot": 0.46,
+      "gwetprof": 0.47,
+      "evland": 1.08
+    },
+    {
+      "date": "2023-09-03",
+      "gwettop": 0.35,
+      "gwetroot": 0.46,
+      "gwetprof": 0.47,
+      "evland": 0.97
+    },
+    {
+      "date": "2023-09-04",
+      "gwettop": 0.34,
+      "gwetroot": 0.46,
+      "gwetprof": 0.47,
+      "evland": 0.57
+    },
+    {
+      "date": "2023-09-05",
+      "gwettop": 0.34,
+      "gwetroot": 0.46,
+      "gwetprof": 0.47,
+      "evland": 0.76
+    },
+    {
+      "date": "2023-09-06",
+      "gwettop": 0.34,
+      "gwetroot": 0.46,
+      "gwetprof": 0.47,
+      "evland": 0.47
+    },
+    {
+      "date": "2023-09-07",
+      "gwettop": 0.34,
+      "gwetroot": 0.46,
+      "gwetprof": 0.47,
+      "evland": 0.48
+    },
+    {
+      "date": "2023-09-08",
+      "gwettop": 0.33,
+      "gwetroot": 0.46,
+      "gwetprof": 0.47,
+      "evland": 0.48
+    },
+    {
+      "date": "2023-09-09",
+      "gwettop": 0.32,
+      "gwetroot": 0.46,
+      "gwetprof": 0.47,
+      "evland": 0.49
+    },
+    {
+      "date": "2023-09-10",
+      "gwettop": 0.42,
+      "gwetroot": 0.47,
+      "gwetprof": 0.47,
+      "evland": 1.9
+    },
+    {
+      "date": "2023-09-11",
+      "gwettop": 0.52,
+      "gwetroot": 0.49,
+      "gwetprof": 0.48,
+      "evland": 1.56
+    },
+    {
+      "date": "2023-09-12",
+      "gwettop": 0.47,
+      "gwetroot": 0.49,
+      "gwetprof": 0.48,
+      "evland": 1.47
+    },
+    {
+      "date": "2023-09-13",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.48,
+      "evland": 1.37
+    },
+    {
+      "date": "2023-09-14",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.48,
+      "evland": 1.44
+    },
+    {
+      "date": "2023-09-15",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.48,
+      "evland": 1.28
+    },
+    {
+      "date": "2023-09-16",
+      "gwettop": 0.48,
+      "gwetroot": 0.48,
+      "gwetprof": 0.48,
+      "evland": 1.77
+    },
+    {
+      "date": "2023-09-17",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.48,
+      "evland": 1.24
+    },
+    {
+      "date": "2023-09-18",
+      "gwettop": 0.45,
+      "gwetroot": 0.47,
+      "gwetprof": 0.48,
+      "evland": 1.38
+    },
+    {
+      "date": "2023-09-19",
+      "gwettop": 0.5,
+      "gwetroot": 0.48,
+      "gwetprof": 0.48,
+      "evland": 2.33
+    },
+    {
+      "date": "2023-09-20",
+      "gwettop": 0.54,
+      "gwetroot": 0.5,
+      "gwetprof": 0.49,
+      "evland": 1.52
+    },
+    {
+      "date": "2023-09-21",
+      "gwettop": 0.48,
+      "gwetroot": 0.5,
+      "gwetprof": 0.49,
+      "evland": 1.47
+    },
+    {
+      "date": "2023-09-22",
+      "gwettop": 0.5,
+      "gwetroot": 0.5,
+      "gwetprof": 0.49,
+      "evland": 1.31
+    },
+    {
+      "date": "2023-09-23",
+      "gwettop": 0.49,
+      "gwetroot": 0.5,
+      "gwetprof": 0.49,
+      "evland": 1.74
+    },
+    {
+      "date": "2023-09-24",
+      "gwettop": 0.48,
+      "gwetroot": 0.49,
+      "gwetprof": 0.49,
+      "evland": 1.64
+    },
+    {
+      "date": "2023-09-25",
+      "gwettop": 0.47,
+      "gwetroot": 0.49,
+      "gwetprof": 0.49,
+      "evland": 1.45
+    },
+    {
+      "date": "2023-09-26",
+      "gwettop": 0.47,
+      "gwetroot": 0.49,
+      "gwetprof": 0.49,
+      "evland": 1.18
+    },
+    {
+      "date": "2023-09-27",
+      "gwettop": 0.47,
+      "gwetroot": 0.49,
+      "gwetprof": 0.49,
+      "evland": 1.1
+    },
+    {
+      "date": "2023-09-28",
+      "gwettop": 0.47,
+      "gwetroot": 0.48,
+      "gwetprof": 0.49,
+      "evland": 1.14
+    },
+    {
+      "date": "2023-09-29",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.49,
+      "evland": 1.57
+    },
+    {
+      "date": "2023-09-30",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.48,
+      "evland": 1.7
+    },
+    {
+      "date": "2023-10-01",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.48,
+      "evland": 1.68
+    },
+    {
+      "date": "2023-10-02",
+      "gwettop": 0.45,
+      "gwetroot": 0.47,
+      "gwetprof": 0.48,
+      "evland": 1.58
+    },
+    {
+      "date": "2023-10-03",
+      "gwettop": 0.45,
+      "gwetroot": 0.47,
+      "gwetprof": 0.48,
+      "evland": 1.35
+    },
+    {
+      "date": "2023-10-04",
+      "gwettop": 0.46,
+      "gwetroot": 0.47,
+      "gwetprof": 0.48,
+      "evland": 1.31
+    },
+    {
+      "date": "2023-10-05",
+      "gwettop": 0.45,
+      "gwetroot": 0.47,
+      "gwetprof": 0.48,
+      "evland": 1.08
+    },
+    {
+      "date": "2023-10-06",
+      "gwettop": 0.46,
+      "gwetroot": 0.47,
+      "gwetprof": 0.48,
+      "evland": 0.97
+    },
+    {
+      "date": "2023-10-07",
+      "gwettop": 0.46,
+      "gwetroot": 0.47,
+      "gwetprof": 0.47,
+      "evland": 0.7
+    },
+    {
+      "date": "2023-10-08",
+      "gwettop": 0.45,
+      "gwetroot": 0.47,
+      "gwetprof": 0.47,
+      "evland": 0.92
+    },
+    {
+      "date": "2023-10-09",
+      "gwettop": 0.45,
+      "gwetroot": 0.47,
+      "gwetprof": 0.47,
+      "evland": 0.62
+    },
+    {
+      "date": "2023-10-10",
+      "gwettop": 0.45,
+      "gwetroot": 0.47,
+      "gwetprof": 0.47,
+      "evland": 0.62
+    },
+    {
+      "date": "2023-10-11",
+      "gwettop": 0.46,
+      "gwetroot": 0.47,
+      "gwetprof": 0.47,
+      "evland": 1.15
+    },
+    {
+      "date": "2023-10-12",
+      "gwettop": 0.49,
+      "gwetroot": 0.48,
+      "gwetprof": 0.48,
+      "evland": 1.4
+    },
+    {
+      "date": "2023-10-13",
+      "gwettop": 0.57,
+      "gwetroot": 0.5,
+      "gwetprof": 0.49,
+      "evland": 1.65
+    },
+    {
+      "date": "2023-10-14",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.5,
+      "evland": 0.83
+    },
+    {
+      "date": "2023-10-15",
+      "gwettop": 0.49,
+      "gwetroot": 0.5,
+      "gwetprof": 0.5,
+      "evland": 0.87
+    },
+    {
+      "date": "2023-10-16",
+      "gwettop": 0.49,
+      "gwetroot": 0.5,
+      "gwetprof": 0.5,
+      "evland": 0.72
+    },
+    {
+      "date": "2023-10-17",
+      "gwettop": 0.48,
+      "gwetroot": 0.5,
+      "gwetprof": 0.5,
+      "evland": 0.97
+    },
+    {
+      "date": "2023-10-18",
+      "gwettop": 0.48,
+      "gwetroot": 0.49,
+      "gwetprof": 0.49,
+      "evland": 0.93
+    },
+    {
+      "date": "2023-10-19",
+      "gwettop": 0.48,
+      "gwetroot": 0.49,
+      "gwetprof": 0.49,
+      "evland": 0.66
+    },
+    {
+      "date": "2023-10-20",
+      "gwettop": 0.48,
+      "gwetroot": 0.49,
+      "gwetprof": 0.49,
+      "evland": 0.83
+    },
+    {
+      "date": "2023-10-21",
+      "gwettop": 0.47,
+      "gwetroot": 0.49,
+      "gwetprof": 0.49,
+      "evland": 0.91
+    },
+    {
+      "date": "2023-10-22",
+      "gwettop": 0.48,
+      "gwetroot": 0.49,
+      "gwetprof": 0.49,
+      "evland": 0.65
+    },
+    {
+      "date": "2023-10-23",
+      "gwettop": 0.47,
+      "gwetroot": 0.49,
+      "gwetprof": 0.49,
+      "evland": 1.1
+    },
+    {
+      "date": "2023-10-24",
+      "gwettop": 0.48,
+      "gwetroot": 0.49,
+      "gwetprof": 0.49,
+      "evland": 1.11
+    },
+    {
+      "date": "2023-10-25",
+      "gwettop": 0.48,
+      "gwetroot": 0.49,
+      "gwetprof": 0.49,
+      "evland": 0.7
+    },
+    {
+      "date": "2023-10-26",
+      "gwettop": 0.6,
+      "gwetroot": 0.52,
+      "gwetprof": 0.51,
+      "evland": 1.4
+    },
+    {
+      "date": "2023-10-27",
+      "gwettop": 0.54,
+      "gwetroot": 0.53,
+      "gwetprof": 0.52,
+      "evland": 1.07
+    },
+    {
+      "date": "2023-10-28",
+      "gwettop": 0.52,
+      "gwetroot": 0.53,
+      "gwetprof": 0.52,
+      "evland": 0.68
+    },
+    {
+      "date": "2023-10-29",
+      "gwettop": 0.51,
+      "gwetroot": 0.52,
+      "gwetprof": 0.52,
+      "evland": 0.51
+    },
+    {
+      "date": "2023-10-30",
+      "gwettop": 0.51,
+      "gwetroot": 0.52,
+      "gwetprof": 0.52,
+      "evland": 0.52
+    },
+    {
+      "date": "2023-10-31",
+      "gwettop": 0.51,
+      "gwetroot": 0.52,
+      "gwetprof": 0.52,
+      "evland": 0.49
+    },
+    {
+      "date": "2023-11-01",
+      "gwettop": 0.5,
+      "gwetroot": 0.52,
+      "gwetprof": 0.52,
+      "evland": 0.56
+    },
+    {
+      "date": "2023-11-02",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.52,
+      "evland": 0.48
+    },
+    {
+      "date": "2023-11-03",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.52,
+      "evland": 0.3
+    },
+    {
+      "date": "2023-11-04",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.42
+    },
+    {
+      "date": "2023-11-05",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.67
+    },
+    {
+      "date": "2023-11-06",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.58
+    },
+    {
+      "date": "2023-11-07",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.67
+    },
+    {
+      "date": "2023-11-08",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.43
+    },
+    {
+      "date": "2023-11-09",
+      "gwettop": 0.49,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.81
+    },
+    {
+      "date": "2023-11-10",
+      "gwettop": 0.49,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.41
+    },
+    {
+      "date": "2023-11-11",
+      "gwettop": 0.49,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.49
+    },
+    {
+      "date": "2023-11-12",
+      "gwettop": 0.49,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.68
+    },
+    {
+      "date": "2023-11-13",
+      "gwettop": 0.49,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.61
+    },
+    {
+      "date": "2023-11-14",
+      "gwettop": 0.49,
+      "gwetroot": 0.5,
+      "gwetprof": 0.51,
+      "evland": 0.83
+    },
+    {
+      "date": "2023-11-15",
+      "gwettop": 0.49,
+      "gwetroot": 0.5,
+      "gwetprof": 0.51,
+      "evland": 0.48
+    },
+    {
+      "date": "2023-11-16",
+      "gwettop": 0.49,
+      "gwetroot": 0.5,
+      "gwetprof": 0.51,
+      "evland": 0.57
+    },
+    {
+      "date": "2023-11-17",
+      "gwettop": 0.49,
+      "gwetroot": 0.5,
+      "gwetprof": 0.51,
+      "evland": 0.57
+    },
+    {
+      "date": "2023-11-18",
+      "gwettop": 0.49,
+      "gwetroot": 0.5,
+      "gwetprof": 0.5,
+      "evland": 0.5
+    },
+    {
+      "date": "2023-11-19",
+      "gwettop": 0.49,
+      "gwetroot": 0.5,
+      "gwetprof": 0.5,
+      "evland": 0.28
+    },
+    {
+      "date": "2023-11-20",
+      "gwettop": 0.5,
+      "gwetroot": 0.5,
+      "gwetprof": 0.5,
+      "evland": 0.58
+    },
+    {
+      "date": "2023-11-21",
+      "gwettop": 0.51,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.44
+    },
+    {
+      "date": "2023-11-22",
+      "gwettop": 0.49,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.52
+    },
+    {
+      "date": "2023-11-23",
+      "gwettop": 0.49,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.55
+    },
+    {
+      "date": "2023-11-24",
+      "gwettop": 0.49,
+      "gwetroot": 0.5,
+      "gwetprof": 0.51,
+      "evland": 0.43
+    },
+    {
+      "date": "2023-11-25",
+      "gwettop": 0.49,
+      "gwetroot": 0.5,
+      "gwetprof": 0.51,
+      "evland": 0.37
+    },
+    {
+      "date": "2023-11-26",
+      "gwettop": 0.49,
+      "gwetroot": 0.5,
+      "gwetprof": 0.51,
+      "evland": 0.49
+    },
+    {
+      "date": "2023-11-27",
+      "gwettop": 0.49,
+      "gwetroot": 0.5,
+      "gwetprof": 0.51,
+      "evland": 0.43
+    },
+    {
+      "date": "2023-11-28",
+      "gwettop": 0.49,
+      "gwetroot": 0.5,
+      "gwetprof": 0.51,
+      "evland": 0.4
+    },
+    {
+      "date": "2023-11-29",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.22
+    },
+    {
+      "date": "2023-11-30",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.29
+    },
+    {
+      "date": "2023-12-01",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.35
+    },
+    {
+      "date": "2023-12-02",
+      "gwettop": 0.51,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.24
+    },
+    {
+      "date": "2023-12-03",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.24
+    },
+    {
+      "date": "2023-12-04",
+      "gwettop": 0.51,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.23
+    },
+    {
+      "date": "2023-12-05",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.27
+    },
+    {
+      "date": "2023-12-06",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.35
+    },
+    {
+      "date": "2023-12-07",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.23
+    },
+    {
+      "date": "2023-12-08",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.38
+    },
+    {
+      "date": "2023-12-09",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.42
+    },
+    {
+      "date": "2023-12-10",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.22
+    },
+    {
+      "date": "2023-12-11",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.24
+    },
+    {
+      "date": "2023-12-12",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.3
+    },
+    {
+      "date": "2023-12-13",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.3
+    },
+    {
+      "date": "2023-12-14",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.24
+    },
+    {
+      "date": "2023-12-15",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 0.09
+    },
+    {
+      "date": "2023-12-16",
+      "gwettop": 0.54,
+      "gwetroot": 0.52,
+      "gwetprof": 0.52,
+      "evland": 0.14
+    },
+    {
+      "date": "2023-12-17",
+      "gwettop": 0.51,
+      "gwetroot": 0.52,
+      "gwetprof": 0.52,
+      "evland": 0.32
+    },
+    {
+      "date": "2023-12-18",
+      "gwettop": 0.51,
+      "gwetroot": 0.52,
+      "gwetprof": 0.52,
+      "evland": 0.36
+    },
+    {
+      "date": "2023-12-19",
+      "gwettop": 0.5,
+      "gwetroot": 0.52,
+      "gwetprof": 0.52,
+      "evland": 0.42
+    },
+    {
+      "date": "2023-12-20",
+      "gwettop": 0.51,
+      "gwetroot": 0.52,
+      "gwetprof": 0.52,
+      "evland": 0.21
+    },
+    {
+      "date": "2023-12-21",
+      "gwettop": 0.51,
+      "gwetroot": 0.52,
+      "gwetprof": 0.52,
+      "evland": 0.07
+    },
+    {
+      "date": "2023-12-22",
+      "gwettop": 0.56,
+      "gwetroot": 0.53,
+      "gwetprof": 0.52,
+      "evland": 0.12
+    },
+    {
+      "date": "2023-12-23",
+      "gwettop": 0.53,
+      "gwetroot": 0.53,
+      "gwetprof": 0.53,
+      "evland": 0.16
+    },
+    {
+      "date": "2023-12-24",
+      "gwettop": 0.56,
+      "gwetroot": 0.53,
+      "gwetprof": 0.53,
+      "evland": 0.23
+    },
+    {
+      "date": "2023-12-25",
+      "gwettop": 0.65,
+      "gwetroot": 0.57,
+      "gwetprof": 0.55,
+      "evland": 0.46
+    },
+    {
+      "date": "2023-12-26",
+      "gwettop": 0.59,
+      "gwetroot": 0.57,
+      "gwetprof": 0.55,
+      "evland": 0.4
+    },
+    {
+      "date": "2023-12-27",
+      "gwettop": 0.58,
+      "gwetroot": 0.56,
+      "gwetprof": 0.55,
+      "evland": 0.32
+    },
+    {
+      "date": "2023-12-28",
+      "gwettop": 0.57,
+      "gwetroot": 0.56,
+      "gwetprof": 0.55,
+      "evland": 0.33
+    },
+    {
+      "date": "2023-12-29",
+      "gwettop": 0.57,
+      "gwetroot": 0.56,
+      "gwetprof": 0.55,
+      "evland": 0.32
+    },
+    {
+      "date": "2023-12-30",
+      "gwettop": 0.57,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 0.28
+    },
+    {
+      "date": "2023-12-31",
+      "gwettop": 0.57,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 0.41
+    },
+    {
+      "date": "2024-01-01",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 0.34
+    },
+    {
+      "date": "2024-01-02",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 0.25
+    },
+    {
+      "date": "2024-01-03",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 0.29
+    },
+    {
+      "date": "2024-01-04",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 0.26
+    },
+    {
+      "date": "2024-01-05",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 0.23
+    },
+    {
+      "date": "2024-01-06",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 0.17
+    },
+    {
+      "date": "2024-01-07",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 0.27
+    },
+    {
+      "date": "2024-01-08",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 0.12
+    },
+    {
+      "date": "2024-01-09",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 0.38
+    },
+    {
+      "date": "2024-01-10",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 0.29
+    },
+    {
+      "date": "2024-01-11",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 0.24
+    },
+    {
+      "date": "2024-01-12",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 0.45
+    },
+    {
+      "date": "2024-01-13",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 0.38
+    },
+    {
+      "date": "2024-01-14",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 0.13
+    },
+    {
+      "date": "2024-01-15",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 0.15
+    },
+    {
+      "date": "2024-01-16",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 0.2
+    },
+    {
+      "date": "2024-01-17",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 0.27
+    },
+    {
+      "date": "2024-01-18",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 0.27
+    },
+    {
+      "date": "2024-01-19",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 0.22
+    },
+    {
+      "date": "2024-01-20",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 0.15
+    },
+    {
+      "date": "2024-01-21",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 0.47
+    },
+    {
+      "date": "2024-01-22",
+      "gwettop": 0.57,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 0.31
+    },
+    {
+      "date": "2024-01-23",
+      "gwettop": 0.6,
+      "gwetroot": 0.56,
+      "gwetprof": 0.56,
+      "evland": 0.05
+    },
+    {
+      "date": "2024-01-24",
+      "gwettop": 0.62,
+      "gwetroot": 0.57,
+      "gwetprof": 0.57,
+      "evland": 0.05
+    },
+    {
+      "date": "2024-01-25",
+      "gwettop": 0.65,
+      "gwetroot": 0.58,
+      "gwetprof": 0.57,
+      "evland": 0.01
+    },
+    {
+      "date": "2024-01-26",
+      "gwettop": 0.66,
+      "gwetroot": 0.6,
+      "gwetprof": 0.59,
+      "evland": 0.05
+    },
+    {
+      "date": "2024-01-27",
+      "gwettop": 0.66,
+      "gwetroot": 0.61,
+      "gwetprof": 0.6,
+      "evland": 0.19
+    },
+    {
+      "date": "2024-01-28",
+      "gwettop": 0.65,
+      "gwetroot": 0.61,
+      "gwetprof": 0.6,
+      "evland": 0.28
+    },
+    {
+      "date": "2024-01-29",
+      "gwettop": 0.65,
+      "gwetroot": 0.61,
+      "gwetprof": 0.6,
+      "evland": 0.27
+    },
+    {
+      "date": "2024-01-30",
+      "gwettop": 0.65,
+      "gwetroot": 0.61,
+      "gwetprof": 0.61,
+      "evland": 0.4
+    },
+    {
+      "date": "2024-01-31",
+      "gwettop": 0.64,
+      "gwetroot": 0.61,
+      "gwetprof": 0.61,
+      "evland": 0.41
+    },
+    {
+      "date": "2024-02-01",
+      "gwettop": 0.64,
+      "gwetroot": 0.61,
+      "gwetprof": 0.61,
+      "evland": 0.39
+    },
+    {
+      "date": "2024-02-02",
+      "gwettop": 0.64,
+      "gwetroot": 0.61,
+      "gwetprof": 0.61,
+      "evland": 0.64
+    },
+    {
+      "date": "2024-02-03",
+      "gwettop": 0.64,
+      "gwetroot": 0.61,
+      "gwetprof": 0.61,
+      "evland": 0.56
+    },
+    {
+      "date": "2024-02-04",
+      "gwettop": 0.64,
+      "gwetroot": 0.6,
+      "gwetprof": 0.61,
+      "evland": 0.65
+    },
+    {
+      "date": "2024-02-05",
+      "gwettop": 0.63,
+      "gwetroot": 0.6,
+      "gwetprof": 0.61,
+      "evland": 0.61
+    },
+    {
+      "date": "2024-02-06",
+      "gwettop": 0.63,
+      "gwetroot": 0.6,
+      "gwetprof": 0.61,
+      "evland": 0.84
+    },
+    {
+      "date": "2024-02-07",
+      "gwettop": 0.63,
+      "gwetroot": 0.6,
+      "gwetprof": 0.61,
+      "evland": 0.59
+    },
+    {
+      "date": "2024-02-08",
+      "gwettop": 0.63,
+      "gwetroot": 0.6,
+      "gwetprof": 0.6,
+      "evland": 1.15
+    },
+    {
+      "date": "2024-02-09",
+      "gwettop": 0.63,
+      "gwetroot": 0.6,
+      "gwetprof": 0.6,
+      "evland": 0.79
+    },
+    {
+      "date": "2024-02-10",
+      "gwettop": 0.63,
+      "gwetroot": 0.6,
+      "gwetprof": 0.6,
+      "evland": 0.71
+    },
+    {
+      "date": "2024-02-11",
+      "gwettop": 0.63,
+      "gwetroot": 0.6,
+      "gwetprof": 0.6,
+      "evland": 0.65
+    },
+    {
+      "date": "2024-02-12",
+      "gwettop": 0.63,
+      "gwetroot": 0.6,
+      "gwetprof": 0.6,
+      "evland": 0.64
+    },
+    {
+      "date": "2024-02-13",
+      "gwettop": 0.62,
+      "gwetroot": 0.59,
+      "gwetprof": 0.6,
+      "evland": 0.69
+    },
+    {
+      "date": "2024-02-14",
+      "gwettop": 0.63,
+      "gwetroot": 0.59,
+      "gwetprof": 0.6,
+      "evland": 0.97
+    },
+    {
+      "date": "2024-02-15",
+      "gwettop": 0.63,
+      "gwetroot": 0.6,
+      "gwetprof": 0.6,
+      "evland": 1.05
+    },
+    {
+      "date": "2024-02-16",
+      "gwettop": 0.62,
+      "gwetroot": 0.6,
+      "gwetprof": 0.6,
+      "evland": 0.72
+    },
+    {
+      "date": "2024-02-17",
+      "gwettop": 0.62,
+      "gwetroot": 0.59,
+      "gwetprof": 0.6,
+      "evland": 1.0
+    },
+    {
+      "date": "2024-02-18",
+      "gwettop": 0.62,
+      "gwetroot": 0.59,
+      "gwetprof": 0.6,
+      "evland": 0.73
+    },
+    {
+      "date": "2024-02-19",
+      "gwettop": 0.62,
+      "gwetroot": 0.59,
+      "gwetprof": 0.6,
+      "evland": 0.76
+    },
+    {
+      "date": "2024-02-20",
+      "gwettop": 0.62,
+      "gwetroot": 0.59,
+      "gwetprof": 0.6,
+      "evland": 0.86
+    },
+    {
+      "date": "2024-02-21",
+      "gwettop": 0.62,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 0.69
+    },
+    {
+      "date": "2024-02-22",
+      "gwettop": 0.62,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 1.2
+    },
+    {
+      "date": "2024-02-23",
+      "gwettop": 0.61,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 1.11
+    },
+    {
+      "date": "2024-02-24",
+      "gwettop": 0.61,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 0.86
+    },
+    {
+      "date": "2024-02-25",
+      "gwettop": 0.61,
+      "gwetroot": 0.58,
+      "gwetprof": 0.59,
+      "evland": 1.23
+    },
+    {
+      "date": "2024-02-26",
+      "gwettop": 0.61,
+      "gwetroot": 0.58,
+      "gwetprof": 0.59,
+      "evland": 1.58
+    },
+    {
+      "date": "2024-02-27",
+      "gwettop": 0.6,
+      "gwetroot": 0.58,
+      "gwetprof": 0.59,
+      "evland": 1.45
+    },
+    {
+      "date": "2024-02-28",
+      "gwettop": 0.61,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.87
+    },
+    {
+      "date": "2024-02-29",
+      "gwettop": 0.6,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 1.15
+    },
+    {
+      "date": "2024-03-01",
+      "gwettop": 0.6,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.81
+    },
+    {
+      "date": "2024-03-02",
+      "gwettop": 0.6,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 1.27
+    },
+    {
+      "date": "2024-03-03",
+      "gwettop": 0.59,
+      "gwetroot": 0.57,
+      "gwetprof": 0.58,
+      "evland": 1.94
+    },
+    {
+      "date": "2024-03-04",
+      "gwettop": 0.6,
+      "gwetroot": 0.57,
+      "gwetprof": 0.58,
+      "evland": 0.8
+    },
+    {
+      "date": "2024-03-05",
+      "gwettop": 0.6,
+      "gwetroot": 0.57,
+      "gwetprof": 0.58,
+      "evland": 1.15
+    },
+    {
+      "date": "2024-03-06",
+      "gwettop": 0.59,
+      "gwetroot": 0.57,
+      "gwetprof": 0.58,
+      "evland": 1.31
+    },
+    {
+      "date": "2024-03-07",
+      "gwettop": 0.6,
+      "gwetroot": 0.57,
+      "gwetprof": 0.58,
+      "evland": 1.0
+    },
+    {
+      "date": "2024-03-08",
+      "gwettop": 0.63,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.83
+    },
+    {
+      "date": "2024-03-09",
+      "gwettop": 0.6,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 1.16
+    },
+    {
+      "date": "2024-03-10",
+      "gwettop": 0.6,
+      "gwetroot": 0.57,
+      "gwetprof": 0.58,
+      "evland": 1.28
+    },
+    {
+      "date": "2024-03-11",
+      "gwettop": 0.59,
+      "gwetroot": 0.57,
+      "gwetprof": 0.58,
+      "evland": 1.93
+    },
+    {
+      "date": "2024-03-12",
+      "gwettop": 0.59,
+      "gwetroot": 0.57,
+      "gwetprof": 0.57,
+      "evland": 1.15
+    },
+    {
+      "date": "2024-03-13",
+      "gwettop": 0.6,
+      "gwetroot": 0.57,
+      "gwetprof": 0.57,
+      "evland": 1.09
+    },
+    {
+      "date": "2024-03-14",
+      "gwettop": 0.65,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 1.48
+    },
+    {
+      "date": "2024-03-15",
+      "gwettop": 0.61,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 1.78
+    },
+    {
+      "date": "2024-03-16",
+      "gwettop": 0.6,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 1.72
+    },
+    {
+      "date": "2024-03-17",
+      "gwettop": 0.6,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 1.11
+    },
+    {
+      "date": "2024-03-18",
+      "gwettop": 0.6,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.96
+    },
+    {
+      "date": "2024-03-19",
+      "gwettop": 0.59,
+      "gwetroot": 0.57,
+      "gwetprof": 0.58,
+      "evland": 1.71
+    },
+    {
+      "date": "2024-03-20",
+      "gwettop": 0.59,
+      "gwetroot": 0.57,
+      "gwetprof": 0.58,
+      "evland": 1.37
+    },
+    {
+      "date": "2024-03-21",
+      "gwettop": 0.59,
+      "gwetroot": 0.57,
+      "gwetprof": 0.57,
+      "evland": 1.35
+    },
+    {
+      "date": "2024-03-22",
+      "gwettop": 0.62,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.95
+    },
+    {
+      "date": "2024-03-23",
+      "gwettop": 0.61,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 1.06
+    },
+    {
+      "date": "2024-03-24",
+      "gwettop": 0.63,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.83
+    },
+    {
+      "date": "2024-03-25",
+      "gwettop": 0.65,
+      "gwetroot": 0.6,
+      "gwetprof": 0.59,
+      "evland": 1.0
+    },
+    {
+      "date": "2024-03-26",
+      "gwettop": 0.63,
+      "gwetroot": 0.6,
+      "gwetprof": 0.59,
+      "evland": 1.12
+    },
+    {
+      "date": "2024-03-27",
+      "gwettop": 0.62,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 1.25
+    },
+    {
+      "date": "2024-03-28",
+      "gwettop": 0.62,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 1.32
+    },
+    {
+      "date": "2024-03-29",
+      "gwettop": 0.62,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 0.97
+    },
+    {
+      "date": "2024-03-30",
+      "gwettop": 0.61,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 1.91
+    },
+    {
+      "date": "2024-03-31",
+      "gwettop": 0.64,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 1.43
+    },
+    {
+      "date": "2024-04-01",
+      "gwettop": 0.65,
+      "gwetroot": 0.6,
+      "gwetprof": 0.6,
+      "evland": 1.09
+    },
+    {
+      "date": "2024-04-02",
+      "gwettop": 0.67,
+      "gwetroot": 0.62,
+      "gwetprof": 0.61,
+      "evland": 1.17
+    },
+    {
+      "date": "2024-04-03",
+      "gwettop": 0.65,
+      "gwetroot": 0.61,
+      "gwetprof": 0.61,
+      "evland": 2.17
+    },
+    {
+      "date": "2024-04-04",
+      "gwettop": 0.64,
+      "gwetroot": 0.61,
+      "gwetprof": 0.61,
+      "evland": 1.64
+    },
+    {
+      "date": "2024-04-05",
+      "gwettop": 0.63,
+      "gwetroot": 0.6,
+      "gwetprof": 0.61,
+      "evland": 1.96
+    },
+    {
+      "date": "2024-04-06",
+      "gwettop": 0.62,
+      "gwetroot": 0.6,
+      "gwetprof": 0.6,
+      "evland": 2.36
+    },
+    {
+      "date": "2024-04-07",
+      "gwettop": 0.63,
+      "gwetroot": 0.6,
+      "gwetprof": 0.6,
+      "evland": 2.45
+    },
+    {
+      "date": "2024-04-08",
+      "gwettop": 0.62,
+      "gwetroot": 0.6,
+      "gwetprof": 0.6,
+      "evland": 2.56
+    },
+    {
+      "date": "2024-04-09",
+      "gwettop": 0.61,
+      "gwetroot": 0.59,
+      "gwetprof": 0.6,
+      "evland": 2.3
+    },
+    {
+      "date": "2024-04-10",
+      "gwettop": 0.61,
+      "gwetroot": 0.59,
+      "gwetprof": 0.6,
+      "evland": 2.58
+    },
+    {
+      "date": "2024-04-11",
+      "gwettop": 0.61,
+      "gwetroot": 0.58,
+      "gwetprof": 0.59,
+      "evland": 2.18
+    },
+    {
+      "date": "2024-04-12",
+      "gwettop": 0.6,
+      "gwetroot": 0.58,
+      "gwetprof": 0.59,
+      "evland": 2.45
+    },
+    {
+      "date": "2024-04-13",
+      "gwettop": 0.6,
+      "gwetroot": 0.58,
+      "gwetprof": 0.59,
+      "evland": 3.37
+    },
+    {
+      "date": "2024-04-14",
+      "gwettop": 0.59,
+      "gwetroot": 0.57,
+      "gwetprof": 0.58,
+      "evland": 3.76
+    },
+    {
+      "date": "2024-04-15",
+      "gwettop": 0.58,
+      "gwetroot": 0.57,
+      "gwetprof": 0.58,
+      "evland": 3.51
+    },
+    {
+      "date": "2024-04-16",
+      "gwettop": 0.65,
+      "gwetroot": 0.58,
+      "gwetprof": 0.59,
+      "evland": 3.78
+    },
+    {
+      "date": "2024-04-17",
+      "gwettop": 0.61,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 2.43
+    },
+    {
+      "date": "2024-04-18",
+      "gwettop": 0.67,
+      "gwetroot": 0.6,
+      "gwetprof": 0.6,
+      "evland": 1.46
+    },
+    {
+      "date": "2024-04-19",
+      "gwettop": 0.63,
+      "gwetroot": 0.6,
+      "gwetprof": 0.6,
+      "evland": 2.6
+    },
+    {
+      "date": "2024-04-20",
+      "gwettop": 0.62,
+      "gwetroot": 0.6,
+      "gwetprof": 0.6,
+      "evland": 1.87
+    },
+    {
+      "date": "2024-04-21",
+      "gwettop": 0.62,
+      "gwetroot": 0.59,
+      "gwetprof": 0.6,
+      "evland": 2.42
+    },
+    {
+      "date": "2024-04-22",
+      "gwettop": 0.61,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 2.39
+    },
+    {
+      "date": "2024-04-23",
+      "gwettop": 0.6,
+      "gwetroot": 0.58,
+      "gwetprof": 0.59,
+      "evland": 2.96
+    },
+    {
+      "date": "2024-04-24",
+      "gwettop": 0.6,
+      "gwetroot": 0.58,
+      "gwetprof": 0.59,
+      "evland": 2.77
+    },
+    {
+      "date": "2024-04-25",
+      "gwettop": 0.59,
+      "gwetroot": 0.57,
+      "gwetprof": 0.58,
+      "evland": 2.72
+    },
+    {
+      "date": "2024-04-26",
+      "gwettop": 0.65,
+      "gwetroot": 0.58,
+      "gwetprof": 0.59,
+      "evland": 1.46
+    },
+    {
+      "date": "2024-04-27",
+      "gwettop": 0.64,
+      "gwetroot": 0.6,
+      "gwetprof": 0.59,
+      "evland": 2.51
+    },
+    {
+      "date": "2024-04-28",
+      "gwettop": 0.7,
+      "gwetroot": 0.62,
+      "gwetprof": 0.61,
+      "evland": 1.69
+    },
+    {
+      "date": "2024-04-29",
+      "gwettop": 0.64,
+      "gwetroot": 0.62,
+      "gwetprof": 0.61,
+      "evland": 3.22
+    },
+    {
+      "date": "2024-04-30",
+      "gwettop": 0.65,
+      "gwetroot": 0.61,
+      "gwetprof": 0.61,
+      "evland": 4.38
+    },
+    {
+      "date": "2024-05-01",
+      "gwettop": 0.64,
+      "gwetroot": 0.61,
+      "gwetprof": 0.61,
+      "evland": 3.83
+    },
+    {
+      "date": "2024-05-02",
+      "gwettop": 0.74,
+      "gwetroot": 0.64,
+      "gwetprof": 0.63,
+      "evland": 1.71
+    },
+    {
+      "date": "2024-05-03",
+      "gwettop": 0.68,
+      "gwetroot": 0.65,
+      "gwetprof": 0.64,
+      "evland": 4.34
+    },
+    {
+      "date": "2024-05-04",
+      "gwettop": 0.69,
+      "gwetroot": 0.65,
+      "gwetprof": 0.64,
+      "evland": 2.74
+    },
+    {
+      "date": "2024-05-05",
+      "gwettop": 0.67,
+      "gwetroot": 0.64,
+      "gwetprof": 0.64,
+      "evland": 3.19
+    },
+    {
+      "date": "2024-05-06",
+      "gwettop": 0.66,
+      "gwetroot": 0.63,
+      "gwetprof": 0.64,
+      "evland": 3.96
+    },
+    {
+      "date": "2024-05-07",
+      "gwettop": 0.7,
+      "gwetroot": 0.65,
+      "gwetprof": 0.65,
+      "evland": 5.59
+    },
+    {
+      "date": "2024-05-08",
+      "gwettop": 0.69,
+      "gwetroot": 0.64,
+      "gwetprof": 0.64,
+      "evland": 4.24
+    },
+    {
+      "date": "2024-05-09",
+      "gwettop": 0.69,
+      "gwetroot": 0.65,
+      "gwetprof": 0.65,
+      "evland": 2.66
+    },
+    {
+      "date": "2024-05-10",
+      "gwettop": 0.67,
+      "gwetroot": 0.65,
+      "gwetprof": 0.65,
+      "evland": 4.52
+    },
+    {
+      "date": "2024-05-11",
+      "gwettop": 0.66,
+      "gwetroot": 0.64,
+      "gwetprof": 0.64,
+      "evland": 4.87
+    },
+    {
+      "date": "2024-05-12",
+      "gwettop": 0.66,
+      "gwetroot": 0.63,
+      "gwetprof": 0.64,
+      "evland": 4.7
+    },
+    {
+      "date": "2024-05-13",
+      "gwettop": 0.71,
+      "gwetroot": 0.64,
+      "gwetprof": 0.64,
+      "evland": 1.79
+    },
+    {
+      "date": "2024-05-14",
+      "gwettop": 0.68,
+      "gwetroot": 0.65,
+      "gwetprof": 0.65,
+      "evland": 3.88
+    },
+    {
+      "date": "2024-05-15",
+      "gwettop": 0.67,
+      "gwetroot": 0.64,
+      "gwetprof": 0.64,
+      "evland": 3.05
+    },
+    {
+      "date": "2024-05-16",
+      "gwettop": 0.66,
+      "gwetroot": 0.63,
+      "gwetprof": 0.64,
+      "evland": 4.62
+    },
+    {
+      "date": "2024-05-17",
+      "gwettop": 0.65,
+      "gwetroot": 0.62,
+      "gwetprof": 0.63,
+      "evland": 5.29
+    },
+    {
+      "date": "2024-05-18",
+      "gwettop": 0.64,
+      "gwetroot": 0.62,
+      "gwetprof": 0.63,
+      "evland": 4.82
+    },
+    {
+      "date": "2024-05-19",
+      "gwettop": 0.66,
+      "gwetroot": 0.61,
+      "gwetprof": 0.62,
+      "evland": 3.94
+    },
+    {
+      "date": "2024-05-20",
+      "gwettop": 0.78,
+      "gwetroot": 0.68,
+      "gwetprof": 0.66,
+      "evland": 3.23
+    },
+    {
+      "date": "2024-05-21",
+      "gwettop": 0.77,
+      "gwetroot": 0.7,
+      "gwetprof": 0.68,
+      "evland": 4.87
+    },
+    {
+      "date": "2024-05-22",
+      "gwettop": 0.72,
+      "gwetroot": 0.7,
+      "gwetprof": 0.69,
+      "evland": 5.42
+    },
+    {
+      "date": "2024-05-23",
+      "gwettop": 0.73,
+      "gwetroot": 0.68,
+      "gwetprof": 0.68,
+      "evland": 6.08
+    },
+    {
+      "date": "2024-05-24",
+      "gwettop": 0.75,
+      "gwetroot": 0.7,
+      "gwetprof": 0.7,
+      "evland": 3.33
+    },
+    {
+      "date": "2024-05-25",
+      "gwettop": 0.72,
+      "gwetroot": 0.69,
+      "gwetprof": 0.69,
+      "evland": 5.88
+    },
+    {
+      "date": "2024-05-26",
+      "gwettop": 0.73,
+      "gwetroot": 0.69,
+      "gwetprof": 0.69,
+      "evland": 3.58
+    },
+    {
+      "date": "2024-05-27",
+      "gwettop": 0.71,
+      "gwetroot": 0.68,
+      "gwetprof": 0.69,
+      "evland": 5.29
+    },
+    {
+      "date": "2024-05-28",
+      "gwettop": 0.7,
+      "gwetroot": 0.67,
+      "gwetprof": 0.68,
+      "evland": 4.61
+    },
+    {
+      "date": "2024-05-29",
+      "gwettop": 0.69,
+      "gwetroot": 0.66,
+      "gwetprof": 0.68,
+      "evland": 5.17
+    },
+    {
+      "date": "2024-05-30",
+      "gwettop": 0.68,
+      "gwetroot": 0.66,
+      "gwetprof": 0.67,
+      "evland": 5.36
+    },
+    {
+      "date": "2024-05-31",
+      "gwettop": 0.67,
+      "gwetroot": 0.65,
+      "gwetprof": 0.66,
+      "evland": 4.99
+    },
+    {
+      "date": "2024-06-01",
+      "gwettop": 0.67,
+      "gwetroot": 0.64,
+      "gwetprof": 0.66,
+      "evland": 4.86
+    },
+    {
+      "date": "2024-06-02",
+      "gwettop": 0.67,
+      "gwetroot": 0.64,
+      "gwetprof": 0.65,
+      "evland": 3.91
+    },
+    {
+      "date": "2024-06-03",
+      "gwettop": 0.67,
+      "gwetroot": 0.64,
+      "gwetprof": 0.65,
+      "evland": 3.09
+    },
+    {
+      "date": "2024-06-04",
+      "gwettop": 0.69,
+      "gwetroot": 0.64,
+      "gwetprof": 0.65,
+      "evland": 4.38
+    },
+    {
+      "date": "2024-06-05",
+      "gwettop": 0.68,
+      "gwetroot": 0.65,
+      "gwetprof": 0.65,
+      "evland": 6.69
+    },
+    {
+      "date": "2024-06-06",
+      "gwettop": 0.66,
+      "gwetroot": 0.64,
+      "gwetprof": 0.65,
+      "evland": 7.18
+    },
+    {
+      "date": "2024-06-07",
+      "gwettop": 0.65,
+      "gwetroot": 0.62,
+      "gwetprof": 0.64,
+      "evland": 6.36
+    },
+    {
+      "date": "2024-06-08",
+      "gwettop": 0.64,
+      "gwetroot": 0.61,
+      "gwetprof": 0.63,
+      "evland": 5.62
+    },
+    {
+      "date": "2024-06-09",
+      "gwettop": 0.63,
+      "gwetroot": 0.61,
+      "gwetprof": 0.62,
+      "evland": 6.68
+    },
+    {
+      "date": "2024-06-10",
+      "gwettop": 0.62,
+      "gwetroot": 0.6,
+      "gwetprof": 0.62,
+      "evland": 5.03
+    },
+    {
+      "date": "2024-06-11",
+      "gwettop": 0.61,
+      "gwetroot": 0.59,
+      "gwetprof": 0.61,
+      "evland": 5.9
+    },
+    {
+      "date": "2024-06-12",
+      "gwettop": 0.6,
+      "gwetroot": 0.58,
+      "gwetprof": 0.6,
+      "evland": 6.46
+    },
+    {
+      "date": "2024-06-13",
+      "gwettop": 0.59,
+      "gwetroot": 0.57,
+      "gwetprof": 0.59,
+      "evland": 5.45
+    },
+    {
+      "date": "2024-06-14",
+      "gwettop": 0.58,
+      "gwetroot": 0.57,
+      "gwetprof": 0.59,
+      "evland": 6.15
+    },
+    {
+      "date": "2024-06-15",
+      "gwettop": 0.57,
+      "gwetroot": 0.56,
+      "gwetprof": 0.58,
+      "evland": 4.43
+    },
+    {
+      "date": "2024-06-16",
+      "gwettop": 0.58,
+      "gwetroot": 0.56,
+      "gwetprof": 0.58,
+      "evland": 4.69
+    },
+    {
+      "date": "2024-06-17",
+      "gwettop": 0.56,
+      "gwetroot": 0.56,
+      "gwetprof": 0.57,
+      "evland": 4.34
+    },
+    {
+      "date": "2024-06-18",
+      "gwettop": 0.55,
+      "gwetroot": 0.55,
+      "gwetprof": 0.57,
+      "evland": 4.56
+    },
+    {
+      "date": "2024-06-19",
+      "gwettop": 0.63,
+      "gwetroot": 0.57,
+      "gwetprof": 0.58,
+      "evland": 2.75
+    },
+    {
+      "date": "2024-06-20",
+      "gwettop": 0.62,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 5.26
+    },
+    {
+      "date": "2024-06-21",
+      "gwettop": 0.59,
+      "gwetroot": 0.57,
+      "gwetprof": 0.58,
+      "evland": 6.74
+    },
+    {
+      "date": "2024-06-22",
+      "gwettop": 0.59,
+      "gwetroot": 0.56,
+      "gwetprof": 0.57,
+      "evland": 5.48
+    },
+    {
+      "date": "2024-06-23",
+      "gwettop": 0.57,
+      "gwetroot": 0.56,
+      "gwetprof": 0.57,
+      "evland": 5.59
+    },
+    {
+      "date": "2024-06-24",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.56,
+      "evland": 4.64
+    },
+    {
+      "date": "2024-06-25",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.56,
+      "evland": 3.06
+    },
+    {
+      "date": "2024-06-26",
+      "gwettop": 0.58,
+      "gwetroot": 0.55,
+      "gwetprof": 0.56,
+      "evland": 5.76
+    },
+    {
+      "date": "2024-06-27",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.56,
+      "evland": 4.25
+    },
+    {
+      "date": "2024-06-28",
+      "gwettop": 0.65,
+      "gwetroot": 0.58,
+      "gwetprof": 0.57,
+      "evland": 5.2
+    },
+    {
+      "date": "2024-06-29",
+      "gwettop": 0.6,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 6.38
+    },
+    {
+      "date": "2024-06-30",
+      "gwettop": 0.58,
+      "gwetroot": 0.57,
+      "gwetprof": 0.57,
+      "evland": 5.11
+    },
+    {
+      "date": "2024-07-01",
+      "gwettop": 0.6,
+      "gwetroot": 0.57,
+      "gwetprof": 0.57,
+      "evland": 5.0
+    },
+    {
+      "date": "2024-07-02",
+      "gwettop": 0.67,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 3.82
+    },
+    {
+      "date": "2024-07-03",
+      "gwettop": 0.65,
+      "gwetroot": 0.62,
+      "gwetprof": 0.6,
+      "evland": 5.33
+    },
+    {
+      "date": "2024-07-04",
+      "gwettop": 0.64,
+      "gwetroot": 0.6,
+      "gwetprof": 0.6,
+      "evland": 5.98
+    },
+    {
+      "date": "2024-07-05",
+      "gwettop": 0.62,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 5.8
+    },
+    {
+      "date": "2024-07-06",
+      "gwettop": 0.61,
+      "gwetroot": 0.58,
+      "gwetprof": 0.59,
+      "evland": 5.36
+    },
+    {
+      "date": "2024-07-07",
+      "gwettop": 0.67,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 5.19
+    },
+    {
+      "date": "2024-07-08",
+      "gwettop": 0.63,
+      "gwetroot": 0.6,
+      "gwetprof": 0.6,
+      "evland": 6.15
+    },
+    {
+      "date": "2024-07-09",
+      "gwettop": 0.61,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 4.44
+    },
+    {
+      "date": "2024-07-10",
+      "gwettop": 0.61,
+      "gwetroot": 0.58,
+      "gwetprof": 0.59,
+      "evland": 5.43
+    },
+    {
+      "date": "2024-07-11",
+      "gwettop": 0.6,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 5.5
+    },
+    {
+      "date": "2024-07-12",
+      "gwettop": 0.58,
+      "gwetroot": 0.57,
+      "gwetprof": 0.58,
+      "evland": 5.51
+    },
+    {
+      "date": "2024-07-13",
+      "gwettop": 0.57,
+      "gwetroot": 0.56,
+      "gwetprof": 0.57,
+      "evland": 4.05
+    },
+    {
+      "date": "2024-07-14",
+      "gwettop": 0.55,
+      "gwetroot": 0.55,
+      "gwetprof": 0.57,
+      "evland": 6.16
+    },
+    {
+      "date": "2024-07-15",
+      "gwettop": 0.59,
+      "gwetroot": 0.55,
+      "gwetprof": 0.56,
+      "evland": 4.19
+    },
+    {
+      "date": "2024-07-16",
+      "gwettop": 0.57,
+      "gwetroot": 0.56,
+      "gwetprof": 0.57,
+      "evland": 5.19
+    },
+    {
+      "date": "2024-07-17",
+      "gwettop": 0.55,
+      "gwetroot": 0.55,
+      "gwetprof": 0.56,
+      "evland": 4.88
+    },
+    {
+      "date": "2024-07-18",
+      "gwettop": 0.54,
+      "gwetroot": 0.54,
+      "gwetprof": 0.55,
+      "evland": 4.22
+    },
+    {
+      "date": "2024-07-19",
+      "gwettop": 0.52,
+      "gwetroot": 0.54,
+      "gwetprof": 0.55,
+      "evland": 4.36
+    },
+    {
+      "date": "2024-07-20",
+      "gwettop": 0.53,
+      "gwetroot": 0.53,
+      "gwetprof": 0.55,
+      "evland": 2.89
+    },
+    {
+      "date": "2024-07-21",
+      "gwettop": 0.52,
+      "gwetroot": 0.53,
+      "gwetprof": 0.54,
+      "evland": 3.61
+    },
+    {
+      "date": "2024-07-22",
+      "gwettop": 0.52,
+      "gwetroot": 0.53,
+      "gwetprof": 0.54,
+      "evland": 3.22
+    },
+    {
+      "date": "2024-07-23",
+      "gwettop": 0.52,
+      "gwetroot": 0.53,
+      "gwetprof": 0.54,
+      "evland": 3.14
+    },
+    {
+      "date": "2024-07-24",
+      "gwettop": 0.52,
+      "gwetroot": 0.53,
+      "gwetprof": 0.54,
+      "evland": 3.9
+    },
+    {
+      "date": "2024-07-25",
+      "gwettop": 0.52,
+      "gwetroot": 0.53,
+      "gwetprof": 0.53,
+      "evland": 3.56
+    },
+    {
+      "date": "2024-07-26",
+      "gwettop": 0.5,
+      "gwetroot": 0.52,
+      "gwetprof": 0.53,
+      "evland": 4.19
+    },
+    {
+      "date": "2024-07-27",
+      "gwettop": 0.49,
+      "gwetroot": 0.52,
+      "gwetprof": 0.53,
+      "evland": 3.51
+    },
+    {
+      "date": "2024-07-28",
+      "gwettop": 0.57,
+      "gwetroot": 0.52,
+      "gwetprof": 0.53,
+      "evland": 4.01
+    },
+    {
+      "date": "2024-07-29",
+      "gwettop": 0.66,
+      "gwetroot": 0.57,
+      "gwetprof": 0.56,
+      "evland": 5.73
+    },
+    {
+      "date": "2024-07-30",
+      "gwettop": 0.66,
+      "gwetroot": 0.58,
+      "gwetprof": 0.57,
+      "evland": 5.36
+    },
+    {
+      "date": "2024-07-31",
+      "gwettop": 0.71,
+      "gwetroot": 0.62,
+      "gwetprof": 0.6,
+      "evland": 6.19
+    },
+    {
+      "date": "2024-08-01",
+      "gwettop": 0.64,
+      "gwetroot": 0.61,
+      "gwetprof": 0.6,
+      "evland": 6.14
+    },
+    {
+      "date": "2024-08-02",
+      "gwettop": 0.61,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 6.4
+    },
+    {
+      "date": "2024-08-03",
+      "gwettop": 0.6,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 5.94
+    },
+    {
+      "date": "2024-08-04",
+      "gwettop": 0.57,
+      "gwetroot": 0.56,
+      "gwetprof": 0.57,
+      "evland": 6.32
+    },
+    {
+      "date": "2024-08-05",
+      "gwettop": 0.55,
+      "gwetroot": 0.55,
+      "gwetprof": 0.57,
+      "evland": 6.02
+    },
+    {
+      "date": "2024-08-06",
+      "gwettop": 0.54,
+      "gwetroot": 0.54,
+      "gwetprof": 0.56,
+      "evland": 3.17
+    },
+    {
+      "date": "2024-08-07",
+      "gwettop": 0.53,
+      "gwetroot": 0.54,
+      "gwetprof": 0.55,
+      "evland": 4.03
+    },
+    {
+      "date": "2024-08-08",
+      "gwettop": 0.53,
+      "gwetroot": 0.54,
+      "gwetprof": 0.55,
+      "evland": 3.22
+    },
+    {
+      "date": "2024-08-09",
+      "gwettop": 0.52,
+      "gwetroot": 0.53,
+      "gwetprof": 0.55,
+      "evland": 2.84
+    },
+    {
+      "date": "2024-08-10",
+      "gwettop": 0.51,
+      "gwetroot": 0.53,
+      "gwetprof": 0.54,
+      "evland": 3.2
+    },
+    {
+      "date": "2024-08-11",
+      "gwettop": 0.51,
+      "gwetroot": 0.53,
+      "gwetprof": 0.54,
+      "evland": 3.19
+    },
+    {
+      "date": "2024-08-12",
+      "gwettop": 0.56,
+      "gwetroot": 0.54,
+      "gwetprof": 0.54,
+      "evland": 3.38
+    },
+    {
+      "date": "2024-08-13",
+      "gwettop": 0.54,
+      "gwetroot": 0.54,
+      "gwetprof": 0.54,
+      "evland": 3.35
+    },
+    {
+      "date": "2024-08-14",
+      "gwettop": 0.54,
+      "gwetroot": 0.53,
+      "gwetprof": 0.54,
+      "evland": 2.84
+    },
+    {
+      "date": "2024-08-15",
+      "gwettop": 0.62,
+      "gwetroot": 0.56,
+      "gwetprof": 0.56,
+      "evland": 4.77
+    },
+    {
+      "date": "2024-08-16",
+      "gwettop": 0.56,
+      "gwetroot": 0.55,
+      "gwetprof": 0.55,
+      "evland": 5.18
+    },
+    {
+      "date": "2024-08-17",
+      "gwettop": 0.54,
+      "gwetroot": 0.54,
+      "gwetprof": 0.55,
+      "evland": 3.82
+    },
+    {
+      "date": "2024-08-18",
+      "gwettop": 0.53,
+      "gwetroot": 0.54,
+      "gwetprof": 0.54,
+      "evland": 3.27
+    },
+    {
+      "date": "2024-08-19",
+      "gwettop": 0.51,
+      "gwetroot": 0.53,
+      "gwetprof": 0.54,
+      "evland": 3.47
+    },
+    {
+      "date": "2024-08-20",
+      "gwettop": 0.51,
+      "gwetroot": 0.52,
+      "gwetprof": 0.53,
+      "evland": 2.79
+    },
+    {
+      "date": "2024-08-21",
+      "gwettop": 0.51,
+      "gwetroot": 0.52,
+      "gwetprof": 0.53,
+      "evland": 3.42
+    },
+    {
+      "date": "2024-08-22",
+      "gwettop": 0.5,
+      "gwetroot": 0.52,
+      "gwetprof": 0.53,
+      "evland": 2.89
+    },
+    {
+      "date": "2024-08-23",
+      "gwettop": 0.49,
+      "gwetroot": 0.51,
+      "gwetprof": 0.52,
+      "evland": 2.31
+    },
+    {
+      "date": "2024-08-24",
+      "gwettop": 0.49,
+      "gwetroot": 0.51,
+      "gwetprof": 0.52,
+      "evland": 2.69
+    },
+    {
+      "date": "2024-08-25",
+      "gwettop": 0.48,
+      "gwetroot": 0.51,
+      "gwetprof": 0.52,
+      "evland": 2.5
+    },
+    {
+      "date": "2024-08-26",
+      "gwettop": 0.48,
+      "gwetroot": 0.5,
+      "gwetprof": 0.52,
+      "evland": 3.11
+    },
+    {
+      "date": "2024-08-27",
+      "gwettop": 0.51,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 3.83
+    },
+    {
+      "date": "2024-08-28",
+      "gwettop": 0.49,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 2.72
+    },
+    {
+      "date": "2024-08-29",
+      "gwettop": 0.5,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 3.22
+    },
+    {
+      "date": "2024-08-30",
+      "gwettop": 0.58,
+      "gwetroot": 0.54,
+      "gwetprof": 0.53,
+      "evland": 3.31
+    },
+    {
+      "date": "2024-08-31",
+      "gwettop": 0.52,
+      "gwetroot": 0.53,
+      "gwetprof": 0.53,
+      "evland": 3.44
+    },
+    {
+      "date": "2024-09-01",
+      "gwettop": 0.5,
+      "gwetroot": 0.52,
+      "gwetprof": 0.52,
+      "evland": 2.87
+    },
+    {
+      "date": "2024-09-02",
+      "gwettop": 0.5,
+      "gwetroot": 0.52,
+      "gwetprof": 0.52,
+      "evland": 2.47
+    },
+    {
+      "date": "2024-09-03",
+      "gwettop": 0.49,
+      "gwetroot": 0.51,
+      "gwetprof": 0.52,
+      "evland": 2.61
+    },
+    {
+      "date": "2024-09-04",
+      "gwettop": 0.48,
+      "gwetroot": 0.51,
+      "gwetprof": 0.51,
+      "evland": 2.48
+    },
+    {
+      "date": "2024-09-05",
+      "gwettop": 0.48,
+      "gwetroot": 0.5,
+      "gwetprof": 0.51,
+      "evland": 1.62
+    },
+    {
+      "date": "2024-09-06",
+      "gwettop": 0.48,
+      "gwetroot": 0.5,
+      "gwetprof": 0.51,
+      "evland": 1.69
+    },
+    {
+      "date": "2024-09-07",
+      "gwettop": 0.48,
+      "gwetroot": 0.5,
+      "gwetprof": 0.51,
+      "evland": 1.53
+    },
+    {
+      "date": "2024-09-08",
+      "gwettop": 0.48,
+      "gwetroot": 0.5,
+      "gwetprof": 0.51,
+      "evland": 1.77
+    },
+    {
+      "date": "2024-09-09",
+      "gwettop": 0.47,
+      "gwetroot": 0.5,
+      "gwetprof": 0.5,
+      "evland": 1.95
+    },
+    {
+      "date": "2024-09-10",
+      "gwettop": 0.47,
+      "gwetroot": 0.49,
+      "gwetprof": 0.5,
+      "evland": 2.27
+    },
+    {
+      "date": "2024-09-11",
+      "gwettop": 0.47,
+      "gwetroot": 0.49,
+      "gwetprof": 0.5,
+      "evland": 1.98
+    },
+    {
+      "date": "2024-09-12",
+      "gwettop": 0.46,
+      "gwetroot": 0.49,
+      "gwetprof": 0.5,
+      "evland": 1.8
+    },
+    {
+      "date": "2024-09-13",
+      "gwettop": 0.47,
+      "gwetroot": 0.49,
+      "gwetprof": 0.49,
+      "evland": 0.92
+    },
+    {
+      "date": "2024-09-14",
+      "gwettop": 0.47,
+      "gwetroot": 0.49,
+      "gwetprof": 0.49,
+      "evland": 1.02
+    },
+    {
+      "date": "2024-09-15",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.49,
+      "evland": 1.52
+    },
+    {
+      "date": "2024-09-16",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.49,
+      "evland": 1.7
+    },
+    {
+      "date": "2024-09-17",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.49,
+      "evland": 1.74
+    },
+    {
+      "date": "2024-09-18",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.49,
+      "evland": 1.55
+    },
+    {
+      "date": "2024-09-19",
+      "gwettop": 0.48,
+      "gwetroot": 0.48,
+      "gwetprof": 0.48,
+      "evland": 1.88
+    },
+    {
+      "date": "2024-09-20",
+      "gwettop": 0.48,
+      "gwetroot": 0.48,
+      "gwetprof": 0.49,
+      "evland": 2.26
+    },
+    {
+      "date": "2024-09-21",
+      "gwettop": 0.51,
+      "gwetroot": 0.49,
+      "gwetprof": 0.49,
+      "evland": 1.94
+    },
+    {
+      "date": "2024-09-22",
+      "gwettop": 0.51,
+      "gwetroot": 0.5,
+      "gwetprof": 0.5,
+      "evland": 1.83
+    },
+    {
+      "date": "2024-09-23",
+      "gwettop": 0.48,
+      "gwetroot": 0.5,
+      "gwetprof": 0.5,
+      "evland": 1.31
+    },
+    {
+      "date": "2024-09-24",
+      "gwettop": 0.49,
+      "gwetroot": 0.5,
+      "gwetprof": 0.5,
+      "evland": 1.26
+    },
+    {
+      "date": "2024-09-25",
+      "gwettop": 0.48,
+      "gwetroot": 0.49,
+      "gwetprof": 0.49,
+      "evland": 1.46
+    },
+    {
+      "date": "2024-09-26",
+      "gwettop": 0.47,
+      "gwetroot": 0.49,
+      "gwetprof": 0.49,
+      "evland": 1.43
+    },
+    {
+      "date": "2024-09-27",
+      "gwettop": 0.47,
+      "gwetroot": 0.49,
+      "gwetprof": 0.49,
+      "evland": 1.48
+    },
+    {
+      "date": "2024-09-28",
+      "gwettop": 0.46,
+      "gwetroot": 0.49,
+      "gwetprof": 0.49,
+      "evland": 1.55
+    },
+    {
+      "date": "2024-09-29",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.49,
+      "evland": 1.38
+    },
+    {
+      "date": "2024-09-30",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.49,
+      "evland": 1.4
+    },
+    {
+      "date": "2024-10-01",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.48,
+      "evland": 1.16
+    },
+    {
+      "date": "2024-10-02",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.48,
+      "evland": 1.29
+    },
+    {
+      "date": "2024-10-03",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.48,
+      "evland": 1.61
+    },
+    {
+      "date": "2024-10-04",
+      "gwettop": 0.5,
+      "gwetroot": 0.48,
+      "gwetprof": 0.48,
+      "evland": 1.63
+    },
+    {
+      "date": "2024-10-05",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.48,
+      "evland": 1.55
+    },
+    {
+      "date": "2024-10-06",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.48,
+      "evland": 1.23
+    },
+    {
+      "date": "2024-10-07",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.48,
+      "evland": 0.93
+    },
+    {
+      "date": "2024-10-08",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.48,
+      "evland": 1.1
+    },
+    {
+      "date": "2024-10-09",
+      "gwettop": 0.46,
+      "gwetroot": 0.47,
+      "gwetprof": 0.48,
+      "evland": 1.1
+    },
+    {
+      "date": "2024-10-10",
+      "gwettop": 0.45,
+      "gwetroot": 0.47,
+      "gwetprof": 0.48,
+      "evland": 1.14
+    },
+    {
+      "date": "2024-10-11",
+      "gwettop": 0.45,
+      "gwetroot": 0.47,
+      "gwetprof": 0.48,
+      "evland": 1.21
+    },
+    {
+      "date": "2024-10-12",
+      "gwettop": 0.44,
+      "gwetroot": 0.47,
+      "gwetprof": 0.47,
+      "evland": 0.8
+    },
+    {
+      "date": "2024-10-13",
+      "gwettop": 0.44,
+      "gwetroot": 0.47,
+      "gwetprof": 0.47,
+      "evland": 0.67
+    },
+    {
+      "date": "2024-10-14",
+      "gwettop": 0.44,
+      "gwetroot": 0.47,
+      "gwetprof": 0.47,
+      "evland": 0.56
+    },
+    {
+      "date": "2024-10-15",
+      "gwettop": 0.44,
+      "gwetroot": 0.47,
+      "gwetprof": 0.47,
+      "evland": 0.47
+    },
+    {
+      "date": "2024-10-16",
+      "gwettop": 0.44,
+      "gwetroot": 0.47,
+      "gwetprof": 0.47,
+      "evland": 0.59
+    },
+    {
+      "date": "2024-10-17",
+      "gwettop": 0.43,
+      "gwetroot": 0.47,
+      "gwetprof": 0.47,
+      "evland": 0.75
+    },
+    {
+      "date": "2024-10-18",
+      "gwettop": 0.41,
+      "gwetroot": 0.47,
+      "gwetprof": 0.47,
+      "evland": 0.69
+    },
+    {
+      "date": "2024-10-19",
+      "gwettop": 0.4,
+      "gwetroot": 0.46,
+      "gwetprof": 0.47,
+      "evland": 0.7
+    },
+    {
+      "date": "2024-10-20",
+      "gwettop": 0.38,
+      "gwetroot": 0.46,
+      "gwetprof": 0.47,
+      "evland": 0.75
+    },
+    {
+      "date": "2024-10-21",
+      "gwettop": 0.37,
+      "gwetroot": 0.46,
+      "gwetprof": 0.47,
+      "evland": 0.56
+    },
+    {
+      "date": "2024-10-22",
+      "gwettop": 0.42,
+      "gwetroot": 0.47,
+      "gwetprof": 0.47,
+      "evland": 0.99
+    },
+    {
+      "date": "2024-10-23",
+      "gwettop": 0.42,
+      "gwetroot": 0.47,
+      "gwetprof": 0.47,
+      "evland": 0.53
+    },
+    {
+      "date": "2024-10-24",
+      "gwettop": 0.42,
+      "gwetroot": 0.46,
+      "gwetprof": 0.47,
+      "evland": 0.71
+    },
+    {
+      "date": "2024-10-25",
+      "gwettop": 0.49,
+      "gwetroot": 0.48,
+      "gwetprof": 0.48,
+      "evland": 0.83
+    },
+    {
+      "date": "2024-10-26",
+      "gwettop": 0.46,
+      "gwetroot": 0.48,
+      "gwetprof": 0.47,
+      "evland": 0.74
+    },
+    {
+      "date": "2024-10-27",
+      "gwettop": 0.46,
+      "gwetroot": 0.47,
+      "gwetprof": 0.47,
+      "evland": 0.81
+    },
+    {
+      "date": "2024-10-28",
+      "gwettop": 0.46,
+      "gwetroot": 0.47,
+      "gwetprof": 0.47,
+      "evland": 0.68
+    },
+    {
+      "date": "2024-10-29",
+      "gwettop": 0.45,
+      "gwetroot": 0.47,
+      "gwetprof": 0.47,
+      "evland": 1.11
+    },
+    {
+      "date": "2024-10-30",
+      "gwettop": 0.54,
+      "gwetroot": 0.48,
+      "gwetprof": 0.48,
+      "evland": 1.26
+    },
+    {
+      "date": "2024-10-31",
+      "gwettop": 0.59,
+      "gwetroot": 0.55,
+      "gwetprof": 0.52,
+      "evland": 1.26
+    },
+    {
+      "date": "2024-11-01",
+      "gwettop": 0.54,
+      "gwetroot": 0.54,
+      "gwetprof": 0.52,
+      "evland": 0.86
+    },
+    {
+      "date": "2024-11-02",
+      "gwettop": 0.56,
+      "gwetroot": 0.53,
+      "gwetprof": 0.52,
+      "evland": 0.91
+    },
+    {
+      "date": "2024-11-03",
+      "gwettop": 0.69,
+      "gwetroot": 0.58,
+      "gwetprof": 0.55,
+      "evland": 0.66
+    },
+    {
+      "date": "2024-11-04",
+      "gwettop": 0.64,
+      "gwetroot": 0.59,
+      "gwetprof": 0.56,
+      "evland": 0.77
+    },
+    {
+      "date": "2024-11-05",
+      "gwettop": 0.65,
+      "gwetroot": 0.59,
+      "gwetprof": 0.58,
+      "evland": 1.42
+    },
+    {
+      "date": "2024-11-06",
+      "gwettop": 0.61,
+      "gwetroot": 0.59,
+      "gwetprof": 0.58,
+      "evland": 0.84
+    },
+    {
+      "date": "2024-11-07",
+      "gwettop": 0.61,
+      "gwetroot": 0.58,
+      "gwetprof": 0.57,
+      "evland": 0.91
+    },
+    {
+      "date": "2024-11-08",
+      "gwettop": 0.6,
+      "gwetroot": 0.57,
+      "gwetprof": 0.57,
+      "evland": 0.8
+    },
+    {
+      "date": "2024-11-09",
+      "gwettop": 0.61,
+      "gwetroot": 0.57,
+      "gwetprof": 0.57,
+      "evland": 0.58
+    },
+    {
+      "date": "2024-11-10",
+      "gwettop": 0.61,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.98
+    },
+    {
+      "date": "2024-11-11",
+      "gwettop": 0.6,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.93
+    },
+    {
+      "date": "2024-11-12",
+      "gwettop": 0.6,
+      "gwetroot": 0.57,
+      "gwetprof": 0.57,
+      "evland": 0.78
+    },
+    {
+      "date": "2024-11-13",
+      "gwettop": 0.63,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.56
+    },
+    {
+      "date": "2024-11-14",
+      "gwettop": 0.61,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.75
+    },
+    {
+      "date": "2024-11-15",
+      "gwettop": 0.61,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.84
+    },
+    {
+      "date": "2024-11-16",
+      "gwettop": 0.61,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.79
+    },
+    {
+      "date": "2024-11-17",
+      "gwettop": 0.61,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.45
+    },
+    {
+      "date": "2024-11-18",
+      "gwettop": 0.64,
+      "gwetroot": 0.59,
+      "gwetprof": 0.58,
+      "evland": 0.45
+    },
+    {
+      "date": "2024-11-19",
+      "gwettop": 0.62,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 1.35
+    },
+    {
+      "date": "2024-11-20",
+      "gwettop": 0.61,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 0.9
+    },
+    {
+      "date": "2024-11-21",
+      "gwettop": 0.61,
+      "gwetroot": 0.58,
+      "gwetprof": 0.59,
+      "evland": 0.8
+    },
+    {
+      "date": "2024-11-22",
+      "gwettop": 0.61,
+      "gwetroot": 0.58,
+      "gwetprof": 0.59,
+      "evland": 0.43
+    },
+    {
+      "date": "2024-11-23",
+      "gwettop": 0.61,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.53
+    },
+    {
+      "date": "2024-11-24",
+      "gwettop": 0.61,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.41
+    },
+    {
+      "date": "2024-11-25",
+      "gwettop": 0.61,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.76
+    },
+    {
+      "date": "2024-11-26",
+      "gwettop": 0.61,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.46
+    },
+    {
+      "date": "2024-11-27",
+      "gwettop": 0.61,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.24
+    },
+    {
+      "date": "2024-11-28",
+      "gwettop": 0.61,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.53
+    },
+    {
+      "date": "2024-11-29",
+      "gwettop": 0.61,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.66
+    },
+    {
+      "date": "2024-11-30",
+      "gwettop": 0.61,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.47
+    },
+    {
+      "date": "2024-12-01",
+      "gwettop": 0.61,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.37
+    },
+    {
+      "date": "2024-12-02",
+      "gwettop": 0.61,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.34
+    },
+    {
+      "date": "2024-12-03",
+      "gwettop": 0.6,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.38
+    },
+    {
+      "date": "2024-12-04",
+      "gwettop": 0.6,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.76
+    },
+    {
+      "date": "2024-12-05",
+      "gwettop": 0.6,
+      "gwetroot": 0.57,
+      "gwetprof": 0.58,
+      "evland": 0.39
+    },
+    {
+      "date": "2024-12-06",
+      "gwettop": 0.6,
+      "gwetroot": 0.57,
+      "gwetprof": 0.58,
+      "evland": 0.45
+    },
+    {
+      "date": "2024-12-07",
+      "gwettop": 0.6,
+      "gwetroot": 0.57,
+      "gwetprof": 0.58,
+      "evland": 0.37
+    },
+    {
+      "date": "2024-12-08",
+      "gwettop": 0.6,
+      "gwetroot": 0.57,
+      "gwetprof": 0.58,
+      "evland": 0.17
+    },
+    {
+      "date": "2024-12-09",
+      "gwettop": 0.6,
+      "gwetroot": 0.57,
+      "gwetprof": 0.58,
+      "evland": 0.5
+    },
+    {
+      "date": "2024-12-10",
+      "gwettop": 0.6,
+      "gwetroot": 0.57,
+      "gwetprof": 0.58,
+      "evland": 0.4
+    },
+    {
+      "date": "2024-12-11",
+      "gwettop": 0.6,
+      "gwetroot": 0.57,
+      "gwetprof": 0.58,
+      "evland": 0.62
+    },
+    {
+      "date": "2024-12-12",
+      "gwettop": 0.6,
+      "gwetroot": 0.57,
+      "gwetprof": 0.57,
+      "evland": 0.33
+    },
+    {
+      "date": "2024-12-13",
+      "gwettop": 0.6,
+      "gwetroot": 0.57,
+      "gwetprof": 0.57,
+      "evland": 0.55
+    },
+    {
+      "date": "2024-12-14",
+      "gwettop": 0.61,
+      "gwetroot": 0.57,
+      "gwetprof": 0.57,
+      "evland": 0.15
+    },
+    {
+      "date": "2024-12-15",
+      "gwettop": 0.63,
+      "gwetroot": 0.58,
+      "gwetprof": 0.58,
+      "evland": 0.08
+    },
+    {
+      "date": "2024-12-16",
+      "gwettop": 0.64,
+      "gwetroot": 0.59,
+      "gwetprof": 0.58,
+      "evland": 0.35
+    },
+    {
+      "date": "2024-12-17",
+      "gwettop": 0.62,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 0.2
+    },
+    {
+      "date": "2024-12-18",
+      "gwettop": 0.62,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 0.43
+    },
+    {
+      "date": "2024-12-19",
+      "gwettop": 0.63,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 0.68
+    },
+    {
+      "date": "2024-12-20",
+      "gwettop": 0.62,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 0.5
+    },
+    {
+      "date": "2024-12-21",
+      "gwettop": 0.62,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 0.35
+    },
+    {
+      "date": "2024-12-22",
+      "gwettop": 0.63,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 0.33
+    },
+    {
+      "date": "2024-12-23",
+      "gwettop": 0.62,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 0.22
+    },
+    {
+      "date": "2024-12-24",
+      "gwettop": 0.62,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 0.21
+    },
+    {
+      "date": "2024-12-25",
+      "gwettop": 0.62,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": 0.22
+    },
+    {
+      "date": "2024-12-26",
+      "gwettop": 0.63,
+      "gwetroot": 0.59,
+      "gwetprof": 0.59,
+      "evland": -0.01
+    },
+    {
+      "date": "2024-12-27",
+      "gwettop": 0.68,
+      "gwetroot": 0.6,
+      "gwetprof": 0.6,
+      "evland": -0.08
+    },
+    {
+      "date": "2024-12-28",
+      "gwettop": 0.65,
+      "gwetroot": 0.62,
+      "gwetprof": 0.61,
+      "evland": 0.23
+    },
+    {
+      "date": "2024-12-29",
+      "gwettop": 0.65,
+      "gwetroot": 0.62,
+      "gwetprof": 0.61,
+      "evland": 0.19
+    },
+    {
+      "date": "2024-12-30",
+      "gwettop": 0.66,
+      "gwetroot": 0.62,
+      "gwetprof": 0.61,
+      "evland": 0.15
+    },
+    {
+      "date": "2024-12-31",
+      "gwettop": 0.65,
+      "gwetroot": 0.62,
+      "gwetprof": 0.62,
+      "evland": 0.62
+    }
+  ]
+}
