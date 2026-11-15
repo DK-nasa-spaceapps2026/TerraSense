@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Droplets, ShieldAlert, Sparkles, Tractor, TrendingUp, Wheat } from "lucide-react";
+import { Droplets, ShieldAlert, Tractor, TrendingUp, Wheat } from "lucide-react";
 import type { ClimateParams } from "@/lib/api";
 import type { DynamicCandidate, FarmerConstraints, PrunedPlan, Scenario, ScenarioId } from "@/lib/types";
 import { DEFAULT_CONSTRAINTS } from "@/components/ConstraintsModal";
@@ -16,10 +16,7 @@ export default function DecisionPanel(props: {
   scenarios: Scenario[];
   dynamicCandidates?: DynamicCandidate[];
   prunedPlans?: PrunedPlan[];
-  rankingRobust?: boolean;
-  uncertaintyNote?: string;
   active: ScenarioId;
-  onPick: (id: ScenarioId) => void;
   constraints: FarmerConstraints;
   climate: ClimateParams;
 }) {
@@ -28,7 +25,6 @@ export default function DecisionPanel(props: {
     dynamicCandidates = [],
     prunedPlans = [],
     active,
-    onPick,
     constraints,
     climate,
   } = props;
@@ -41,9 +37,30 @@ export default function DecisionPanel(props: {
     excluded_crops: constraints.excluded_crops ?? [],
   };
 
-  const activeScenario =
-    scenarios.find((s) => s.id === active) ??
-    scenarios[0];
+  const presetMatch = scenarios.find((s) => s.id === active);
+  const dynamicMatch = dynamicCandidates.find((d) => d.id === active);
+  const activeRotation = presetMatch
+    ? {
+        name: presetMatch.name,
+        crops: presetMatch.crops,
+        score: presetMatch.score,
+        margin: presetMatch.metrics.estimated_margin_usd_ha,
+      }
+    : dynamicMatch
+      ? {
+          name: dynamicMatch.name,
+          crops: dynamicMatch.crops,
+          score: dynamicMatch.score,
+          margin: dynamicMatch.estimated_margin_usd_ha,
+        }
+      : scenarios[0]
+        ? {
+            name: scenarios[0].name,
+            crops: scenarios[0].crops,
+            score: scenarios[0].score,
+            margin: scenarios[0].metrics.estimated_margin_usd_ha,
+          }
+        : null;
 
   const equipItems = [
     { label: "Cover Drill", ok: c.equipment.has_cover_drill },
@@ -52,68 +69,14 @@ export default function DecisionPanel(props: {
     { label: "VRT", ok: c.equipment.variable_rate },
   ];
 
-  // Combine preset scenarios + any feasible extra dynamic candidates into a compact rotation selector
-  const presetIds = new Set(scenarios.map((s) => s.id));
-  const extraFeasible = dynamicCandidates.filter((d) => !presetIds.has(d.id) && d.feasible);
-
   return (
     <section className="space-y-3 pt-1">
       {/* Header Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-stone-800 pb-2.5">
-        <div className="flex flex-wrap items-center gap-3">
-          <div className="flex items-center gap-2 border-l-4 border-lime-500 pl-2.5">
-            <h2 className="text-sm font-bold uppercase tracking-wider text-stone-100">
-              Current Farm Settings
-            </h2>
-          </div>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-2">
-          {/* Compact Rotation Switcher */}
-          <div className="flex flex-wrap items-center gap-1.5 rounded-lg border border-stone-800 bg-soil-900 p-1">
-            {scenarios.map((s) => {
-              const isAct = active === s.id;
-              const isPruned = s.feasible === false;
-              return (
-                <button
-                  key={s.id}
-                  onClick={() => onPick(s.id)}
-                  title={isPruned && s.pruned_reason ? `Disqualified: ${s.pruned_reason}` : s.crops}
-                  className={`flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-medium transition ${
-                    isAct
-                      ? "bg-soil-700 text-stone-100 ring-1 ring-lime-500"
-                      : isPruned
-                        ? "text-stone-500 line-through hover:text-stone-300"
-                        : "text-stone-400 hover:bg-stone-800 hover:text-stone-200"
-                  }`}
-                >
-                  {s.recommended && !isPruned && <Check size={11} className="text-lime-400" />}
-                  <span>{s.name}</span>
-                  <span className="font-mono text-[10px] text-lime-400">{(s.score * 100).toFixed(0)}</span>
-                </button>
-              );
-            })}
-            {extraFeasible.map((d) => {
-              const isAct = active === d.id;
-              return (
-                <button
-                  key={d.id}
-                  onClick={() => onPick(d.id)}
-                  className={`flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-medium transition ${
-                    isAct
-                      ? "bg-soil-700 text-stone-100 ring-1 ring-lime-500"
-                      : "text-stone-400 hover:bg-stone-800 hover:text-stone-200"
-                  }`}
-                >
-                  <Sparkles size={11} className="text-lime-400" />
-                  <span>{d.name}</span>
-                  {d.score !== null && (
-                    <span className="font-mono text-[10px] text-lime-400">{(d.score * 100).toFixed(0)}</span>
-                  )}
-                </button>
-              );
-            })}
-          </div>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-2 border-l-4 border-lime-500 pl-2.5">
+          <h2 className="text-sm font-bold uppercase tracking-wider text-stone-100">
+            Current Farm Settings
+          </h2>
         </div>
       </div>
 
@@ -131,10 +94,10 @@ export default function DecisionPanel(props: {
             <Row label="Primary Priority" value={PRIORITY_LABEL[c.priority] ?? c.priority} highlight />
             <Row label="Risk Tolerance" value={c.risk_aversion} capitalize />
             <Row label="Management Mode" value={c.management_mode === "zone_variable" ? "Zone-Variable (VRT)" : "Uniform Field"} />
-            {activeScenario && (
+            {activeRotation && (
               <Row
-                label="Selected Rotation"
-                value={`${activeScenario.name} ($${activeScenario.metrics.estimated_margin_usd_ha}/ha)`}
+                label="Forecast Rotation"
+                value={`${activeRotation.name}${activeRotation.margin !== undefined ? ` ($${activeRotation.margin}/ha)` : ""}`}
                 highlight
               />
             )}

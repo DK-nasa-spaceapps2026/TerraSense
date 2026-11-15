@@ -167,27 +167,11 @@ export default function MetricsDashboard({
   return (
     <section className="space-y-3 pt-1">
       {/* Distinct section header / toolbar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-stone-800 pb-2.5">
-        <div className="flex flex-wrap items-center gap-3">
-          <div className="flex items-center gap-2 border-l-4 border-lime-500 pl-2.5">
-            <h2 className="text-sm font-bold uppercase tracking-wider text-stone-100">
-              Telemetry Panels
-            </h2>
-          </div>
-          <span className="rounded-full border border-stone-700 bg-stone-900/80 px-2.5 py-0.5 text-xs text-stone-300">
-            Scope:{" "}
-            <b className="text-lime-400">
-              {selectedZone ? `Zone ${selectedZone.row + 1}-${selectedZone.col + 1}` : `Field Mean (${cur.cells.length} zones)`}
-            </b>
-          </span>
-          <span className="rounded-full border border-stone-700 bg-stone-900/80 px-2.5 py-0.5 text-xs text-stone-400">
-            Cursor: <b className="text-stone-200">{cur.label}</b> ({cur.phase})
-          </span>
-          {scenarioName && (
-            <span className="rounded-full border border-violet-700/70 bg-violet-950/60 px-2.5 py-0.5 text-xs text-violet-200">
-              Forecast: <b>{scenarioName}</b>
-            </span>
-          )}
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-2 border-l-4 border-lime-500 pl-2.5">
+          <h2 className="text-sm font-bold uppercase tracking-wider text-stone-100">
+            Telemetry Panels
+          </h2>
         </div>
 
         {/* Dropdown to add metric widgets */}
@@ -421,7 +405,6 @@ function MetricWidget({
         <div className="flex items-center gap-2 min-w-0">
           <Icon size={14} className="shrink-0" style={{ color: preset.color }} />
           <span className="truncate text-xs font-semibold leading-tight text-stone-100">{preset.title}</span>
-          <span className="truncate rounded bg-stone-800 px-1.5 py-0.5 text-[10px] text-stone-400">{sensorLabel}</span>
         </div>
         <div className="flex items-center gap-1 text-stone-400 shrink-0">
           <button

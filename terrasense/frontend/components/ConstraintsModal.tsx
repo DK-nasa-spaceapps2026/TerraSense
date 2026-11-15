@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { Droplets, RotateCcw, ShieldAlert, SlidersHorizontal, Tractor, TrendingUp, Wheat, X } from "lucide-react";
-import type { FarmerConstraints, Priority } from "@/lib/types";
+import { useEffect, useState } from "react";
+import { Calculator, Check, Droplets, RotateCcw, ShieldAlert, SlidersHorizontal, Sparkles, Tractor, TrendingUp, Wheat, X } from "lucide-react";
+import { analyzeField, type ClimateParams } from "@/lib/api";
+import type { DynamicCandidate, FarmerConstraints, Priority, Scenario, ScenarioId } from "@/lib/types";
 
 export const DEFAULT_CONSTRAINTS: Required<Omit<FarmerConstraints, "weights">> = {
   priority: "soil_restoration",
@@ -80,11 +81,24 @@ export function buildRestraintTags(c: FarmerConstraints): string[] {
 interface Props {
   open: boolean;
   value: FarmerConstraints;
+  climate: ClimateParams;
+  scenarios: Scenario[];
+  dynamicCandidates?: DynamicCandidate[];
+  activeScenario: ScenarioId;
   onClose: () => void;
-  onApply: (next: FarmerConstraints) => void;
+  onApply: (next: FarmerConstraints, selectedScenario?: ScenarioId) => void;
 }
 
-export default function ConstraintsModal({ open, value, onClose, onApply }: Props) {
+export default function ConstraintsModal({
+  open,
+  value,
+  climate,
+  scenarios,
+  dynamicCandidates = [],
+  activeScenario,
+  onClose,
+  onApply,
+}: Props) {
   const [draft, setDraft] = useState<Required<Omit<FarmerConstraints, "weights">>>({
     ...DEFAULT_CONSTRAINTS,
     ...value,
@@ -92,8 +106,50 @@ export default function ConstraintsModal({ open, value, onClose, onApply }: Prop
     prices: { ...DEFAULT_CONSTRAINTS.prices, ...(value.prices ?? {}) },
     excluded_crops: [...(value.excluded_crops ?? [])],
   });
+  const [draftScenario, setDraftScenario] = useState<ScenarioId>(activeScenario);
+  const [preview, setPreview] = useState<{ scenarios: Scenario[]; dynamicCandidates: DynamicCandidate[] } | null>(null);
+  const [calculating, setCalculating] = useState(false);
+  const [calcError, setCalcError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (open) {
+      setDraft({
+        ...DEFAULT_CONSTRAINTS,
+        ...value,
+        equipment: { ...DEFAULT_CONSTRAINTS.equipment, ...(value.equipment ?? {}) },
+        prices: { ...DEFAULT_CONSTRAINTS.prices, ...(value.prices ?? {}) },
+        excluded_crops: [...(value.excluded_crops ?? [])],
+      });
+      setDraftScenario(activeScenario);
+      setPreview(null);
+      setCalcError(null);
+    }
+  }, [open, value, activeScenario]);
 
   if (!open) return null;
+
+  const shownScenarios = preview?.scenarios ?? scenarios;
+  const shownDynamic = preview?.dynamicCandidates ?? dynamicCandidates;
+  const presetIds = new Set(shownScenarios.map((s) => s.id));
+  const extraCandidates = shownDynamic.filter((c) => !presetIds.has(c.id));
+
+  const handleCalculatePreview = async () => {
+    setCalculating(true);
+    setCalcError(null);
+    try {
+      const isDef = JSON.stringify(draft) === JSON.stringify(DEFAULT_CONSTRAINTS);
+      const res = await analyzeField(draft.priority, climate, isDef ? undefined : draft);
+      setPreview({
+        scenarios: res.scenarios,
+        dynamicCandidates: res.dynamic_candidates ?? [],
+      });
+      setDraftScenario(res.recommended_scenario);
+    } catch (e) {
+      setCalcError(e instanceof Error ? e.message : "Failed to calculate rotations");
+    } finally {
+      setCalculating(false);
+    }
+  };
 
   const toggleExcludedCrop = (crop: string) => {
     setDraft((d) => ({
@@ -111,15 +167,15 @@ export default function ConstraintsModal({ open, value, onClose, onApply }: Prop
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-end bg-black/60 backdrop-blur-sm">
-      <div className="flex h-full w-full max-w-lg flex-col border-l border-stone-700 bg-soil-900 shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
+      <div className="flex max-h-[90vh] w-full max-w-4xl flex-col rounded-2xl border border-stone-700 bg-soil-900 shadow-2xl">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-stone-800 px-5 py-4">
           <div className="flex items-center gap-2.5">
             <SlidersHorizontal size={18} className="text-lime-400" />
             <div>
-              <h2 className="text-base font-bold text-stone-100">Farm Constraints & Priorities</h2>
-              <p className="text-xs text-stone-400">Water availability, equipment, rotation history & market prices</p>
+              <h2 className="text-base font-bold text-stone-100">Farm Constraints, Priorities & Forecast Selector</h2>
+              <p className="text-xs text-stone-400">Select rotation plan, water availability, equipment, rotation history & market prices</p>
             </div>
           </div>
           <button onClick={onClose} className="rounded-lg p-1.5 text-stone-400 hover:bg-stone-800 hover:text-stone-100">
@@ -128,7 +184,106 @@ export default function ConstraintsModal({ open, value, onClose, onApply }: Prop
         </div>
 
         {/* Scrollable body */}
-        <div className="flex-1 space-y-5 overflow-y-auto p-5 text-xs">
+        <div className="grid flex-1 gap-4 overflow-y-auto p-5 text-xs md:grid-cols-2">
+          {/* 0. Forecast Rotation Selector (Full width) */}
+          <div className="space-y-2.5 rounded-xl border border-stone-800 bg-soil-800 p-3.5 md:col-span-2">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-1.5 font-semibold text-stone-200">
+                <Sparkles size={14} className="text-lime-400" />
+                Active Forecast Rotation
+                {preview && (
+                  <span className="ml-1.5 rounded-full bg-lime-950 px-2 py-0.5 text-[10px] font-medium text-lime-300 border border-lime-700/60">
+                    Preview updated
+                  </span>
+                )}
+              </div>
+              <span className="text-[11px] text-stone-400">
+                Click <b className="text-stone-200">Calculate</b> below to preview updated scores before applying
+              </span>
+            </div>
+            {calcError && (
+              <div className="rounded-lg border border-red-500/40 bg-red-950/40 px-2.5 py-1.5 text-[11px] text-red-300">
+                {calcError}
+              </div>
+            )}
+            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
+              {shownScenarios.map((s) => {
+                const isAct = draftScenario === s.id;
+                const isPruned = s.feasible === false;
+                return (
+                  <button
+                    key={s.id}
+                    type="button"
+                    onClick={() => setDraftScenario(s.id)}
+                    title={isPruned && s.pruned_reason ? `Disqualified: ${s.pruned_reason}` : s.description}
+                    className={`flex flex-col justify-between rounded-lg border p-2.5 text-left transition ${
+                      isAct
+                        ? "border-lime-500 bg-lime-950/50 text-stone-100"
+                        : isPruned
+                          ? "border-stone-800 bg-stone-900/40 text-stone-500 opacity-70 hover:border-stone-700"
+                          : "border-stone-700 bg-stone-900/60 text-stone-300 hover:border-stone-500"
+                    }`}
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-1">
+                        <span className={`font-semibold ${isPruned ? "line-through" : ""}`}>{s.name}</span>
+                        <span className="font-mono text-[11px] font-bold text-lime-400">
+                          {(s.score * 100).toFixed(0)}
+                        </span>
+                      </div>
+                      <div className="mt-0.5 text-[11px] text-stone-400">{s.crops}</div>
+                    </div>
+                    <div className="mt-2 flex items-center justify-between text-[10px]">
+                      <span className="text-stone-400">${s.metrics.estimated_margin_usd_ha}/ha</span>
+                      {s.recommended && !isPruned && (
+                        <span className="flex items-center gap-0.5 font-bold text-lime-400">
+                          <Check size={10} /> BEST
+                        </span>
+                      )}
+                      {isPruned && <span className="font-semibold text-amber-400">PRUNED</span>}
+                    </div>
+                  </button>
+                );
+              })}
+              {extraCandidates.map((c) => {
+                const isAct = draftScenario === c.id;
+                return (
+                  <button
+                    key={c.id}
+                    type="button"
+                    disabled={!c.feasible}
+                    onClick={() => c.feasible && setDraftScenario(c.id)}
+                    title={c.pruned_reason ? `Disqualified: ${c.pruned_reason}` : c.crops}
+                    className={`flex flex-col justify-between rounded-lg border p-2.5 text-left transition ${
+                      !c.feasible
+                        ? "cursor-not-allowed border-stone-800 bg-stone-900/40 text-stone-500 opacity-60"
+                        : isAct
+                          ? "border-lime-500 bg-lime-950/50 text-stone-100"
+                          : "border-stone-700 bg-stone-900/60 text-stone-300 hover:border-stone-500"
+                    }`}
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-1">
+                        <span className={`font-semibold ${!c.feasible ? "line-through" : ""}`}>{c.name}</span>
+                        {c.score !== null && (
+                          <span className="font-mono text-[11px] font-bold text-lime-400">
+                            {(c.score * 100).toFixed(0)}
+                          </span>
+                        )}
+                      </div>
+                      <div className="mt-0.5 text-[11px] text-stone-400">{c.crops}</div>
+                    </div>
+                    <div className="mt-2 flex items-center justify-between text-[10px]">
+                      <span className="text-stone-400">
+                        {c.estimated_margin_usd_ha !== undefined ? `$${c.estimated_margin_usd_ha}/ha` : ""}
+                      </span>
+                      {!c.feasible && <span className="font-semibold text-amber-400">PRUNED</span>}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
           {/* 1. Primary Priority & Risk Tolerance */}
           <div className="space-y-2.5 rounded-xl border border-stone-800 bg-soil-800 p-3.5">
             <div className="flex items-center gap-1.5 font-semibold text-stone-200">
@@ -331,12 +486,12 @@ export default function ConstraintsModal({ open, value, onClose, onApply }: Prop
           </div>
 
           {/* 5. Local Market Commodity & N Prices */}
-          <div className="space-y-2.5 rounded-xl border border-stone-800 bg-soil-800 p-3.5">
+          <div className="space-y-2.5 rounded-xl border border-stone-800 bg-soil-800 p-3.5 md:col-span-2">
             <div className="flex items-center gap-1.5 font-semibold text-stone-200">
               <TrendingUp size={14} className="text-[#D97757]" />
               Local Commodity & Fertilizer Prices
             </div>
-            <div className="grid grid-cols-2 gap-2.5">
+            <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-5">
               {(
                 [
                   ["corn_usd_bu", "Corn ($/bu)", 2.5, 9.0, 0.1],
@@ -369,7 +524,7 @@ export default function ConstraintsModal({ open, value, onClose, onApply }: Prop
         </div>
 
         {/* Footer actions */}
-        <div className="flex items-center justify-between border-t border-stone-800 px-5 py-3.5">
+        <div className="flex flex-wrap items-center justify-between gap-2 border-t border-stone-800 px-5 py-3.5">
           <button
             type="button"
             onClick={reset}
@@ -378,16 +533,27 @@ export default function ConstraintsModal({ open, value, onClose, onApply }: Prop
             <RotateCcw size={13} />
             Reset Defaults
           </button>
-          <button
-            type="button"
-            onClick={() => {
-              onApply(draft);
-              onClose();
-            }}
-            className="rounded-lg bg-lime-600 px-4 py-1.5 text-xs font-semibold text-white shadow hover:bg-lime-500"
-          >
-            Apply & Recalculate
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              disabled={calculating}
+              onClick={handleCalculatePreview}
+              className="flex items-center gap-1.5 rounded-lg border border-lime-600/70 bg-lime-950/50 px-3.5 py-1.5 text-xs font-semibold text-lime-300 transition hover:bg-lime-900/60 disabled:opacity-50"
+            >
+              <Calculator size={13} />
+              {calculating ? "Calculating…" : "Calculate"}
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                onApply(draft, draftScenario);
+                onClose();
+              }}
+              className="rounded-lg bg-lime-600 px-4 py-1.5 text-xs font-semibold text-white shadow hover:bg-lime-500"
+            >
+              Apply & Recalculate
+            </button>
+          </div>
         </div>
       </div>
     </div>

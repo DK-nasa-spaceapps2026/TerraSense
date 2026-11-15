@@ -86,8 +86,27 @@ export default function TimelineSlider({
             ))}
             <line x1={x(index)} x2={x(index)} y1={0} y2={H} stroke="#fff" strokeWidth={2} vectorEffect="non-scaling-stroke" />
           </svg>
-          <input type="range" min={0} max={n - 1} value={index} onChange={(e) => onChange(+e.target.value)}
-            className="w-full" aria-label="Month" />
+          <div className="relative mt-1 flex h-5 items-center">
+            <div className="h-1.5 w-full overflow-hidden rounded-full bg-stone-700">
+              <div
+                className="h-full bg-lime-500"
+                style={{ width: `${(index / (n - 1)) * 100}%` }}
+              />
+            </div>
+            <div
+              className="pointer-events-none absolute top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white shadow ring-2 ring-lime-500"
+              style={{ left: `${(index / (n - 1)) * 100}%` }}
+            />
+            <input
+              type="range"
+              min={0}
+              max={n - 1}
+              value={index}
+              onChange={(e) => onChange(+e.target.value)}
+              className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+              aria-label="Month"
+            />
+          </div>
           <div className="flex justify-between text-[10px] text-stone-500">
             {months.map((m, i) => (i % 3 === 0 ? <span key={i}>{m.label}</span> : <span key={i} />))}
           </div>
@@ -96,7 +115,8 @@ export default function TimelineSlider({
         <div className="mt-1 flex flex-wrap gap-4 text-[11px] text-stone-400">
           <span><i className="mr-1 inline-block h-2 w-2 rounded-full bg-sky-500" />Soil moisture (w/ 80% ML band)</span>
           <span><i className="mr-1 inline-block h-2 w-2 rounded-full bg-lime-500" />Vigor</span>
-          <span><i className="mr-1 inline-block h-2 w-2 rounded-full bg-red-500" />Alert month</span>
+          <span><i className="mr-1 inline-block h-2 w-2 rounded-full bg-amber-500" />Medium alert</span>
+          <span><i className="mr-1 inline-block h-2 w-2 rounded-full bg-red-500" />High alert</span>
           <span className="text-violet-300">Shaded = forecast ({scenarioName})</span>
         </div>
       </div>

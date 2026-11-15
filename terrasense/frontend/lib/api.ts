@@ -19,6 +19,7 @@ export const analyzeField = (
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         grid_size: 6,
+        date_range: { end: new Date().toISOString().slice(0, 10) },
         preferences: { priority },
         ...(constraints ? { constraints } : {}),
         climate,

@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AlertTriangle, CloudRain, Cpu, Lock, Satellite, SlidersHorizontal, Thermometer, Unlock } from "lucide-react";
 import { PiFarmLight } from "react-icons/pi";
 import { analyzeField, fetchTimeline, type ClimateParams } from "@/lib/api";
@@ -38,6 +38,7 @@ export default function Page() {
   const [mapLocked, setMapLocked] = useState(true);
   const [constraints, setConstraints] = useState<FarmerConstraints>(DEFAULT_CONSTRAINTS);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const pendingScenarioRef = useRef<ScenarioId | null>(null);
 
   useEffect(() => {
     const t = setTimeout(() => setDebouncedClimate(climate), 350);
@@ -49,7 +50,14 @@ export default function Page() {
     let live = true;
     const isDef = JSON.stringify(constraints) === JSON.stringify(DEFAULT_CONSTRAINTS);
     analyzeField(constraints.priority ?? "soil_restoration", debouncedClimate, isDef ? undefined : constraints)
-      .then((a) => { if (live) { setAnalysis(a); setScenario(a.recommended_scenario); setError(null); } })
+      .then((a) => {
+        if (!live) return;
+        setAnalysis(a);
+        const chosen = pendingScenarioRef.current ?? a.recommended_scenario;
+        pendingScenarioRef.current = null;
+        setScenario(chosen);
+        setError(null);
+      })
       .catch((e) => live && setError(`${e.message}. Is the Flask API running on :5001?`));
     return () => { live = false; };
   }, [debouncedClimate, constraints]);
@@ -87,7 +95,7 @@ export default function Page() {
 
   return (
     <main className="flex min-h-screen w-full flex-col gap-4 px-5 py-4">
-      <header className="flex flex-wrap items-center justify-between gap-2">
+      <header className="-mx-5 flex flex-wrap items-center justify-between gap-2 border-b border-stone-800 px-5 pb-3.5">
         <div className="flex items-center gap-2.5">
           <PiFarmLight className="text-4xl text-lime-400" />
           <div>
@@ -108,8 +116,18 @@ export default function Page() {
       <ConstraintsModal
         open={settingsOpen}
         value={constraints}
+        climate={debouncedClimate}
+        scenarios={analysis.scenarios}
+        dynamicCandidates={analysis.dynamic_candidates}
+        activeScenario={scenario}
         onClose={() => setSettingsOpen(false)}
-        onApply={setConstraints}
+        onApply={(next, selectedScenario) => {
+          if (selectedScenario) {
+            pendingScenarioRef.current = selectedScenario;
+            setScenario(selectedScenario);
+          }
+          setConstraints(next);
+        }}
       />
 
       {error && <div className="rounded bg-amber-900/40 p-2 text-xs text-amber-200">{error}</div>}
@@ -118,10 +136,7 @@ export default function Page() {
         scenarios={analysis.scenarios}
         dynamicCandidates={analysis.dynamic_candidates}
         prunedPlans={analysis.pruned_plans}
-        rankingRobust={analysis.ranking_robust}
-        uncertaintyNote={analysis.uncertainty_note}
         active={scenario}
-        onPick={setScenario}
         constraints={constraints}
         climate={climate}
       />
