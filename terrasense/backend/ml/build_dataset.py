@@ -90,11 +90,10 @@ def _water_balance_step(
     avail_mm = sm_prev_mm + 0.5 * infil_mm
     beta = float(np.clip(avail_mm / max(10.0, 0.35 * awc_mm), 0.05, 1.0))
     heat = float(np.clip((tmax_c - 30.0) / 8.0, 0.0, 1.0)) * (1.0 if cal_cover > 0.4 else 0.0)
-    beta_eff = beta * (1.0 - 0.25 * heat)
-    et_mm = min(demand_mm * beta_eff, sm_prev_mm + infil_mm)
+    et_mm = min(demand_mm * beta, sm_prev_mm + infil_mm)
     sm_new_mm = float(np.clip(sm_prev_mm + infil_mm - et_mm, 0.0, awc_mm))
     wb_smi = float(np.clip(0.5 * (sm_prev_mm + sm_new_mm) / max(10.0, awc_mm), 0.0, 1.0))
-    wb_esi = float(np.clip(et_mm / max(demand_mm, 1e-6), 0.0, 1.0)) if demand_mm > 1e-6 else 1.0
+    wb_esi = float(np.clip((et_mm / max(demand_mm, 1e-6)) * (1.0 - 0.25 * heat), 0.0, 1.0)) if demand_mm > 1e-6 else 1.0
     return {
         "wb_sm_new_mm": sm_new_mm,
         "wb_smi": round(wb_smi, 4),
