@@ -1,4 +1,4 @@
-// API contract mirrors terrasense/backend (see README.md)
+// API contract mirrors terrasense/backend (see root README.md#api-reference)
 export type Status = "lush" | "moderate" | "water_stress" | "heat_stress" | "bare_vulnerable";
 export type Priority = "water_saving" | "income" | "soil_restoration" | "simplicity";
 export type ScenarioId =
