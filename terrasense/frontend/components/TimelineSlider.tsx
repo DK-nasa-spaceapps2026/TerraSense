@@ -1,7 +1,6 @@
 "use client";
 
-import { CloudRain, Pause, Play, Thermometer } from "lucide-react";
-import type { ClimateParams } from "@/lib/api";
+import { Pause, Play } from "lucide-react";
 import type { MonthState } from "@/lib/types";
 
 interface Props {
@@ -10,14 +9,12 @@ interface Props {
   onChange: (i: number) => void;
   playing: boolean;
   onTogglePlay: () => void;
-  climate: ClimateParams;
-  onClimateChange: (c: ClimateParams) => void;
   scenarioName?: string;
 }
 
-/** Unified 24-month scrubber + Forecast What-If controls. */
+/** 24-month scrubber: 12 observed + 12 forecast. */
 export default function TimelineSlider({
-  months, index, onChange, playing, onTogglePlay, climate, onClimateChange, scenarioName,
+  months, index, onChange, playing, onTogglePlay, scenarioName,
 }: Props) {
   const n = months.length;
   const W = 1000, H = 54;
@@ -34,10 +31,8 @@ export default function TimelineSlider({
 
   return (
     <div className="rounded-xl border border-stone-700 bg-soil-800/90 p-3.5">
-      <div className="grid gap-4 lg:grid-cols-[1fr_340px] lg:items-center">
-        {/* Left: Timeline scrubber */}
-        <div>
-          <div className="mb-2 flex flex-wrap items-center gap-3">
+      <div>
+        <div className="mb-2 flex flex-wrap items-center gap-3">
             <button onClick={onTogglePlay} className="rounded-full bg-lime-600 p-2 text-white hover:bg-lime-500" aria-label="Play timeline">
               {playing ? <Pause size={16} /> : <Play size={16} />}
             </button>
@@ -87,31 +82,6 @@ export default function TimelineSlider({
             <span><i className="mr-1 inline-block h-2 w-2 rounded-full bg-red-500" />Alert month</span>
             <span className="text-violet-300">Shaded = forecast ({scenarioName})</span>
           </div>
-        </div>
-
-        {/* Right: Forecast What-If controls */}
-        <div className="space-y-2.5 rounded-lg border border-stone-700/80 bg-stone-900/50 p-3 text-xs lg:border-l">
-          <div className="flex items-center justify-between">
-            <span className="font-semibold text-stone-200">Forecast what-if</span>
-            <span className="text-[11px] text-stone-400">Shaded months only</span>
-          </div>
-          <label className="block">
-            <span className="mb-0.5 flex items-center justify-between text-stone-300">
-              <span className="flex items-center gap-1"><Thermometer size={12} />Warming</span>
-              <b>+{climate.temp_shift.toFixed(1)} °C</b>
-            </span>
-            <input type="range" min={0} max={4} step={0.5} value={climate.temp_shift} className="w-full"
-              onChange={(e) => onClimateChange({ ...climate, temp_shift: +e.target.value })} />
-          </label>
-          <label className="block">
-            <span className="mb-0.5 flex items-center justify-between text-stone-300">
-              <span className="flex items-center gap-1"><CloudRain size={12} />Rainfall</span>
-              <b>{Math.round(climate.precip_factor * 100)}% of normal</b>
-            </span>
-            <input type="range" min={0.5} max={1.3} step={0.05} value={climate.precip_factor} className="w-full"
-              onChange={(e) => onClimateChange({ ...climate, precip_factor: +e.target.value })} />
-          </label>
-        </div>
       </div>
     </div>
   );

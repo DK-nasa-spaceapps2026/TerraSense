@@ -109,9 +109,10 @@ export interface IsoGridProps {
   zones: ZoneProps[]; cells: CellState[]; rows: number; cols: number;
   hoveredId: string | null; selectedId: string | null;
   onHover: (id: string | null) => void; onSelect: (id: string | null) => void;
+  locked?: boolean;
 }
 
-export default function IsoGrid({ zones, cells, rows, cols, hoveredId, selectedId, onHover, onSelect }: IsoGridProps) {
+export default function IsoGrid({ zones, cells, rows, cols, hoveredId, selectedId, onHover, onSelect, locked = false }: IsoGridProps) {
   const [ready] = useState(true);
   const hoveredIdx = zones.findIndex((z) => z.zone_id === hoveredId);
   return (
@@ -120,7 +121,7 @@ export default function IsoGrid({ zones, cells, rows, cols, hoveredId, selectedI
       <OrthographicCamera makeDefault position={[9, 9, 9]} zoom={Math.min(62, 330 / Math.max(rows, cols) * 1.1)} near={-50} far={100} />
       <ambientLight intensity={0.75} />
       <directionalLight position={[6, 10, 4]} intensity={1.6} castShadow shadow-mapSize={[1024, 1024]} />
-      <OrbitControls enablePan={false} minZoom={30} maxZoom={120} minPolarAngle={0.7} maxPolarAngle={1.2} />
+      <OrbitControls enabled={!locked} enablePan={false} enableZoom={!locked} enableRotate={!locked} minZoom={30} maxZoom={120} minPolarAngle={0.7} maxPolarAngle={1.2} />
 
       {/* soil slab the tiles sit on — gives the "Civilization map chunk" look */}
       <mesh position={[0, -0.18, 0]} receiveShadow>

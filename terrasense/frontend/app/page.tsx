@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useMemo, useState } from "react";
-import { AlertTriangle, Satellite } from "lucide-react";
+import { AlertTriangle, CloudRain, Lock, Satellite, Thermometer, Unlock } from "lucide-react";
 import { analyzeField, fetchTimeline, type ClimateParams } from "@/lib/api";
 import type { AnalyzeResponse, ScenarioId, Timeline, ZoneProps } from "@/lib/types";
 import TimelineSlider from "@/components/TimelineSlider";
@@ -33,6 +33,7 @@ export default function Page() {
   const [playing, setPlaying] = useState(false);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [mapLocked, setMapLocked] = useState(true);
 
   useEffect(() => {
     const t = setTimeout(() => setDebouncedClimate(climate), 350);
@@ -95,7 +96,20 @@ export default function Page() {
 
       <div className="relative h-[540px] w-full overflow-hidden rounded-xl border border-stone-700">
         <IsoGrid zones={zones} cells={month.cells} rows={analysis.grid.rows} cols={analysis.grid.cols}
-          hoveredId={hoveredId} selectedId={selectedId} onHover={setHoveredId} onSelect={setSelectedId} />
+          hoveredId={hoveredId} selectedId={selectedId} onHover={setHoveredId} onSelect={setSelectedId} locked={mapLocked} />
+
+        <button
+          onClick={() => setMapLocked((l) => !l)}
+          className={`absolute bottom-3 right-3 z-10 flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-medium shadow transition ${
+            mapLocked
+              ? "border-stone-600 bg-black/75 text-stone-200 hover:bg-stone-800"
+              : "border-lime-500 bg-lime-950/85 text-lime-200 hover:bg-lime-900/90"
+          }`}
+          title={mapLocked ? "Unlock to pan/zoom/rotate map" : "Lock map so page scrolling passes through"}
+        >
+          {mapLocked ? <Lock size={13} /> : <Unlock size={13} />}
+          {mapLocked ? "View Locked" : "View Unlocked"}
+        </button>
 
         <div className="pointer-events-none absolute bottom-3 left-3 rounded-lg bg-black/60 p-2 text-[11px]">
           {(Object.keys(STATUS_COLOR) as (keyof typeof STATUS_COLOR)[]).map((s) => (
@@ -113,6 +127,31 @@ export default function Page() {
           </div>
         )}
 
+        {selIdx < 0 && (
+          <div className="absolute right-3 top-3 z-10 w-64 space-y-2.5 rounded-xl border border-stone-600/90 bg-soil-900/90 p-3 text-xs shadow-xl backdrop-blur">
+            <div className="flex items-center justify-between">
+              <span className="font-semibold text-stone-100">Forecast what-if</span>
+              <span className="text-[10px] text-stone-400">Shaded months</span>
+            </div>
+            <label className="block">
+              <span className="mb-0.5 flex items-center justify-between text-stone-300">
+                <span className="flex items-center gap-1"><Thermometer size={12} />Warming</span>
+                <b>+{climate.temp_shift.toFixed(1)} °C</b>
+              </span>
+              <input type="range" min={0} max={4} step={0.5} value={climate.temp_shift} className="w-full"
+                onChange={(e) => setClimate({ ...climate, temp_shift: +e.target.value })} />
+            </label>
+            <label className="block">
+              <span className="mb-0.5 flex items-center justify-between text-stone-300">
+                <span className="flex items-center gap-1"><CloudRain size={12} />Rainfall</span>
+                <b>{Math.round(climate.precip_factor * 100)}%</b>
+              </span>
+              <input type="range" min={0.5} max={1.3} step={0.05} value={climate.precip_factor} className="w-full"
+                onChange={(e) => setClimate({ ...climate, precip_factor: +e.target.value })} />
+            </label>
+          </div>
+        )}
+
         {selIdx >= 0 && (
           <TileDrawer zone={zones[selIdx]} cell={month.cells[selIdx]} monthLabel={month.label}
             scenarios={analysis.scenarios} onClose={() => setSelectedId(null)} />
@@ -125,8 +164,6 @@ export default function Page() {
         onChange={(i) => { setMonthIdx(i); setPlaying(false); }}
         playing={playing}
         onTogglePlay={() => setPlaying((p) => !p)}
-        climate={climate}
-        onClimateChange={setClimate}
         scenarioName={activeScenarioName}
       />
 
