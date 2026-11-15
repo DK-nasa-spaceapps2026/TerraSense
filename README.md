@@ -10,5 +10,3 @@ A farmer-facing decision-support web application featuring an interactive 2.5D/3
 - `terrasense/backend/`: Flask REST API (`app.py`), NASA POWER integration harness (`nasa_power.py`), and zoning/water-balance engine (`zone_engine.py`).
 - `terrasense/frontend/`: Next.js App Router UI with the 2.5D isometric tile grid (`IsoGrid.tsx`), 24-month temporal scrubber (`TimelineSlider.tsx`), strategy comparison cards (`DecisionPanel.tsx`), and per-zone detail drawer (`TileDrawer.tsx`).
 - `terrasense/README.md`: Detailed API contract and model notes.
-
-*(Note: The repository root also contains legacy `backend/`, `frontend/`, and `database/` folders from an earlier project.)*
