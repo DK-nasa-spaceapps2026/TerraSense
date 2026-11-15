@@ -85,9 +85,16 @@ export default function Page() {
           <PiFarmLight className="text-3xl text-lime-400" />
           <h1 className="text-2xl font-bold tracking-tight"><span className="text-lime-400">Terra</span>Sense</h1>
         </div>
-        <div className="flex items-center gap-2 text-xs text-stone-400">
-          <Satellite size={14} />
-          Climate: <b className="text-stone-200">{analysis.data_sources.climate === "mock" ? "simulated (offline)" : "NASA POWER"}</b>
+        <div className="flex flex-wrap items-center gap-3 text-xs text-stone-400">
+          {analysis.engine && (
+            <span className="rounded-full border border-lime-700/60 bg-lime-950/40 px-2.5 py-0.5 text-lime-300">
+              Engine: <b>{analysis.engine === "ml" ? `Hybrid LightGBM (${analysis.model_version ?? "ML"})` : "Heuristic WB"}</b>
+            </span>
+          )}
+          <span className="flex items-center gap-1.5">
+            <Satellite size={14} />
+            Climate: <b className="text-stone-200">{analysis.data_sources.climate === "mock" ? "simulated (offline)" : "NASA POWER"}</b>
+          </span>
         </div>
       </header>
 

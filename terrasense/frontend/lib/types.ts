@@ -7,11 +7,15 @@ export interface CellState {
   smi: number; esi: number; bare: number; ndvi: number; vigor: number; et_mm: number; status: Status;
 }
 export interface Alert { type: string; severity: "medium" | "high"; message: string }
+export interface MonthUncertainty {
+  smi_p10: number; smi_p90: number; esi_p10: number; esi_p90: number;
+}
 export interface MonthState {
   index: number; date: string; label: string; phase: "historical" | "forecast";
   climate: { tmax_c: number; tmin_c: number; precip_mm: number; rh_pct: number; solar_mj: number; pet_mm: number };
   crop_stage: string;
   field: { smi: number; esi: number; bare: number; ndvi: number; vigor: number };
+  uncertainty?: MonthUncertainty;
   alerts: Alert[];
   cells: CellState[]; // same order as zone features in field_geojson
 }
@@ -23,7 +27,9 @@ export interface Guidance {
   stress_alerts: Window[];
 }
 export interface Timeline {
-  field_id: string; scenario: ScenarioId; anchor_index: number; months: MonthState[]; guidance: Guidance;
+  field_id: string; scenario: ScenarioId; anchor_index: number;
+  engine?: "ml" | "heuristic"; model_version?: string | null;
+  months: MonthState[]; guidance: Guidance;
 }
 export interface ZoneProps {
   zone_id: string; row: number; col: number; recommended_scenario: ScenarioId;
@@ -40,6 +46,10 @@ export interface Scenario {
 }
 export interface AnalyzeResponse {
   field_id: string;
+  engine?: "ml" | "heuristic";
+  model_version?: string | null;
+  ranking_robust?: boolean;
+  uncertainty_note?: string;
   data_sources: Record<string, string>;
   grid: { rows: number; cols: number; n_zones: number };
   field_geojson: { features: { id: string; properties: ZoneProps & { kind: string } }[] };

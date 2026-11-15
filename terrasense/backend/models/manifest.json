@@ -1,0 +1,421 @@
+{
+  "model_version": "1.0.0-hybrid-lgbm",
+  "winning_architecture": "hybrid_transition_lgbm",
+  "trained_at": "2026-11-15T15:28:54.862810+00:00",
+  "git_hash": "05bebf7",
+  "seed": 42,
+  "schema_hash": "367506986234",
+  "feature_cols": [
+    "prev_state",
+    "wb_state",
+    "wb_delta",
+    "precip_mm",
+    "tmax_c",
+    "tmin_c",
+    "tmean_c",
+    "diurnal_range_c",
+    "rh_pct",
+    "solar_mj",
+    "gdd_month",
+    "heat_stress_days",
+    "max_dry_spell_days",
+    "max_5day_precip_mm",
+    "max_daily_precip_mm",
+    "vpd_kpa",
+    "pet_mm",
+    "water_balance_mm",
+    "aridity_index",
+    "api_antecedent_mm",
+    "month_sin",
+    "month_cos",
+    "is_corn",
+    "is_soy",
+    "is_forage",
+    "corn_soy_rotation",
+    "continuous_corn",
+    "cropland_frac_3x3",
+    "cal_cover",
+    "cal_kc",
+    "sand_top_pct",
+    "clay_top_pct",
+    "silt_top_pct",
+    "om_top_pct",
+    "ph_top",
+    "bd_top_gcm3",
+    "awc_top_cmcm",
+    "sand_sub_pct",
+    "clay_sub_pct",
+    "awc_sub_cmcm",
+    "awc_100cm_mm",
+    "drainage_code",
+    "sg_soc_gkg",
+    "sg_cec_cmol",
+    "sg_bdod_gcm3",
+    "sg_clay_pct",
+    "sg_sand_pct",
+    "sg_ph",
+    "elev_m",
+    "slope_pct",
+    "slope_mean_90m",
+    "slope_std_90m",
+    "aspect_sin",
+    "aspect_cos",
+    "curvature",
+    "local_relief_90m",
+    "local_relief_210m",
+    "twi"
+  ],
+  "monotone_constraints_smi": {
+    "prev_state": 1,
+    "wb_state": 1,
+    "wb_delta": 1,
+    "precip_mm": 1,
+    "max_5day_precip_mm": 1,
+    "max_daily_precip_mm": 1,
+    "water_balance_mm": 1,
+    "aridity_index": 1,
+    "api_antecedent_mm": 1,
+    "rh_pct": 1,
+    "tmax_c": -1,
+    "tmin_c": -1,
+    "tmean_c": -1,
+    "gdd_month": -1,
+    "heat_stress_days": -1,
+    "max_dry_spell_days": -1,
+    "vpd_kpa": -1,
+    "pet_mm": -1
+  },
+  "monotone_constraints_esi": {
+    "prev_state": 1,
+    "wb_state": 1,
+    "wb_delta": 1,
+    "precip_mm": 1,
+    "max_5day_precip_mm": 1,
+    "max_daily_precip_mm": 1,
+    "water_balance_mm": 1,
+    "aridity_index": 1,
+    "api_antecedent_mm": 1,
+    "rh_pct": 1,
+    "tmax_c": -1,
+    "tmin_c": -1,
+    "tmean_c": -1,
+    "gdd_month": -1,
+    "heat_stress_days": -1,
+    "max_dry_spell_days": -1,
+    "vpd_kpa": -1,
+    "pet_mm": -1
+  },
+  "target_definitions": {
+    "smi": "0-100cm volumetric soil moisture normalized by SSURGO (theta_wp, theta_fc) where ERA5-Land is present, else MERRA-2 gwetroot",
+    "esi": "Monthly EVLAND / reference ET0 ratio clipped to [0.05, 1.0]",
+    "ndvi_bare_vigor": "Deterministic proxy indices computed from ML-predicted (smi, esi) + crop calendar cover + terrain slope/sand"
+  },
+  "cv_benchmarks": {
+    "smi_12m_rollout": {
+      "baseline_persistence": {
+        "rmse": 0.2069,
+        "mae": 0.1553,
+        "r2": -0.3088,
+        "corr": 0.5989
+      },
+      "baseline_climatology": {
+        "rmse": 0.1784,
+        "mae": 0.1322,
+        "r2": 0.0266,
+        "corr": 0.3116
+      },
+      "baseline_heuristic_wb": {
+        "rmse": 0.2755,
+        "mae": 0.2253,
+        "r2": -1.3197,
+        "corr": 0.3304
+      },
+      "direct_multihorizon_lgbm": {
+        "rmse": 0.1162,
+        "mae": 0.0923,
+        "r2": 0.5873,
+        "corr": 0.7671
+      },
+      "hybrid_transition_lgbm": {
+        "rmse": 0.1372,
+        "mae": 0.1083,
+        "r2": 0.4244,
+        "corr": 0.6577
+      }
+    },
+    "esi_12m_rollout": {
+      "baseline_persistence": {
+        "rmse": 0.3978,
+        "mae": 0.3406,
+        "r2": -1.5379,
+        "corr": 0.4722
+      },
+      "baseline_climatology": {
+        "rmse": 0.1818,
+        "mae": 0.1526,
+        "r2": 0.4697,
+        "corr": 0.7194
+      },
+      "baseline_heuristic_wb": {
+        "rmse": 0.3366,
+        "mae": 0.2532,
+        "r2": -0.8168,
+        "corr": 0.4416
+      },
+      "hybrid_transition_lgbm": {
+        "rmse": 0.1243,
+        "mae": 0.0815,
+        "r2": 0.7521,
+        "corr": 0.8693
+      }
+    }
+  },
+  "top_features_smi_gain": [
+    {
+      "feature": "prev_state",
+      "gain": 664.43
+    },
+    {
+      "feature": "pet_mm",
+      "gain": 130.36
+    },
+    {
+      "feature": "solar_mj",
+      "gain": 119.85
+    },
+    {
+      "feature": "wb_delta",
+      "gain": 117.11
+    },
+    {
+      "feature": "water_balance_mm",
+      "gain": 103.94
+    },
+    {
+      "feature": "vpd_kpa",
+      "gain": 96.84
+    },
+    {
+      "feature": "clay_top_pct",
+      "gain": 86.8
+    },
+    {
+      "feature": "rh_pct",
+      "gain": 66.65
+    },
+    {
+      "feature": "diurnal_range_c",
+      "gain": 52.5
+    },
+    {
+      "feature": "month_sin",
+      "gain": 46.61
+    },
+    {
+      "feature": "month_cos",
+      "gain": 42.35
+    },
+    {
+      "feature": "awc_top_cmcm",
+      "gain": 37.78
+    }
+  ],
+  "top_features_esi_gain": [
+    {
+      "feature": "prev_state",
+      "gain": 912.8
+    },
+    {
+      "feature": "api_antecedent_mm",
+      "gain": 784.14
+    },
+    {
+      "feature": "max_dry_spell_days",
+      "gain": 369.03
+    },
+    {
+      "feature": "rh_pct",
+      "gain": 334.57
+    },
+    {
+      "feature": "vpd_kpa",
+      "gain": 167.14
+    },
+    {
+      "feature": "water_balance_mm",
+      "gain": 145.51
+    },
+    {
+      "feature": "aridity_index",
+      "gain": 80.11
+    },
+    {
+      "feature": "diurnal_range_c",
+      "gain": 74.83
+    },
+    {
+      "feature": "solar_mj",
+      "gain": 72.54
+    },
+    {
+      "feature": "tmax_c",
+      "gain": 55.92
+    },
+    {
+      "feature": "month_sin",
+      "gain": 42.64
+    },
+    {
+      "feature": "heat_stress_days",
+      "gain": 37.07
+    }
+  ],
+  "conformal_smi": {
+    "1": {
+      "q10": -0.0943,
+      "q50": -0.011,
+      "q90": 0.1158,
+      "std": 0.0822
+    },
+    "2": {
+      "q10": -0.16,
+      "q50": 0.0151,
+      "q90": 0.2149,
+      "std": 0.144
+    },
+    "3": {
+      "q10": -0.1339,
+      "q50": -0.0014,
+      "q90": 0.1385,
+      "std": 0.1106
+    },
+    "4": {
+      "q10": -0.1615,
+      "q50": 0.0039,
+      "q90": 0.1944,
+      "std": 0.1357
+    },
+    "5": {
+      "q10": -0.1989,
+      "q50": 0.012,
+      "q90": 0.2182,
+      "std": 0.1597
+    },
+    "6": {
+      "q10": -0.1449,
+      "q50": -0.0166,
+      "q90": 0.1388,
+      "std": 0.117
+    },
+    "7": {
+      "q10": -0.1768,
+      "q50": -0.0344,
+      "q90": 0.155,
+      "std": 0.1349
+    },
+    "8": {
+      "q10": -0.1743,
+      "q50": -0.0327,
+      "q90": 0.1605,
+      "std": 0.1324
+    },
+    "9": {
+      "q10": -0.1424,
+      "q50": -0.0105,
+      "q90": 0.1583,
+      "std": 0.1217
+    },
+    "10": {
+      "q10": -0.14,
+      "q50": -0.0033,
+      "q90": 0.1131,
+      "std": 0.1071
+    },
+    "11": {
+      "q10": -0.1882,
+      "q50": -0.028,
+      "q90": 0.2422,
+      "std": 0.163
+    },
+    "12": {
+      "q10": -0.252,
+      "q50": -0.0244,
+      "q90": 0.2583,
+      "std": 0.1953
+    }
+  },
+  "conformal_esi": {
+    "1": {
+      "q10": -0.0669,
+      "q50": -0.0066,
+      "q90": 0.1012,
+      "std": 0.0654
+    },
+    "2": {
+      "q10": -0.0545,
+      "q50": -0.0124,
+      "q90": 0.0325,
+      "std": 0.039
+    },
+    "3": {
+      "q10": -0.1367,
+      "q50": -0.028,
+      "q90": 0.0572,
+      "std": 0.0704
+    },
+    "4": {
+      "q10": -0.086,
+      "q50": -0.0103,
+      "q90": 0.1801,
+      "std": 0.0986
+    },
+    "5": {
+      "q10": -0.0528,
+      "q50": 0.02,
+      "q90": 0.0209,
+      "std": 0.0328
+    },
+    "6": {
+      "q10": -0.0444,
+      "q50": 0.02,
+      "q90": 0.0319,
+      "std": 0.0306
+    },
+    "7": {
+      "q10": -0.0677,
+      "q50": 0.02,
+      "q90": 0.0306,
+      "std": 0.0424
+    },
+    "8": {
+      "q10": -0.1173,
+      "q50": -0.008,
+      "q90": 0.0761,
+      "std": 0.0779
+    },
+    "9": {
+      "q10": -0.1444,
+      "q50": -0.0059,
+      "q90": 0.0896,
+      "std": 0.0914
+    },
+    "10": {
+      "q10": -0.1939,
+      "q50": 0.0064,
+      "q90": 0.1773,
+      "std": 0.1347
+    },
+    "11": {
+      "q10": -0.3305,
+      "q50": -0.0161,
+      "q90": 0.3031,
+      "std": 0.2279
+    },
+    "12": {
+      "q10": -0.3935,
+      "q50": -0.0241,
+      "q90": 0.357,
+      "std": 0.2702
+    }
+  }
+}
