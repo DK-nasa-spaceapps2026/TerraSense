@@ -2,14 +2,15 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useMemo, useState } from "react";
-import { AlertTriangle, CloudRain, Cpu, Lock, Satellite, Thermometer, Unlock } from "lucide-react";
+import { AlertTriangle, CloudRain, Cpu, Lock, Satellite, SlidersHorizontal, Thermometer, Unlock } from "lucide-react";
 import { PiFarmLight } from "react-icons/pi";
 import { analyzeField, fetchTimeline, type ClimateParams } from "@/lib/api";
-import type { AnalyzeResponse, ScenarioId, Timeline, ZoneProps } from "@/lib/types";
+import type { AnalyzeResponse, FarmerConstraints, ScenarioId, Timeline, ZoneProps } from "@/lib/types";
 import TimelineSlider from "@/components/TimelineSlider";
 import MetricsDashboard from "@/components/MetricsDashboard";
 import DecisionPanel from "@/components/DecisionPanel";
 import TileDrawer from "@/components/TileDrawer";
+import ConstraintsModal, { DEFAULT_CONSTRAINTS } from "@/components/ConstraintsModal";
 import { STATUS_COLOR, STATUS_LABEL } from "@/components/IsoGrid";
 
 // three.js needs the browser
@@ -35,30 +36,33 @@ export default function Page() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [mapLocked, setMapLocked] = useState(true);
+  const [constraints, setConstraints] = useState<FarmerConstraints>(DEFAULT_CONSTRAINTS);
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   useEffect(() => {
     const t = setTimeout(() => setDebouncedClimate(climate), 350);
     return () => clearTimeout(t);
   }, [climate]);
 
-  // 1) analyze field whenever what-if climate changes
+  // 1) analyze field whenever what-if climate or farmer constraints change
   useEffect(() => {
     let live = true;
-    analyzeField("soil_restoration", debouncedClimate)
+    const isDef = JSON.stringify(constraints) === JSON.stringify(DEFAULT_CONSTRAINTS);
+    analyzeField(constraints.priority ?? "soil_restoration", debouncedClimate, isDef ? undefined : constraints)
       .then((a) => { if (live) { setAnalysis(a); setScenario(a.recommended_scenario); setError(null); } })
       .catch((e) => live && setError(`${e.message}. Is the Flask API running on :5001?`));
     return () => { live = false; };
-  }, [debouncedClimate]);
+  }, [debouncedClimate, constraints]);
 
-  // 2) fetch 24-month timeline for the chosen rotation scenario
+  // 2) fetch 24-month timeline for the chosen rotation scenario & irrigation cap
   useEffect(() => {
     if (!analysis) return;
     let live = true;
-    fetchTimeline(analysis.field_id, scenario, debouncedClimate)
+    fetchTimeline(analysis.field_id, scenario, debouncedClimate, constraints.irrigation_cap_mm ?? 0)
       .then((t) => live && setTimeline(t))
       .catch((e) => live && setError(e.message));
     return () => { live = false; };
-  }, [analysis?.field_id, scenario, debouncedClimate]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [analysis?.field_id, scenario, debouncedClimate, constraints.irrigation_cap_mm]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // 3) autoplay the scrubber
   useEffect(() => {
@@ -90,18 +94,36 @@ export default function Page() {
             <h1 className="text-2xl font-bold tracking-tight"><span className="text-lime-400">Terra</span>Sense</h1>
           </div>
         </div>
+
+        <button
+          onClick={() => setSettingsOpen(true)}
+          className="flex items-center gap-1.5 rounded-lg border border-stone-700 bg-soil-800 px-3 py-1.5 text-xs font-medium text-stone-200 shadow-sm transition hover:border-lime-500 hover:text-lime-300"
+          title="Configure farm constraints, water availability, equipment & market prices"
+        >
+          <SlidersHorizontal size={14} className="text-lime-400" />
+          <span>Constraints</span>
+        </button>
       </header>
+
+      <ConstraintsModal
+        open={settingsOpen}
+        value={constraints}
+        onClose={() => setSettingsOpen(false)}
+        onApply={setConstraints}
+      />
 
       {error && <div className="rounded bg-amber-900/40 p-2 text-xs text-amber-200">{error}</div>}
 
       <DecisionPanel
         scenarios={analysis.scenarios}
         dynamicCandidates={analysis.dynamic_candidates}
+        prunedPlans={analysis.pruned_plans}
         rankingRobust={analysis.ranking_robust}
         uncertaintyNote={analysis.uncertainty_note}
         active={scenario}
         onPick={setScenario}
-        guidance={timeline.guidance}
+        constraints={constraints}
+        climate={climate}
       />
 
       <div className="relative h-[540px] w-full overflow-hidden rounded-xl border border-stone-700">

@@ -1,12 +1,49 @@
 // API contract mirrors terrasense/backend (see README.md)
 export type Status = "lush" | "moderate" | "water_stress" | "heat_stress" | "bare_vulnerable";
-export type Priority = "water_saving" | "income" | "soil_restoration";
+export type Priority = "water_saving" | "income" | "soil_restoration" | "simplicity";
 export type ScenarioId =
   | "status_quo"
   | "cover_legume"
   | "drought_cash"
   | "corn_rye_cover"
   | "alfalfa_perennial";
+
+export interface FarmerConstraints {
+  prev_crop?: string;
+  continuous_corn_years?: number;
+  equipment?: {
+    has_hay_baler: boolean;
+    has_cover_drill: boolean;
+    has_no_till_drill: boolean;
+    variable_rate: boolean;
+  };
+  allow_custom_hire?: boolean;
+  excluded_crops?: string[];
+  irrigation_cap_mm?: number;
+  irrigation_cost_usd_per_mm?: number;
+  risk_aversion?: "conservative" | "balanced" | "aggressive";
+  priority?: Priority;
+  weights?: {
+    water_saving: number;
+    income: number;
+    soil_restoration: number;
+    simplicity: number;
+  };
+  prices?: {
+    corn_usd_bu: number;
+    soy_usd_bu: number;
+    sorghum_usd_bu: number;
+    alfalfa_usd_ton: number;
+    n_cost_usd_kg: number;
+  };
+  management_mode?: "uniform" | "zone_variable";
+}
+
+export interface PrunedPlan {
+  id: string;
+  name: string;
+  reason: string;
+}
 
 export interface CellState {
   smi: number; esi: number; bare: number; ndvi: number; vigor: number; et_mm: number; status: Status;
@@ -62,11 +99,14 @@ export interface Scenario {
   planting_window?: string;
   score: number;
   recommended: boolean;
+  feasible?: boolean;
+  pruned_reason?: string | null;
   metrics: {
     soil_organic_matter_gain_pct: number;
     nitrogen_fixed_kg_ha: number;
     water_demand_mm: number;
     water_budget_balance_mm: number;
+    irrigation_applied_mm?: number;
     erosion_control_score: number;
     estimated_margin_usd_ha: number;
     critical_window_stress_pct?: number;
@@ -99,8 +139,17 @@ export interface AnalyzeResponse {
   model_version?: string | null;
   is_proxy_ndvi_bare?: boolean;
   ranking_robust?: boolean;
+  robust?: boolean;
+  robust_reason?: string | null;
   uncertainty_note?: string;
   dynamic_candidates?: DynamicCandidate[];
+  pruned_plans?: PrunedPlan[];
+  constraint_violation?: boolean;
+  management_mode?: "uniform" | "zone_variable";
+  applied_constraints?: Record<string, unknown> & { is_default?: boolean; irrigation_cap_mm?: number };
+  warnings?: string[];
+  extrapolated?: boolean;
+  extrapolation_note?: string | null;
   data_sources: Record<string, string>;
   grid: { rows: number; cols: number; n_zones: number };
   field_geojson: { features: { id: string; properties: ZoneProps & { kind: string } }[] };
