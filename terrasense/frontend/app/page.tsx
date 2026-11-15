@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { AlertTriangle, CloudRain, Cpu, Lock, Satellite, SlidersHorizontal, Thermometer, Unlock } from "lucide-react";
+import { AlertTriangle, CloudRain, Cpu, Lock, MapPin, Satellite, SlidersHorizontal, Thermometer, Unlock, User } from "lucide-react";
 import { PiFarmLight } from "react-icons/pi";
 import { analyzeField, fetchTimeline, type ClimateParams } from "@/lib/api";
 import type { AnalyzeResponse, FarmerConstraints, ScenarioId, Timeline, ZoneProps } from "@/lib/types";
@@ -11,6 +11,7 @@ import MetricsDashboard from "@/components/MetricsDashboard";
 import DecisionPanel from "@/components/DecisionPanel";
 import TileDrawer from "@/components/TileDrawer";
 import ConstraintsModal, { DEFAULT_CONSTRAINTS } from "@/components/ConstraintsModal";
+import FarmProfileModal, { DEFAULT_FARM_PROFILE, type FarmProfile } from "@/components/FarmProfileModal";
 import { STATUS_COLOR, STATUS_LABEL } from "@/components/IsoGrid";
 
 // three.js needs the browser
@@ -38,6 +39,8 @@ export default function Page() {
   const [mapLocked, setMapLocked] = useState(true);
   const [constraints, setConstraints] = useState<FarmerConstraints>(DEFAULT_CONSTRAINTS);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [farmProfile, setFarmProfile] = useState<FarmProfile>(DEFAULT_FARM_PROFILE);
+  const [profileOpen, setProfileOpen] = useState(false);
   const pendingScenarioRef = useRef<ScenarioId | null>(null);
 
   useEffect(() => {
@@ -93,6 +96,9 @@ export default function Page() {
   if (error && !analysis) return <Centered><AlertTriangle className="mb-2 text-amber-400" />{error}</Centered>;
   if (!analysis || !timeline || !month) return <Centered>Fusing NASA EO & ML models for your field…</Centered>;
 
+  const latLabel = `${Math.abs(farmProfile.latitude).toFixed(2)}°${farmProfile.latitude >= 0 ? "N" : "S"}`;
+  const lonLabel = `${Math.abs(farmProfile.longitude).toFixed(2)}°${farmProfile.longitude >= 0 ? "E" : "W"}`;
+
   return (
     <main className="flex min-h-screen w-full flex-col gap-4 px-5 py-4">
       <header className="-mx-5 flex flex-wrap items-center justify-between gap-2 border-b border-stone-800 px-5 pb-3.5">
@@ -103,15 +109,48 @@ export default function Page() {
           </div>
         </div>
 
-        <button
-          onClick={() => setSettingsOpen(true)}
-          className="flex items-center gap-1.5 rounded-lg border border-stone-700 bg-soil-800 px-3 py-1.5 text-xs font-medium text-stone-200 shadow-sm transition hover:border-lime-500 hover:text-lime-300"
-          title="Configure farm constraints, water availability, equipment & market prices"
-        >
-          <SlidersHorizontal size={14} className="text-lime-400" />
-          <span>Constraints</span>
-        </button>
+        <div className="flex flex-wrap items-center gap-2.5">
+          <div
+            className="flex items-center gap-2 rounded-lg border border-stone-800 bg-soil-900/90 px-3 py-1.5 text-xs text-stone-300"
+            title={`${farmProfile.farmName} (${farmProfile.countyState})`}
+          >
+            <MapPin size={13} className="text-lime-400 shrink-0" />
+            <span className="font-mono text-stone-200">
+              {latLabel}, {lonLabel}
+            </span>
+            <span className="text-stone-600">|</span>
+            <span className="text-stone-400">
+              {analysis.grid.rows}×{analysis.grid.cols} grid · <b className="text-stone-200">{farmProfile.areaSqFt.toLocaleString()} sq ft</b>
+            </span>
+          </div>
+
+          <button
+            onClick={() => setSettingsOpen(true)}
+            className="flex items-center gap-1.5 rounded-lg border border-stone-700 bg-soil-800 px-3 py-1.5 text-xs font-medium text-stone-200 shadow-sm transition hover:border-lime-500 hover:text-lime-300"
+            title="Configure farm constraints, water availability, equipment & market prices"
+          >
+            <SlidersHorizontal size={14} className="text-lime-400" />
+            <span>Constraints</span>
+          </button>
+
+          <button
+            onClick={() => setProfileOpen(true)}
+            className="flex items-center gap-1.5 rounded-lg border border-stone-700 bg-soil-800 px-3 py-1.5 text-xs font-medium text-stone-200 shadow-sm transition hover:border-lime-500 hover:text-lime-300"
+            title="Edit farm location profile"
+          >
+            <User size={14} className="text-lime-400" />
+            <span>Profile</span>
+          </button>
+        </div>
       </header>
+
+      <FarmProfileModal
+        open={profileOpen}
+        value={farmProfile}
+        gridLabel={`${analysis.grid.rows}×${analysis.grid.cols} zones`}
+        onClose={() => setProfileOpen(false)}
+        onSave={setFarmProfile}
+      />
 
       <ConstraintsModal
         open={settingsOpen}

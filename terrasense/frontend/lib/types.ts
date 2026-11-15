@@ -151,6 +151,7 @@ export interface AnalyzeResponse {
   extrapolated?: boolean;
   extrapolation_note?: string | null;
   data_sources: Record<string, string>;
+  bbox?: [number, number, number, number];
   grid: { rows: number; cols: number; n_zones: number };
   field_geojson: { features: { id: string; properties: ZoneProps & { kind: string } }[] };
   summary: { current_month: string; alerts: Alert[] };
