@@ -7,17 +7,77 @@ Mock:  seasonal climatology (+ injected Jul/Aug dry-heat anomaly in the most
 """
 from __future__ import annotations
 
+import json
 import math
 import os
 from datetime import date, timedelta
-from typing import Dict, List, Tuple
+from pathlib import Path
+from typing import Dict, List, Optional, Tuple
 
 import numpy as np
 
 POWER_URL = "https://power.larc.nasa.gov/api/temporal/daily/point"
 PARAMS = "PRECTOTCORR,T2M_MAX,T2M_MIN,RH2M,ALLSKY_SFC_SW_DWN"
+DATA_DIR = Path(__file__).resolve().parent / "data" / "nasa_power"
 
 _cache: Dict[tuple, Tuple[List[dict], str]] = {}
+_local_index: Optional[List[Tuple[float, float, Path]]] = None
+
+
+def _get_local_archive_path(lat: float, lon: float) -> Optional[Path]:
+    """Find nearest local NASA POWER JSON file in data/nasa_power/."""
+    global _local_index
+    if not DATA_DIR.exists():
+        return None
+    if _local_index is None:
+        idx: List[Tuple[float, float, Path]] = []
+        for p in sorted(DATA_DIR.glob("*.json")):
+            try:
+                with p.open("r") as f:
+                    head = f.read(256)
+                # Fast header parse for lat/lon
+                obj = json.loads(head + "]}" if not head.strip().endswith("}") else head)
+            except Exception:
+                try:
+                    obj = json.loads(p.read_text())
+                except Exception:
+                    continue
+            if "lat" in obj and "lon" in obj:
+                idx.append((float(obj["lat"]), float(obj["lon"]), p))
+        _local_index = idx
+    if not _local_index:
+        return None
+    best = min(_local_index, key=lambda item: (item[0] - lat) ** 2 + (item[1] - lon) ** 2)
+    return best[2]
+
+
+def load_local_daily(lat: float, lon: float, start: date, end: date) -> Optional[List[dict]]:
+    """Load real NASA POWER daily observations from local archive (2023-2024)."""
+    path = _get_local_archive_path(lat, lon)
+    if path is None:
+        return None
+    data = json.loads(path.read_text())
+    daily_list = data.get("daily") or []
+    if not daily_list:
+        return None
+    by_date = {r["date"]: r for r in daily_list}
+    by_md = {(r["date"][:4], r["date"][5:]): r for r in daily_list}
+    out: List[dict] = []
+    d = start
+    while d <= end:
+        iso = d.isoformat()
+        row = by_date.get(iso)
+        if row is None:
+            # Map years outside 2023-2024 onto 2023 (odd) / 2024 (even) observed archive
+            target_yr = "2024" if d.year % 2 == 0 else "2023"
+            md = iso[5:]
+            if md == "02-29":
+                md = "02-28"
+            src = by_md.get((target_yr, md)) or by_md.get(("2024", md)) or daily_list[-1]
+            row = {**src, "date": iso}
+        out.append(row)
+        d += timedelta(days=1)
+    return out
 
 
 def _seasonal(lat: float, doy: int) -> float:
@@ -102,7 +162,11 @@ def get_daily(lat: float, lon: float, start: date, end: date, live: bool | None 
         except Exception as exc:  # network/API failure -> mock
             print(f"[nasa_power] live fetch failed ({exc}); using mock")
     if result is None:
-        result = (mock_daily(lat, lon, start, end), "mock")
+        local_rows = load_local_daily(lat, lon, start, end)
+        if local_rows:
+            result = (local_rows, "NASA POWER (2023–2024 archive)")
+        else:
+            result = (mock_daily(lat, lon, start, end), "mock")
     _cache[key] = result
     return result
 

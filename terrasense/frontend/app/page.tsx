@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useMemo, useState } from "react";
-import { AlertTriangle, CloudRain, Lock, Satellite, Thermometer, Unlock } from "lucide-react";
+import { AlertTriangle, CloudRain, Cpu, Lock, Satellite, Thermometer, Unlock } from "lucide-react";
 import { PiFarmLight } from "react-icons/pi";
 import { analyzeField, fetchTimeline, type ClimateParams } from "@/lib/api";
 import type { AnalyzeResponse, ScenarioId, Timeline, ZoneProps } from "@/lib/types";
@@ -73,35 +73,36 @@ export default function Page() {
   );
   const month = timeline?.months[monthIdx];
   const selIdx = zones.findIndex((z) => z.zone_id === selectedId);
-  const activeScenarioName = analysis?.scenarios.find((s) => s.id === scenario)?.name;
+  const activeScenarioName =
+    analysis?.scenarios.find((s) => s.id === scenario)?.name ??
+    analysis?.dynamic_candidates?.find((c) => c.id === scenario)?.name ??
+    scenario;
 
   if (error && !analysis) return <Centered><AlertTriangle className="mb-2 text-amber-400" />{error}</Centered>;
-  if (!analysis || !timeline || !month) return <Centered>Fusing NASA data for your field…</Centered>;
+  if (!analysis || !timeline || !month) return <Centered>Fusing NASA EO & ML models for your field…</Centered>;
 
   return (
     <main className="flex min-h-screen w-full flex-col gap-4 px-5 py-4">
       <header className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2.5">
-          <PiFarmLight className="text-3xl text-lime-400" />
-          <h1 className="text-2xl font-bold tracking-tight"><span className="text-lime-400">Terra</span>Sense</h1>
-        </div>
-        <div className="flex flex-wrap items-center gap-3 text-xs text-stone-400">
-          {analysis.engine && (
-            <span className="rounded-full border border-lime-700/60 bg-lime-950/40 px-2.5 py-0.5 text-lime-300">
-              Engine: <b>{analysis.engine === "ml" ? `Hybrid LightGBM (${analysis.model_version ?? "ML"})` : "Heuristic WB"}</b>
-            </span>
-          )}
-          <span className="flex items-center gap-1.5">
-            <Satellite size={14} />
-            Climate: <b className="text-stone-200">{analysis.data_sources.climate === "mock" ? "simulated (offline)" : "NASA POWER"}</b>
-          </span>
+          <PiFarmLight className="text-4xl text-lime-400" />
+          <div>
+            <h1 className="text-2xl font-bold tracking-tight"><span className="text-lime-400">Terra</span>Sense</h1>
+          </div>
         </div>
       </header>
 
       {error && <div className="rounded bg-amber-900/40 p-2 text-xs text-amber-200">{error}</div>}
 
-      <DecisionPanel scenarios={analysis.scenarios} active={scenario} onPick={setScenario}
-        guidance={timeline.guidance} />
+      <DecisionPanel
+        scenarios={analysis.scenarios}
+        dynamicCandidates={analysis.dynamic_candidates}
+        rankingRobust={analysis.ranking_robust}
+        uncertaintyNote={analysis.uncertainty_note}
+        active={scenario}
+        onPick={setScenario}
+        guidance={timeline.guidance}
+      />
 
       <div className="relative h-[540px] w-full overflow-hidden rounded-xl border border-stone-700">
         <IsoGrid zones={zones} cells={month.cells} rows={analysis.grid.rows} cols={analysis.grid.cols}
@@ -111,7 +112,7 @@ export default function Page() {
           onClick={() => setMapLocked((l) => !l)}
           className={`absolute bottom-3 right-3 z-10 flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-medium shadow transition ${
             mapLocked
-              ? "border-stone-600 bg-black/75 text-stone-200 hover:bg-stone-800"
+              ? "border-stone-700 bg-black/75 text-stone-200 hover:bg-stone-800"
               : "border-lime-500 bg-lime-950/85 text-lime-200 hover:bg-lime-900/90"
           }`}
           title={mapLocked ? "Unlock to pan/zoom/rotate map" : "Lock map so page scrolling passes through"}
@@ -137,7 +138,7 @@ export default function Page() {
         )}
 
         {selIdx < 0 && (
-          <div className="absolute right-3 top-3 z-10 w-64 space-y-2.5 rounded-xl border border-stone-600/90 bg-soil-900/90 p-3 text-xs shadow-xl backdrop-blur">
+          <div className="absolute right-3 top-3 z-10 w-64 space-y-2.5 rounded-xl border border-stone-700/90 bg-soil-900/90 p-3 text-xs shadow-xl backdrop-blur">
             <div className="flex items-center justify-between">
               <span className="font-semibold text-stone-100">Forecast what-if</span>
               <span className="text-[10px] text-stone-400">Shaded months</span>
@@ -162,8 +163,14 @@ export default function Page() {
         )}
 
         {selIdx >= 0 && (
-          <TileDrawer zone={zones[selIdx]} cell={month.cells[selIdx]} monthLabel={month.label}
-            scenarios={analysis.scenarios} onClose={() => setSelectedId(null)} />
+          <TileDrawer
+            zone={zones[selIdx]}
+            cell={month.cells[selIdx]}
+            monthLabel={month.label}
+            scenarios={analysis.scenarios}
+            dataSources={analysis.data_sources}
+            onClose={() => setSelectedId(null)}
+          />
         )}
       </div>
 
@@ -174,6 +181,7 @@ export default function Page() {
         playing={playing}
         onTogglePlay={() => setPlaying((p) => !p)}
         scenarioName={activeScenarioName}
+        dataSources={analysis.data_sources}
       />
 
       <MetricsDashboard
@@ -183,7 +191,22 @@ export default function Page() {
         selectedZone={selIdx >= 0 ? zones[selIdx] : null}
         selectedZoneIdx={selIdx}
         scenarioName={activeScenarioName}
+        dataSources={analysis.data_sources}
       />
+
+      <footer className="mt-2 flex flex-wrap items-center gap-2.5 border-t border-stone-800 pt-3 text-xs text-stone-400">
+        <span className="font-semibold uppercase tracking-wider text-stone-500">Demo Build:</span>
+        {analysis.engine && (
+          <span className="flex items-center gap-1.5 rounded-full border border-lime-700/70 bg-lime-950/50 px-2.5 py-0.5 text-lime-300">
+            <Cpu size={13} />
+            Engine: <b>{analysis.engine === "ml" ? `Hybrid LightGBM (${analysis.model_version ?? "ML"})` : "Heuristic WB"}</b>
+          </span>
+        )}
+        <span className="flex items-center gap-1.5 rounded-full border border-stone-700 bg-stone-900/80 px-2.5 py-0.5">
+          <Satellite size={13} className="text-lime-400" />
+          Climate: <b className="text-stone-200">{analysis.data_sources.climate}</b>
+        </span>
+      </footer>
     </main>
   );
 }

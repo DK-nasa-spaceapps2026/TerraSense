@@ -70,6 +70,12 @@ PLANS: Dict[str, CropPlan] = {
     "drought_cash": CropPlan(
         "drought_cash", "Drought-Tolerant Cash Crop", "Sorghum / sunflower, stubble retained", 6, 9, 0.85, 0.80, 0.28,
         None, 0.0, 0, 0.05, 690, 0.45, "Switch to low-water cash crops with retained stubble."),
+    "corn_rye_cover": CropPlan(
+        "corn_rye_cover", "No-Till Corn + Winter Rye Armor", "No-till Corn → winter cereal rye cover", 5, 10, 1.12, 0.92, 0.35,
+        0.65, 0.45, 15, 0.11, 745, 0.95, "High-residue no-till corn followed by drilled winter cereal rye."),
+    "alfalfa_perennial": CropPlan(
+        "alfalfa_perennial", "Perennial Alfalfa Meadow", "Alfalfa / meadow brome forage rotation", 4, 10, 1.05, 0.92, 0.78,
+        0.80, 0.55, 140, 0.24, 620, 0.55, "Deep-rooted perennial legume forage providing year-round cover."),
 }
 
 
@@ -158,11 +164,38 @@ def build_grid(geom: dict, grid_n: int, field_id: str) -> dict:
 
     dx, dy = (e - w) / grid_n, (n - s) / grid_n
     feats, idx = [], []
+    # Anchor zone soil & terrain to real SSURGO + 30m DEM reference points when available
+    ref_interp = None
+    try:
+        from ml.predict import get_predictor
+        pred = get_predictor()
+        if pred is not None:
+            all_coords = [(w + (c + 0.5) * dx, n - (r + 0.5) * dy) for r in range(grid_n) for c in range(grid_n)]
+            flat_soil = {k: arr.ravel() for k, arr in dict(sand=sand, clay=clay, som=som, slope=slope, awc=awc).items()}
+            ref_interp = pred.interpolate_zone_static_df(field_id, all_coords, flat_soil)
+            # Blend real IDW-interpolated SSURGO/DEM baseline with sub-field spatial heterogeneity
+            sand = np.clip(0.55 * (ref_interp["sand_top_pct"].to_numpy().reshape(grid_n, grid_n) / 100.0) + 0.45 * sand, 0.05, 0.85)
+            clay = np.clip(0.55 * (ref_interp["clay_top_pct"].to_numpy().reshape(grid_n, grid_n) / 100.0) + 0.45 * clay, 0.08, 0.55)
+            som = np.clip(0.60 * ref_interp["om_top_pct"].to_numpy().reshape(grid_n, grid_n) + 0.40 * som, 1.0, 7.5)
+            slope = np.clip(0.55 * ref_interp["slope_pct"].to_numpy().reshape(grid_n, grid_n) + 0.45 * slope, 0.2, 18.0)
+            awc = np.clip(0.60 * ref_interp["awc_100cm_mm"].to_numpy().reshape(grid_n, grid_n) + 0.40 * awc, 90.0, 280.0)
+    except Exception:
+        ref_interp = None
+
     for r in range(grid_n):          # r=0 is the northern row
         for c in range(grid_n):
             x0, y1 = w + c * dx, n - r * dy
             if not _point_in_ring(x0 + dx / 2, y1 - dy / 2, geom["ring"]):
                 continue
+            flat_i = r * grid_n + c
+            extra_soil = {}
+            if ref_interp is not None:
+                row_ref = ref_interp.iloc[flat_i]
+                extra_soil = {
+                    "ph": round(float(row_ref.get("ph_top", 6.5)), 1),
+                    "elev_m": round(float(row_ref.get("elev_m", 235.0)), 1),
+                    "twi": round(float(row_ref.get("twi", 7.5)), 2),
+                }
             idx.append((r, c))
             feats.append({
                 "type": "Feature",
@@ -177,6 +210,7 @@ def build_grid(geom: dict, grid_n: int, field_id: str) -> dict:
                         "organic_matter_pct": round(float(som[r, c]), 2),
                         "slope_pct": round(float(slope[r, c]), 1),
                         "available_water_mm": round(float(awc[r, c]), 0),
+                        **extra_soil,
                     },
                 },
             })
@@ -202,7 +236,7 @@ def build_climate(geom: dict, anchor: Optional[date], temp_shift: float, precip_
                   live: Optional[bool] = None) -> dict:
     """24 monthly climate dicts: 12 observed + 12 forecast (anchor = current month = idx 11)."""
     lat, lon = (geom["bbox"][1] + geom["bbox"][3]) / 2, (geom["bbox"][0] + geom["bbox"][2]) / 2
-    anchor = (anchor or date.today()).replace(day=1)
+    anchor = (anchor or date(2024, 11, 1)).replace(day=1)
     start = _add_months(anchor, -(N_HIST - 1))
     end = _add_months(anchor, 1) - timedelta(days=1)
     if live:
@@ -220,12 +254,9 @@ def build_climate(geom: dict, anchor: Optional[date], temp_shift: float, precip_
             c = dict(hist[i]); c["phase"] = "historical"
         else:
             last_year = hist[i - N_HIST]
-            if source == "mock":
-                nrm = nasa_power.mock_normals_month(lat, d.month)
-                c = {k: 0.6 * nrm[k] + 0.4 * last_year[k] for k in ("tmax", "tmin", "precip_mm", "rh", "solar")}
-                c["max_daily_precip"] = last_year["max_daily_precip"]
-            else:
-                c = dict(last_year)
+            nrm = nasa_power.mock_normals_month(lat, d.month)
+            c = {k: 0.6 * nrm[k] + 0.4 * last_year[k] for k in ("tmax", "tmin", "precip_mm", "rh", "solar")}
+            c["max_daily_precip"] = last_year["max_daily_precip"]
             c["days"] = 30
             c["phase"] = "forecast"
             c["tmax"] += temp_shift; c["tmin"] += temp_shift

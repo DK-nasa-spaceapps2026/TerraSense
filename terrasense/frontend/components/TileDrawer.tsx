@@ -13,17 +13,22 @@ const Bar = ({ label, value, invert = false, hint }: { label: string; value: num
       <div className="h-2 rounded bg-stone-700">
         <div className="h-2 rounded" style={{ width: `${pct}%`, background: good > 60 ? "#7cc04a" : good > 35 ? "#e0b13a" : "#d9622b" }} />
       </div>
-      <div className="mt-0.5 text-[10px] text-stone-400">{hint}</div>
+      <div className="mt-0.5 text-[10px] text-stone-500">{hint}</div>
     </div>
   );
 };
 
-export default function TileDrawer({ zone, cell, monthLabel, scenarios, onClose }: {
-  zone: ZoneProps; cell: CellState; monthLabel: string; scenarios: Scenario[]; onClose: () => void;
+export default function TileDrawer({ zone, cell, monthLabel, scenarios, dataSources, onClose }: {
+  zone: ZoneProps;
+  cell: CellState;
+  monthLabel: string;
+  scenarios: Scenario[];
+  dataSources?: Record<string, string>;
+  onClose: () => void;
 }) {
   const rec = scenarios.find((s) => s.id === zone.recommended_scenario);
   return (
-    <aside className="absolute right-3 top-3 z-10 w-72 rounded-xl border border-stone-700 bg-soil-900/95 p-4 shadow-xl backdrop-blur">
+    <aside className="absolute right-3 top-3 z-20 w-72 rounded-xl border border-stone-600 bg-soil-900/95 p-4 shadow-xl backdrop-blur">
       <div className="mb-2 flex items-start justify-between">
         <div>
           <div className="text-xs uppercase tracking-wide text-stone-400">Zone {zone.row + 1}-{zone.col + 1} · {monthLabel}</div>
@@ -35,20 +40,24 @@ export default function TileDrawer({ zone, cell, monthLabel, scenarios, onClose 
         <button onClick={onClose} aria-label="Close" className="rounded p-1 hover:bg-stone-700"><X size={16} /></button>
       </div>
 
-      <Bar label="Soil Moisture Index" value={cell.smi} hint="SMAP-style root-zone fill (0 dry – 1 saturated)" />
-      <Bar label="Evaporative Stress Index" value={cell.esi} hint="ET ÷ crop PET — below 0.65 = stressed" />
+      <Bar label="Soil Moisture Index" value={cell.smi} hint={dataSources?.soil_moisture ?? "Hybrid LightGBM + ERA5-Land/SSURGO"} />
+      <Bar label="Evaporative Stress Index" value={cell.esi} hint={dataSources?.evapotranspiration ?? "Hybrid LightGBM + MERRA-2 EVLAND"} />
       <Bar label="Bare-soil exposure risk" value={cell.bare} invert hint="Cover, slope, sand & rain intensity" />
-      <Bar label="Vegetation (NDVI)" value={cell.ndvi} hint="MODIS/Landsat-style greenness" />
+      <Bar label="Vegetation (NDVI)" value={cell.ndvi} hint={dataSources?.vegetation ?? "MODIS NDVI"} />
 
-      <div className="mt-3 grid grid-cols-2 gap-2 rounded bg-stone-800 p-2 text-xs">
+      <div className="mt-3 grid grid-cols-2 gap-1.5 rounded bg-stone-800 p-2 text-xs">
         <div>Sand <b>{zone.soil.sand_pct}%</b></div><div>Clay <b>{zone.soil.clay_pct}%</b></div>
         <div>SOM <b>{zone.soil.organic_matter_pct}%</b></div><div>Slope <b>{zone.soil.slope_pct}%</b></div>
+        {zone.soil.ph !== undefined && <div>Soil pH <b>{zone.soil.ph}</b></div>}
+        {zone.soil.twi !== undefined && <div>TWI <b>{zone.soil.twi}</b></div>}
+        {zone.soil.elev_m !== undefined && <div>Elev <b>{zone.soil.elev_m} m</b></div>}
+        <div>Crop ET <b>{cell.et_mm} mm</b></div>
         <div className="col-span-2">Plant-available water <b>{zone.soil.available_water_mm} mm</b></div>
       </div>
 
       {rec && (
         <div className="mt-3 rounded border border-lime-700 bg-lime-950/40 p-2 text-xs">
-          <div className="text-stone-400">Best strategy for this zone</div>
+          <div className="text-stone-400">ML recommended strategy for this zone</div>
           <div className="font-semibold text-lime-300">{rec.name}</div>
           <div className="text-stone-300">{rec.crops}</div>
         </div>

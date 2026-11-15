@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import {
-  Activity, CloudRain, Droplets, Flame, Layers, Leaf, Maximize2, Minimize2, Plus, Sun, Trash2, Wind,
+  Activity, CloudRain, Droplets, Flame, Layers, Leaf, Maximize2, Minimize2, Plus, Trash2, Wind,
 } from "lucide-react";
 import type { MonthState, ZoneProps } from "@/lib/types";
 import { STATUS_COLOR, STATUS_LABEL } from "./IsoGrid";
@@ -20,7 +20,8 @@ export type MetricId =
 interface MetricPreset {
   id: MetricId;
   title: string;
-  sensor: string;
+  sourceKey?: string;
+  fallbackSensor: string;
   unit: string;
   color: string;
   secondaryColor?: string;
@@ -32,16 +33,18 @@ export const METRIC_PRESETS: MetricPreset[] = [
   {
     id: "smi",
     title: "Soil Moisture Index",
-    sensor: "NASA SMAP",
+    sourceKey: "soil_moisture",
+    fallbackSensor: "Hybrid LightGBM + ERA5-Land/SSURGO",
     unit: "SMI",
     color: "#38bdf8",
-    description: "Root-zone water fill fraction (0 dry – 1 saturated)",
+    description: "Root-zone water fill fraction (0 dry – 1 saturated) w/ 80% conformal band",
     Icon: Droplets,
   },
   {
     id: "precip_et",
     title: "Rainfall vs Crop ET",
-    sensor: "GPM / ECOSTRESS",
+    sourceKey: "precipitation",
+    fallbackSensor: "NASA POWER / GPM IMERG",
     unit: "mm",
     color: "#60a5fa",
     secondaryColor: "#f59e0b",
@@ -51,16 +54,18 @@ export const METRIC_PRESETS: MetricPreset[] = [
   {
     id: "esi",
     title: "Evaporative Stress (ESI)",
-    sensor: "ECOSTRESS",
+    sourceKey: "evapotranspiration",
+    fallbackSensor: "Hybrid LightGBM + MERRA-2 EVLAND",
     unit: "ET/PET",
     color: "#a3e635",
-    description: "Ratio of actual to potential ET (< 0.65 indicates water stress)",
+    description: "Actual to potential ET ratio (< 0.65 water stress) w/ 80% conformal band",
     Icon: Activity,
   },
   {
     id: "ndvi",
     title: "Canopy Vigor & NDVI",
-    sensor: "MODIS / Landsat",
+    sourceKey: "vegetation",
+    fallbackSensor: "MODIS NDVI",
     unit: "NDVI",
     color: "#4ade80",
     secondaryColor: "#a3e635",
@@ -70,7 +75,7 @@ export const METRIC_PRESETS: MetricPreset[] = [
   {
     id: "bare",
     title: "Bare-Soil Exposure Risk",
-    sensor: "Terrain + Cover",
+    fallbackSensor: "SSURGO + 30m DEM + Cover",
     unit: "Risk",
     color: "#fb923c",
     description: "Erosion & runoff vulnerability from canopy gap, slope, and sand",
@@ -79,7 +84,8 @@ export const METRIC_PRESETS: MetricPreset[] = [
   {
     id: "temp",
     title: "Temperature Band (Max / Min)",
-    sensor: "NASA POWER",
+    sourceKey: "climate",
+    fallbackSensor: "NASA POWER",
     unit: "°C",
     color: "#f87171",
     secondaryColor: "#fbbf24",
@@ -89,7 +95,7 @@ export const METRIC_PRESETS: MetricPreset[] = [
   {
     id: "zone_dist",
     title: "Zone Stress Breakdown",
-    sensor: "6×6 Micro-Zones",
+    fallbackSensor: "ML Micro-Zone Classifier",
     unit: "zones",
     color: "#8fb04c",
     description: "Distribution of management zones by stress classification",
@@ -98,7 +104,8 @@ export const METRIC_PRESETS: MetricPreset[] = [
   {
     id: "pet_rh",
     title: "Atmospheric Demand (PET & RH)",
-    sensor: "NASA POWER",
+    sourceKey: "climate",
+    fallbackSensor: "NASA POWER",
     unit: "mm / %",
     color: "#c084fc",
     secondaryColor: "#38bdf8",
@@ -119,10 +126,11 @@ interface Props {
   selectedZone: ZoneProps | null;
   selectedZoneIdx: number;
   scenarioName?: string;
+  dataSources?: Record<string, string>;
 }
 
 export default function MetricsDashboard({
-  months, monthIdx, onSelectMonth, selectedZone, selectedZoneIdx, scenarioName,
+  months, monthIdx, onSelectMonth, selectedZone, selectedZoneIdx, scenarioName, dataSources,
 }: Props) {
   const [panels, setPanels] = useState<PanelConfig[]>([
     { id: "smi" },
@@ -135,6 +143,9 @@ export default function MetricsDashboard({
   const activeIds = new Set(panels.map((p) => p.id));
   const cur = months[monthIdx];
   const prev = months[Math.max(0, monthIdx - 1)];
+
+  const getSensorLabel = (preset: MetricPreset) =>
+    (preset.sourceKey && dataSources?.[preset.sourceKey]) || preset.fallbackSensor;
 
   const addPanel = (id: MetricId) => {
     if (!activeIds.has(id)) {
@@ -155,7 +166,7 @@ export default function MetricsDashboard({
 
   return (
     <section className="space-y-3 pt-1">
-      {/* Distinct section header / toolbar (not a card box) */}
+      {/* Distinct section header / toolbar */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-stone-800 pb-2.5">
         <div className="flex flex-wrap items-center gap-3">
           <div className="flex items-center gap-2 border-l-4 border-lime-500 pl-2.5">
@@ -166,7 +177,7 @@ export default function MetricsDashboard({
           <span className="rounded-full border border-stone-700 bg-stone-900/80 px-2.5 py-0.5 text-xs text-stone-300">
             Scope:{" "}
             <b className="text-lime-400">
-              {selectedZone ? `Zone ${selectedZone.row + 1}-${selectedZone.col + 1}` : "Field Mean (36 zones)"}
+              {selectedZone ? `Zone ${selectedZone.row + 1}-${selectedZone.col + 1}` : `Field Mean (${cur.cells.length} zones)`}
             </b>
           </span>
           <span className="rounded-full border border-stone-700 bg-stone-900/80 px-2.5 py-0.5 text-xs text-stone-400">
@@ -192,7 +203,7 @@ export default function MetricsDashboard({
           {menuOpen && (
             <div className="absolute right-0 top-full z-20 mt-1.5 w-80 rounded-xl border border-stone-700 bg-soil-900 p-1.5 shadow-2xl">
               <div className="px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-stone-400">
-                Select NASA EO / Field Metric
+                Select NASA EO / ML Metric
               </div>
               <div className="max-h-80 space-y-0.5 overflow-y-auto">
                 {METRIC_PRESETS.map((preset) => {
@@ -204,7 +215,7 @@ export default function MetricsDashboard({
                       onClick={() => (added ? removePanel(preset.id) : addPanel(preset.id))}
                       className={`flex w-full items-start gap-2.5 rounded-lg px-2.5 py-2 text-left text-xs transition ${
                         added
-                          ? "bg-stone-800 text-stone-300 hover:bg-stone-800"
+                          ? "bg-stone-800/90 text-stone-300 hover:bg-stone-800"
                           : "hover:bg-stone-800/60 text-stone-100"
                       }`}
                     >
@@ -212,7 +223,7 @@ export default function MetricsDashboard({
                       <div className="flex-1">
                         <div className="flex items-center justify-between font-medium">
                           <span>{preset.title}</span>
-                          <span className="text-[10px] text-stone-400">{preset.sensor}</span>
+                          <span className="text-[10px] text-stone-400">{getSensorLabel(preset)}</span>
                         </div>
                         <div className="mt-0.5 text-[11px] text-stone-400">{preset.description}</div>
                       </div>
@@ -245,6 +256,7 @@ export default function MetricsDashboard({
               <MetricWidget
                 key={panel.id}
                 preset={preset}
+                sensorLabel={getSensorLabel(preset)}
                 wide={!!panel.wide}
                 months={months}
                 monthIdx={monthIdx}
@@ -265,6 +277,7 @@ export default function MetricsDashboard({
 
 interface WidgetProps {
   preset: MetricPreset;
+  sensorLabel: string;
   wide: boolean;
   months: MonthState[];
   monthIdx: number;
@@ -277,7 +290,7 @@ interface WidgetProps {
 }
 
 function MetricWidget({
-  preset, wide, months, monthIdx, cur, prev, selectedZoneIdx, onSelectMonth, onToggleWide, onRemove,
+  preset, sensorLabel, wide, months, monthIdx, cur, prev, selectedZoneIdx, onSelectMonth, onToggleWide, onRemove,
 }: WidgetProps) {
   const Icon = preset.Icon;
   const n = months.length;
@@ -292,7 +305,6 @@ function MetricWidget({
       ? m.cells[selectedZoneIdx].et_mm
       : m.cells.reduce((acc, c) => acc + c.et_mm, 0) / m.cells.length;
 
-  // Compute primary series, secondary series, readout, and delta
   let primary: number[] = [];
   let secondary: number[] | null = null;
   let threshold: number | null = null;
@@ -307,7 +319,13 @@ function MetricWidget({
     const v = primary[monthIdx];
     const d = v - primary[Math.max(0, monthIdx - 1)];
     mainValue = v.toFixed(2);
-    subValue = v < 0.3 ? "Dry root-zone" : v > 0.75 ? "Well-watered" : "Optimal range";
+    subValue = cur.uncertainty
+      ? `P10–P90: ${cur.uncertainty.smi_p10.toFixed(2)}–${cur.uncertainty.smi_p90.toFixed(2)}`
+      : v < 0.3
+        ? "Dry root-zone"
+        : v > 0.75
+          ? "Well-watered"
+          : "Optimal range";
     deltaStr = `${d >= 0 ? "+" : ""}${d.toFixed(2)} vs prev mo`;
     threshold = 0.3;
   } else if (preset.id === "esi") {
@@ -315,7 +333,11 @@ function MetricWidget({
     const v = primary[monthIdx];
     const d = v - primary[Math.max(0, monthIdx - 1)];
     mainValue = v.toFixed(2);
-    subValue = v < 0.65 ? "Water stress (<0.65)" : "Unstressed ET";
+    subValue = cur.uncertainty
+      ? `P10–P90: ${cur.uncertainty.esi_p10.toFixed(2)}–${cur.uncertainty.esi_p90.toFixed(2)}`
+      : v < 0.65
+        ? "Water stress (<0.65)"
+        : "Unstressed ET";
     deltaStr = `${d >= 0 ? "+" : ""}${d.toFixed(2)} vs prev mo`;
     threshold = 0.65;
   } else if (preset.id === "ndvi") {
@@ -369,6 +391,25 @@ function MetricWidget({
   const toPath = (arr: number[]) =>
     arr.map((v, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
 
+  // 80% conformal prediction band (P10..P90) from ML model on SMI & ESI
+  const bandKey = preset.id === "smi" ? ("smi" as const) : preset.id === "esi" ? ("esi" as const) : null;
+  const bandPolygon =
+    bandKey && months.some((m) => m.uncertainty)
+      ? [
+          ...months.map((m, i) => {
+            const hi = m.uncertainty ? m.uncertainty[`${bandKey}_p90`] : primary[i];
+            return `${i ? "L" : "M"}${x(i).toFixed(1)},${y(hi).toFixed(1)}`;
+          }),
+          ...months
+            .map((m, i) => {
+              const lo = m.uncertainty ? m.uncertainty[`${bandKey}_p10`] : primary[i];
+              return `L${x(i).toFixed(1)},${y(lo).toFixed(1)}`;
+            })
+            .reverse(),
+          "Z",
+        ].join(" ")
+      : null;
+
   return (
     <div
       className={`flex flex-col justify-between overflow-hidden rounded-xl border border-stone-700/90 bg-soil-800/90 shadow transition hover:border-stone-500 ${
@@ -377,12 +418,12 @@ function MetricWidget({
     >
       {/* Distinct Grafana-style top header strip */}
       <div className="flex items-center justify-between gap-2 border-b border-stone-700/80 bg-stone-900/80 px-3 py-2">
-        <div className="flex items-center gap-2">
-          <Icon size={14} style={{ color: preset.color }} />
-          <span className="text-xs font-semibold leading-tight text-stone-100">{preset.title}</span>
-          <span className="rounded bg-stone-800 px-1.5 py-0.5 text-[10px] text-stone-400">{preset.sensor}</span>
+        <div className="flex items-center gap-2 min-w-0">
+          <Icon size={14} className="shrink-0" style={{ color: preset.color }} />
+          <span className="truncate text-xs font-semibold leading-tight text-stone-100">{preset.title}</span>
+          <span className="truncate rounded bg-stone-800 px-1.5 py-0.5 text-[10px] text-stone-400">{sensorLabel}</span>
         </div>
-        <div className="flex items-center gap-1 text-stone-400">
+        <div className="flex items-center gap-1 text-stone-400 shrink-0">
           <button
             onClick={onToggleWide}
             title={wide ? "Compact width" : "Expand width"}
@@ -426,6 +467,9 @@ function MetricWidget({
               <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" className="h-16 w-full overflow-visible">
                 {/* Forecast region shade */}
                 <rect x={x(11.5)} y={0} width={W - x(11.5)} height={H} fill="#7c5cbf" opacity={0.14} />
+
+                {/* ML 80% Conformal Prediction Band (P10-P90) */}
+                {bandPolygon && <path d={bandPolygon} fill={preset.color} opacity={0.22} />}
 
                 {/* Optional threshold dashed line */}
                 {threshold !== null && (
